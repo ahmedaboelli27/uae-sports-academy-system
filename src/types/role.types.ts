@@ -1,6 +1,8 @@
-export type UserRole = "parent" | "coach" | "accountant" | "admin";
+export type UserRole = "parent" | "coach" | "accountant" | "admin" | "guest";
 
 export type Role = UserRole;
+
+export type RoleCode = Role;
 
 export interface RoleEntity {
   id: string;
@@ -26,6 +28,7 @@ export const ROLE_LABELS: Record<UserRole, string> = {
   coach: "Coach",
   accountant: "Accountant",
   admin: "Admin",
+  guest: "Guest",
 };
 
 export const ROLE_DESCRIPTIONS: Record<UserRole, string> = {
@@ -33,6 +36,7 @@ export const ROLE_DESCRIPTIONS: Record<UserRole, string> = {
   coach: "Coach training operations access",
   accountant: "Finance and invoices access",
   admin: "Full system access",
+  guest: "Unauthenticated visitor",
 };
 
 export const ROLE_REDIRECT_PATHS: Record<UserRole, string> = {
@@ -40,6 +44,7 @@ export const ROLE_REDIRECT_PATHS: Record<UserRole, string> = {
   coach: "/coach",
   accountant: "/admin/finance",
   admin: "/admin",
+  guest: "/auth/login",
 };
 
 export const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
@@ -68,6 +73,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
     "finance:reports",
   ],
   admin: ["*"],
+  guest: [],
 };
 
 export const ROLE_ENTITIES: RoleEntity[] = USER_ROLES.map((role) => ({
@@ -88,7 +94,7 @@ export function hasPermission(
   role: UserRole | null | undefined,
   permission: string,
 ) {
-  if (!role) return false;
+  if (!role || role === "guest") return false;
 
   const permissions = ROLE_PERMISSIONS[role];
 

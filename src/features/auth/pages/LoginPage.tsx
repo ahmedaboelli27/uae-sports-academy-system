@@ -23,7 +23,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 interface RoleOption {
-  value: UserRole;
+  value: Exclude<UserRole, 'guest'>;
   icon: LucideIcon;
 }
 
@@ -32,7 +32,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const loginMock = useAuthStore((state) => state.loginMock);
 
-  const [selectedRole, setSelectedRole] = useState<UserRole>("admin");
+  const [selectedRole, setSelectedRole] = useState<Exclude<UserRole, 'guest'>>("admin");
 
   const roleOptions: RoleOption[] = [
     { value: "admin", icon: ShieldCheck },

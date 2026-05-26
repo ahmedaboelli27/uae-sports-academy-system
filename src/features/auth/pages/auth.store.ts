@@ -15,11 +15,11 @@ interface AuthState {
     currentUser: AuthUser | null;
     role: UserRole | null;
     isAuthenticated: boolean;
-    loginMock: (role: UserRole) => void;
+    loginMock: (role: Exclude<UserRole, 'guest'>) => void;
     logout: () => void;
 }
 
-const mockUsers: Record<UserRole, AuthUser> = {
+const mockUsers: Record<Exclude<UserRole, 'guest'>, AuthUser> = {
     parent: {
         id: "parent-demo-user",
         name: "Parent Demo",

@@ -550,7 +550,7 @@ export function mapPaymentListItem(pay: BackendPayment): FinancePaymentListItemD
 
 export function mapPaymentDetails(
   pay: BackendPayment,
-  subscriptionList?: FinanceSubscriptionListItemDto,
+  subscriptionList?: FinanceSubscriptionListItemDto | null,
 ): FinancePaymentDetailsDto {
   return {
     ...mapPaymentListItem(pay),

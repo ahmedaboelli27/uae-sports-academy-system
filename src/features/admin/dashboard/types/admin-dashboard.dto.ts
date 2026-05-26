@@ -1,3 +1,12 @@
+import type {
+  ChartDataPoint,
+  DashboardKpiKey,
+  DashboardQuickAction,
+  KpiFormat,
+  MultiMetricDataPoint,
+  TimeSeriesDataPoint,
+} from "@/types";
+
 export type DashboardTrend = "up" | "down" | "neutral";
 
 export type ActivityType =
@@ -16,6 +25,16 @@ export interface DashboardKpiCardDto {
   change: string;
   trend: DashboardTrend;
   descriptionKey: string;
+}
+
+/** KPI row for mock/API dashboard builder and AdminKpiCards */
+export interface AdminDashboardKpiDto {
+  key: DashboardKpiKey;
+  label: string;
+  value: number;
+  format: KpiFormat;
+  unit?: string;
+  trend?: number;
 }
 
 export interface RevenueChartPointDto {
@@ -65,4 +84,26 @@ export interface AdminDashboardDto {
   branchPerformance: BranchPerformanceDto[];
   recentActivities: RecentActivityDto[];
   alerts: OperationalAlertDto[];
+}
+
+/** Shape returned by `buildAdminDashboardDto` (mock-db dashboard) */
+export interface MockAdminDashboardDto {
+  kpis: AdminDashboardKpiDto[];
+  charts: {
+    revenueByMonth: TimeSeriesDataPoint[];
+    attendanceTrend: TimeSeriesDataPoint[];
+    studentsByProgram: ChartDataPoint[];
+    branchPerformance: ChartDataPoint[];
+    programCapacity: MultiMetricDataPoint[];
+    revenueByProgram: ChartDataPoint[];
+    revenueByBranch: ChartDataPoint[];
+  };
+  recentActivities: RecentActivityDto[];
+  alerts: OperationalAlertDto[];
+  quickActions: DashboardQuickAction[];
+  summary: {
+    totalStudents: number;
+    activeStudents: number;
+  };
+  generatedAt: string;
 }

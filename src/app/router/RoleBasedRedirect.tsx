@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 export function RoleBasedRedirect() {
   const { isAuthenticated, role } = useAuthStore();
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated || role === 'guest') {
     return <Navigate to={ROUTE_PATHS.auth.login} replace />;
   }
 
