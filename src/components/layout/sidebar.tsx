@@ -16,6 +16,7 @@ import {
   Image,
   LayoutGrid,
   Megaphone,
+  Menu,
   MessageSquare,
   NotebookText,
   PartyPopper,
@@ -29,8 +30,9 @@ import {
   UserRound,
   UsersRound,
   WalletCards,
+  X,
 } from 'lucide-react';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
@@ -174,6 +176,7 @@ export function Sidebar({
   currentRole,
 }: SidebarProps) {
   const { t } = useTranslation();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const sidebarItems = useMemo(() => {
     const canSeeAdminBranches = currentRole === 'admin';
@@ -207,121 +210,193 @@ export function Sidebar({
     });
   }, [items, currentRole]);
 
-  return (
-    <aside
-      className={cn(
-        'hidden h-screen w-72 shrink-0 border-r border-border/70 bg-background/95 shadow-sm backdrop-blur-xl lg:flex lg:flex-col',
-        className,
-      )}
-    >
-      <div className="px-4 pb-3 pt-4">
-        <div className="relative overflow-hidden rounded-[1.75rem] border border-brand-yellow/20 bg-gradient-to-br from-brand-blue via-brand-blue-dark to-brand-dark p-5 text-white shadow-brand">
-          <div className="absolute -end-10 -top-10 h-28 w-28 rounded-full bg-brand-yellow/20 blur-2xl" />
-          <div className="absolute -bottom-12 -start-10 h-28 w-28 rounded-full bg-white/10 blur-2xl" />
+  const renderSidebarContent = (options?: { onNavigate?: () => void; isMobile?: boolean }) => {
+    const onNavigate = options?.onNavigate;
+    const isMobile = options?.isMobile ?? false;
 
-          <div className="relative flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow text-brand-blue shadow-brand-yellow">
-              <LayoutGrid className="h-6 w-6" />
-            </div>
+    return (
+      <>
+        <div className="px-4 pb-3 pt-4">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-brand-yellow/20 bg-gradient-to-br from-brand-blue via-brand-blue-dark to-brand-dark p-5 text-white shadow-brand">
+            <div className="absolute -end-10 -top-10 h-28 w-28 rounded-full bg-brand-yellow/20 blur-2xl" />
+            <div className="absolute -bottom-12 -start-10 h-28 w-28 rounded-full bg-white/10 blur-2xl" />
 
-            <div className="min-w-0">
-              <p className="truncate text-xs font-black uppercase tracking-[0.22em] text-white/60">
-                {title ?? t('sidebar.title')}
-              </p>
+            <div className="relative flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow text-brand-blue shadow-brand-yellow">
+                <LayoutGrid className="h-6 w-6" />
+              </div>
 
-              <h2 className="mt-1 truncate text-lg font-black tracking-tight">
-                {t('sidebar.navigation')}
-              </h2>
+              <div className="min-w-0">
+                <p className="truncate text-xs font-black uppercase tracking-[0.22em] text-white/60">
+                  {title ?? t('sidebar.title')}
+                </p>
+
+                <h2 className="mt-1 truncate text-lg font-black tracking-tight">
+                  {t('sidebar.navigation')}
+                </h2>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <nav className="flex flex-1 flex-col gap-1.5 overflow-y-auto px-3 py-3">
-        {sidebarItems.map((item) => {
-          const Icon = getSidebarIcon(item);
-          const label = getItemLabel(item, t);
+        <nav
+          className={cn(
+            'flex flex-1 flex-col gap-1.5 overflow-y-auto px-3 py-3',
+            isMobile ? 'pb-6' : '',
+          )}
+        >
+          {sidebarItems.map((item) => {
+            const Icon = getSidebarIcon(item);
+            const label = getItemLabel(item, t);
 
-          return (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.path.split('/').filter(Boolean).length <= 2}
-              className={({ isActive }) =>
-                cn(
-                  'group relative flex items-center gap-3 rounded-2xl border px-3 py-2.5 text-sm font-black transition-all duration-200',
-                  isActive
-                    ? 'border-brand-yellow/40 bg-brand-yellow text-brand-blue shadow-brand-yellow'
-                    : 'border-transparent text-muted-foreground hover:border-border hover:bg-card hover:text-foreground hover:shadow-sm',
-                )
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <span
-                    className={cn(
-                      'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-200',
-                      isActive
-                        ? 'bg-brand-blue text-white shadow-sm'
-                        : 'bg-secondary text-muted-foreground group-hover:bg-brand-blue/10 group-hover:text-brand-blue dark:group-hover:text-brand-yellow',
-                    )}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </span>
-
-                  <span className="min-w-0 flex-1 truncate">
-                    {label}
-                  </span>
-
-                  {item.badge ? (
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.path.split('/').filter(Boolean).length <= 2}
+                onClick={onNavigate}
+                className={({ isActive }) =>
+                  cn(
+                    'group relative flex items-center gap-3 rounded-2xl border px-3 py-2.5 text-sm font-black transition-all duration-200',
+                    isActive
+                      ? 'border-brand-yellow/40 bg-brand-yellow text-brand-blue shadow-brand-yellow'
+                      : 'border-transparent text-muted-foreground hover:border-border hover:bg-card hover:text-foreground hover:shadow-sm',
+                  )
+                }
+              >
+                {({ isActive }) => (
+                  <>
                     <span
                       className={cn(
-                        'rounded-full px-2.5 py-1 text-[11px] font-black',
+                        'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-200',
                         isActive
-                          ? 'bg-brand-blue/10 text-brand-blue'
-                          : 'bg-brand-yellow/15 text-brand-blue dark:text-brand-yellow',
+                          ? 'bg-brand-blue text-white shadow-sm'
+                          : 'bg-secondary text-muted-foreground group-hover:bg-brand-blue/10 group-hover:text-brand-blue dark:group-hover:text-brand-yellow',
                       )}
                     >
-                      {item.badge}
+                      <Icon className="h-5 w-5" />
                     </span>
-                  ) : null}
 
-                  <ChevronRight
-                    className={cn(
-                      'h-4 w-4 shrink-0 transition-all rtl:rotate-180',
-                      isActive
-                        ? 'translate-x-0 opacity-100 rtl:translate-x-0'
-                        : 'opacity-0 group-hover:translate-x-0.5 group-hover:opacity-100 rtl:group-hover:-translate-x-0.5',
-                    )}
-                  />
-                </>
-              )}
-            </NavLink>
-          );
-        })}
-      </nav>
+                    <span className="min-w-0 flex-1 truncate">
+                      {label}
+                    </span>
 
-      <div className="border-t border-border/70 p-4">
-        <div className="rounded-[1.5rem] border border-border bg-card px-4 py-3 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue dark:bg-brand-yellow/10 dark:text-brand-yellow">
-              <ShieldCheck className="h-5 w-5" />
-            </div>
+                    {item.badge ? (
+                      <span
+                        className={cn(
+                          'rounded-full px-2.5 py-1 text-[11px] font-black',
+                          isActive
+                            ? 'bg-brand-blue/10 text-brand-blue'
+                            : 'bg-brand-yellow/15 text-brand-blue dark:text-brand-yellow',
+                        )}
+                      >
+                        {item.badge}
+                      </span>
+                    ) : null}
 
-            <div className="min-w-0">
-              <p className="truncate text-xs font-bold text-muted-foreground">
-                {t('sidebar.footer.label')}
-              </p>
+                    <ChevronRight
+                      className={cn(
+                        'h-4 w-4 shrink-0 transition-all rtl:rotate-180',
+                        isActive
+                          ? 'translate-x-0 opacity-100 rtl:translate-x-0'
+                          : 'opacity-0 group-hover:translate-x-0.5 group-hover:opacity-100 rtl:group-hover:-translate-x-0.5',
+                      )}
+                    />
+                  </>
+                )}
+              </NavLink>
+            );
+          })}
+        </nav>
 
-              <p className="mt-0.5 truncate text-sm font-black text-brand-blue dark:text-brand-yellow">
-                {currentRole
-                  ? t(`sidebar.roles.${currentRole}`)
-                  : t('sidebar.roles.unknown')}
-              </p>
+        <div className="border-t border-border/70 p-4">
+          <div className="rounded-[1.5rem] border border-border bg-card px-4 py-3 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue dark:bg-brand-yellow/10 dark:text-brand-yellow">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+
+              <div className="min-w-0">
+                <p className="truncate text-xs font-bold text-muted-foreground">
+                  {t('sidebar.footer.label')}
+                </p>
+
+                <p className="mt-0.5 truncate text-sm font-black text-brand-blue dark:text-brand-yellow">
+                  {currentRole
+                    ? t(`sidebar.roles.${currentRole}`)
+                    : t('sidebar.roles.unknown')}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </aside>
+      </>
+    );
+  };
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setIsMobileOpen(true)}
+        className="fixed start-4 top-24 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue text-white shadow-2xl ring-1 ring-white/20 transition hover:-translate-y-0.5 hover:bg-brand-blue-dark dark:bg-brand-yellow dark:text-brand-blue lg:hidden"
+        aria-label={t('sidebar.openMenu', { defaultValue: 'Open sidebar menu' })}
+      >
+        <Menu className="h-6 w-6" />
+      </button>
+
+      {isMobileOpen ? (
+        <div className="fixed inset-0 z-[120] lg:hidden">
+          <button
+            type="button"
+            aria-label={t('sidebar.closeMenu', { defaultValue: 'Close sidebar menu' })}
+            onClick={() => setIsMobileOpen(false)}
+            className="absolute inset-0 bg-brand-dark/55 backdrop-blur-sm"
+          />
+
+          <aside className="absolute inset-y-0 left-0 flex w-[86vw] max-w-[22rem] flex-col border-r border-border/70 bg-background/98 shadow-2xl backdrop-blur-2xl animate-in slide-in-from-left duration-300">
+            <div className="flex items-center justify-between border-b border-border/70 px-4 py-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-blue text-white dark:bg-brand-yellow dark:text-brand-blue">
+                  <LayoutGrid className="h-5 w-5" />
+                </div>
+
+                <div>
+                  <p className="text-xs font-bold text-muted-foreground">
+                    {title ?? t('sidebar.title')}
+                  </p>
+                  <p className="text-sm font-black text-brand-blue dark:text-brand-yellow">
+                    {t('sidebar.navigation')}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsMobileOpen(false)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-foreground transition hover:bg-brand-blue hover:text-white dark:hover:bg-brand-yellow dark:hover:text-brand-blue"
+                aria-label={t('sidebar.closeMenu', { defaultValue: 'Close sidebar menu' })}
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {renderSidebarContent({
+              isMobile: true,
+              onNavigate: () => setIsMobileOpen(false),
+            })}
+          </aside>
+        </div>
+      ) : null}
+
+      <aside
+        className={cn(
+          'hidden h-screen w-72 shrink-0 border-r border-border/70 bg-background/95 shadow-sm backdrop-blur-xl lg:flex lg:flex-col',
+          className,
+        )}
+      >
+        {renderSidebarContent()}
+      </aside>
+    </>
   );
 }
