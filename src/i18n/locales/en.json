@@ -1,0 +1,3733 @@
+{
+  "brand": {
+    "academyName": "AspireX Sports Academy",
+    "shortName": "AspireX",
+    "tagline": "Train. Grow. Compete."
+  },
+  "common": {
+    "login": "Login",
+    "logout": "Logout",
+    "bookTrial": "Book Trial",
+    "bookFreeTrial": "Book Free Trial",
+    "registerChild": "Register Your Child",
+    "explorePrograms": "Explore Programs",
+    "contactAcademy": "Contact Academy",
+    "learnMore": "Learn More",
+    "viewProgram": "View Program",
+    "privacyPolicy": "Privacy Policy",
+    "termsConditions": "Terms & Conditions",
+    "contact": "Contact"
+  },
+  "nav": {
+    "programs": "Programs",
+    "coaches": "Coaches",
+    "locations": "Locations",
+    "pricing": "Pricing",
+    "offers": "Offers",
+    "contact": "Contact",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "students": "Students",
+    "parents": "Parents",
+    "schedule": "Schedule",
+    "attendance": "Attendance",
+    "finance": "Finance",
+    "reports": "Reports",
+    "settings": "Settings",
+    "branches": "Branches"
+  },
+  "footer": {
+    "description": "A premium digital experience for parents, coaches, students, and academy management."
+  },
+  "home": {
+    "hero": {
+      "badge": "Premium Sports Academy Management System",
+      "title": "Build Champions with a Smarter Sports Academy Platform.",
+      "description": "AspireX Sports Academy delivers a modern UAE-ready experience for parents, coaches, admins, subscriptions, attendance, player progress, and KPI dashboards."
+    },
+    "heroVisual": {
+      "overview": "Today’s Academy Overview",
+      "dashboard": "Smart Operations Dashboard",
+      "todaySessions": "Today Sessions",
+      "attendanceRate": "Attendance Rate",
+      "pendingPayments": "Pending Payments",
+      "activePlayers": "Active Players",
+      "monthlyRevenue": "Monthly Revenue",
+      "pathway": "Elite Player Pathway",
+      "trackSkills": "Track skills & progress"
+    },
+    "kpis": {
+      "players": "Registered Players",
+      "coaches": "Certified Coaches",
+      "locations": "Training Locations",
+      "satisfaction": "Parent Satisfaction"
+    },
+    "programsSection": {
+      "eyebrow": "Academy Programs",
+      "title": "Sports programs built for every age and skill level.",
+      "description": "Give parents a clear way to choose the right program by age, location, level, schedule, and price."
+    },
+    "programs": {
+      "football": {
+        "title": "Football Academy",
+        "age": "Ages 5–16",
+        "level": "Beginner to Elite",
+        "description": "Structured football training focused on skill, teamwork, speed, confidence, and match awareness."
+      },
+      "swimming": {
+        "title": "Swimming Program",
+        "age": "Ages 4–14",
+        "level": "Beginner to Advanced",
+        "description": "Safe, progressive swimming lessons designed to build water confidence and strong technique."
+      },
+      "basketball": {
+        "title": "Basketball Training",
+        "age": "Ages 7–17",
+        "level": "All Levels",
+        "description": "High-energy basketball sessions covering shooting, movement, agility, team play, and discipline."
+      }
+    },
+    "why": {
+      "eyebrow": "Why AspireX Wins",
+      "title": "One platform to manage parents, players, coaches, payments, and performance.",
+      "description": "The website is not just a landing page. It becomes the operating system of the academy, connecting registration, subscriptions, attendance, finance, communication, and progress tracking."
+    },
+    "features": {
+      "parentPortal": {
+        "title": "Parent Portal",
+        "description": "Parents can manage children, subscriptions, invoices, attendance, progress, documents, and messages."
+      },
+      "scheduling": {
+        "title": "Scheduling",
+        "description": "Control sessions, coaches, branches, class capacity, attendance, and make-up requests."
+      },
+      "finance": {
+        "title": "Finance & Payments",
+        "description": "Manage subscriptions, invoices, payment status, offers, discounts, and renewal reminders."
+      },
+      "kpi": {
+        "title": "KPI Dashboard",
+        "description": "Track revenue, renewals, attendance, trial conversion, branch performance, and coach utilization."
+      }
+    },
+    "coaches": {
+      "eyebrow": "Professional Coaches",
+      "title": "Build trust with strong coach profiles.",
+      "description": "Parents need to see who will train their children. Coach cards make AspireX feel premium, reliable, and transparent.",
+      "experience": "Experience",
+      "items": {
+        "first": {
+          "name": "Ahmed Al Mansoori",
+          "role": "Head Football Coach",
+          "experience": "10+ Years"
+        },
+        "second": {
+          "name": "Sara Khaled",
+          "role": "Swimming Coach",
+          "experience": "7+ Years"
+        },
+        "third": {
+          "name": "Omar Hassan",
+          "role": "Basketball Coach",
+          "experience": "8+ Years"
+        }
+      }
+    },
+    "branches": {
+      "eyebrow": "Branches",
+      "title": "Multi-location academy experience across the UAE.",
+      "description": "Let parents choose the closest branch and see available training days clearly.",
+      "trainingDays": "Training Days",
+      "items": {
+        "dubai": {
+          "city": "Dubai",
+          "location": "Nad Al Sheba Sports Complex",
+          "schedule": "Sun - Thu"
+        },
+        "abudhabi": {
+          "city": "Abu Dhabi",
+          "location": "Khalifa City Training Hub",
+          "schedule": "Mon - Sat"
+        },
+        "sharjah": {
+          "city": "Sharjah",
+          "location": "University City Sports Zone",
+          "schedule": "Fri - Sun"
+        }
+      }
+    },
+    "portals": {
+      "parent": {
+        "title": "Parent Experience",
+        "description": "A clear portal for parents to follow every child’s journey.",
+        "item1": "Child profile and program details",
+        "item2": "Attendance and progress reports",
+        "item3": "Payments, invoices, and subscriptions"
+      },
+      "coach": {
+        "title": "Coach Experience",
+        "description": "A mobile-friendly workspace for coaches during training.",
+        "item1": "Today’s sessions and assigned players",
+        "item2": "Attendance taking and skill notes",
+        "item3": "Incident reports and progress updates"
+      },
+      "admin": {
+        "title": "Admin Experience",
+        "description": "A powerful dashboard for full academy operations.",
+        "item1": "Students, parents, coaches, and programs",
+        "item2": "Finance, subscriptions, and payments",
+        "item3": "KPIs, reports, alerts, and activity logs"
+      }
+    },
+    "cta": {
+      "badge": "Free Trial Available",
+      "title": "Ready to create a premium digital academy experience?",
+      "description": "Start with registration, then expand into subscriptions, attendance, finance, coach dashboards, and smart KPI reporting."
+    }
+  },
+  "registration": {
+    "hero": {
+      "badge": "New Player Registration",
+      "title": "Register your child at AspireX Sports Academy.",
+      "description": "Complete the registration form and our team will contact you to confirm the best program, branch, schedule, and next steps.",
+      "primaryAction": "Start Registration",
+      "secondaryAction": "Book Free Trial Instead"
+    },
+    "heroCard": {
+      "parentData": {
+        "title": "Parent Information",
+        "description": "Collect contact details so the academy team can follow up quickly."
+      },
+      "programSelection": {
+        "title": "Program Selection",
+        "description": "Choose the sport, branch, level, preferred days, and training time."
+      },
+      "safeRegistration": {
+        "title": "Safe Registration",
+        "description": "Add medical notes, emergency contact, and required consent approvals."
+      }
+    },
+    "success": {
+      "title": "Registration request submitted successfully.",
+      "description": "This is a temporary success message. Later, this form will send the request to the backend and store it in the database."
+    },
+    "sections": {
+      "parent": {
+        "title": "Parent / Guardian Information",
+        "description": "Please enter the main contact details for the parent or guardian."
+      },
+      "child": {
+        "title": "Child Information",
+        "description": "Basic information about the child who will join the academy."
+      },
+      "program": {
+        "title": "Program Preferences",
+        "description": "Select the preferred sport, branch, days, and training time."
+      },
+      "medical": {
+        "title": "Medical & Emergency Notes",
+        "description": "Help us keep the child safe during training sessions."
+      },
+      "consent": {
+        "title": "Consent & Confirmation",
+        "description": "Please review and confirm the required approvals before submitting."
+      }
+    },
+    "form": {
+      "parentName": "Parent Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "preferredContact": "Preferred Contact Method",
+      "city": "City",
+      "relationship": "Relationship to Child",
+      "childName": "Child Full Name",
+      "dateOfBirth": "Date of Birth",
+      "gender": "Gender",
+      "skillLevel": "Current Skill Level",
+      "sport": "Sport",
+      "branch": "Preferred Branch",
+      "preferredDays": "Preferred Training Days",
+      "preferredTime": "Preferred Training Time",
+      "medicalNotes": "Medical Notes",
+      "allergies": "Allergies",
+      "emergencyName": "Emergency Contact Name",
+      "emergencyPhone": "Emergency Contact Phone",
+      "placeholders": {
+        "parentName": "Enter parent full name",
+        "city": "Dubai, Abu Dhabi, Sharjah...",
+        "relationship": "Father, Mother, Guardian...",
+        "childName": "Enter child full name",
+        "preferredDays": "Example: Sunday and Tuesday",
+        "preferredTime": "Example: 5:00 PM - 7:00 PM",
+        "medicalNotes": "Mention any injuries, conditions, or training restrictions",
+        "allergies": "Mention any allergies if applicable",
+        "emergencyName": "Enter emergency contact name",
+        "selectSport": "Select sport",
+        "selectBranch": "Select branch",
+        "selectLevel": "Select level",
+        "selectContact": "Select contact method",
+        "selectGender": "Select gender"
+      }
+    },
+    "options": {
+      "sports": {
+        "football": "Football",
+        "swimming": "Swimming",
+        "basketball": "Basketball",
+        "multiSport": "Multi-Sport Program"
+      },
+      "branches": {
+        "dubai": "Dubai Branch",
+        "abuDhabi": "Abu Dhabi Branch",
+        "sharjah": "Sharjah Branch"
+      },
+      "levels": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced",
+        "notSure": "Not sure yet"
+      },
+      "contact": {
+        "whatsapp": "WhatsApp",
+        "phone": "Phone Call",
+        "email": "Email"
+      },
+      "gender": {
+        "male": "Male",
+        "female": "Female"
+      }
+    },
+    "consent": {
+      "terms": "I agree to AspireX Sports Academy terms and conditions.",
+      "medical": "I confirm that the medical and emergency information provided is accurate.",
+      "photo": "I agree to allow AspireX Sports Academy to use photos/videos for academy communication and marketing."
+    },
+    "submit": {
+      "title": "Ready to submit the registration?",
+      "description": "Our academy team will review the request and contact the parent to confirm the next steps.",
+      "button": "Submit Registration"
+    },
+    "sideCards": {
+      "nextStep": {
+        "title": "What happens next?",
+        "description": "After submitting the form, the academy team will contact you to confirm availability, schedule, and payment options."
+      },
+      "contact": {
+        "title": "Need help?",
+        "description": "You can contact the academy team if you need help choosing the right program for your child."
+      },
+      "locations": {
+        "title": "Multiple UAE locations",
+        "description": "AspireX supports multiple branches, making it easier to choose the most convenient training location."
+      },
+      "note": "This form is currently connected to a temporary frontend success state. Later, it will be connected to the real database and admin dashboard."
+    }
+  },
+  "trial": {
+    "hero": {
+      "badge": "Free Trial Booking",
+      "title": "Book a free trial session at AspireX Sports Academy.",
+      "description": "Choose the preferred sport, branch, date, and time. Our team will contact you to confirm availability and guide you through the next steps.",
+      "primaryAction": "Book Trial Now",
+      "secondaryAction": "Register Child Instead"
+    },
+    "heroCard": {
+      "easyBooking": {
+        "title": "Easy Booking",
+        "description": "Submit your preferred trial details in a few simple steps."
+      },
+      "programMatch": {
+        "title": "Program Matching",
+        "description": "We help match your child with the right sport, level, and training group."
+      },
+      "fastFollowUp": {
+        "title": "Fast Follow-up",
+        "description": "The academy team will contact you to confirm the session details."
+      }
+    },
+    "success": {
+      "title": "Trial request submitted successfully.",
+      "description": "This is a temporary success message. Later, this request will be stored in the database and reviewed from the admin dashboard."
+    },
+    "sections": {
+      "parent": {
+        "title": "Parent Contact Information",
+        "description": "Enter the parent or guardian contact details so our team can follow up."
+      },
+      "child": {
+        "title": "Child Information",
+        "description": "Tell us who will attend the trial session."
+      },
+      "preferences": {
+        "title": "Trial Preferences",
+        "description": "Choose the preferred sport, branch, date, and time for the trial."
+      },
+      "notes": {
+        "title": "Additional Notes",
+        "description": "Share anything important that can help us prepare for the trial session."
+      }
+    },
+    "form": {
+      "parentName": "Parent Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "preferredContact": "Preferred Contact Method",
+      "childName": "Child Full Name",
+      "childAge": "Child Age",
+      "sport": "Sport",
+      "branch": "Preferred Branch",
+      "preferredDate": "Preferred Trial Date",
+      "preferredTime": "Preferred Trial Time",
+      "notes": "Notes",
+      "placeholders": {
+        "parentName": "Enter parent full name",
+        "childName": "Enter child full name",
+        "childAge": "Example: 8",
+        "preferredTime": "Example: 5:00 PM",
+        "notes": "Mention preferred days, child level, medical notes, or special requests",
+        "selectSport": "Select sport",
+        "selectBranch": "Select branch",
+        "selectContact": "Select contact method"
+      }
+    },
+    "options": {
+      "sports": {
+        "football": "Football",
+        "swimming": "Swimming",
+        "basketball": "Basketball",
+        "multiSport": "Multi-Sport Program"
+      },
+      "branches": {
+        "dubai": "Dubai Branch",
+        "abuDhabi": "Abu Dhabi Branch",
+        "sharjah": "Sharjah Branch"
+      },
+      "contact": {
+        "whatsapp": "WhatsApp",
+        "phone": "Phone Call",
+        "email": "Email"
+      }
+    },
+    "submit": {
+      "title": "Ready to book the trial?",
+      "description": "Submit the request and our team will contact you to confirm availability.",
+      "button": "Submit Trial Request"
+    },
+    "sideCards": {
+      "howItWorks": {
+        "title": "How it works",
+        "description": "Submit the trial request, then our team will confirm the suitable branch, coach, and available time."
+      },
+      "duration": {
+        "title": "Trial duration",
+        "description": "Trial sessions are usually short introductory sessions designed to assess level and comfort."
+      },
+      "locations": {
+        "title": "Available locations",
+        "description": "Choose from available AspireX branches across the UAE."
+      },
+      "followUp": {
+        "title": "Follow-up",
+        "description": "After the trial, our team can recommend the best program and subscription option."
+      },
+      "note": "This trial booking form is currently connected to a temporary frontend success state. Later, it will be connected to the real database and admin dashboard."
+    }
+  },
+  "auth": {
+    "roles": {
+      "admin": "Admin",
+      "accountant": "Accountant",
+      "coach": "Coach",
+      "parent": "Parent"
+    },
+    "roleDescriptions": {
+      "admin": "Full access",
+      "accountant": "Finance only",
+      "coach": "Training operations",
+      "parent": "Parent portal"
+    },
+    "login": {
+      "badge": "AspireX Portal",
+      "sideTitle": "Manage every academy operation from one secure portal.",
+      "sideDescription": "Access dashboards, students, coaches, payments, attendance, reports, and performance insights based on your role.",
+      "features": {
+        "kpi": "KPI dashboards",
+        "operations": "Academy operations",
+        "attendance": "Attendance tracking"
+      },
+      "title": "Welcome back",
+      "description": "Select a demo role and sign in to preview the correct dashboard experience.",
+      "email": "Email Address",
+      "password": "Password",
+      "selectRole": "Select demo role",
+      "submit": "Sign In",
+      "demoNote": "Demo mode: email and password are not validated yet. The selected role controls the redirect destination."
+    }
+  },
+  "adminDashboard": {
+    "badge": "Admin Control Center",
+    "title": "Admin Dashboard",
+    "description": "Monitor students, subscriptions, payments, attendance, trials, branch performance, and academy operations from one database-ready dashboard.",
+    "refresh": "Refresh Data",
+    "kpis": {
+      "totalStudents": "Total Students",
+      "totalStudentsDesc": "All students registered in the academy system.",
+      "activeStudents": "Active Students",
+      "activeStudentsDesc": "Students currently active in academy programs.",
+      "monthlyRevenue": "Monthly Revenue",
+      "monthlyRevenueDesc": "Total revenue generated during the current month.",
+      "pendingPayments": "Pending Payments",
+      "pendingPaymentsDesc": "Payments that require admin or finance follow-up.",
+      "attendanceRate": "Attendance Rate",
+      "attendanceRateDesc": "Average attendance rate across all sessions.",
+      "trialConversion": "Trial Conversion",
+      "trialConversionDesc": "Percentage of trial requests converted into paid subscriptions."
+    },
+    "charts": {
+      "revenueTitle": "Revenue by Month",
+      "revenueDescription": "Monthly revenue trend prepared for future backend and database integration.",
+      "programTitle": "Students by Program",
+      "programDescription": "Distribution of students across academy sports programs.",
+      "attendanceTitle": "Attendance Trend",
+      "attendanceDescription": "Weekly attendance rate across all training sessions.",
+      "branchTitle": "Branch Performance",
+      "branchDescription": "Student count and operational performance by academy branch."
+    },
+    "recentActivities": {
+      "title": "Recent Activities",
+      "description": "Latest operational actions recorded in the academy system."
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "addStudent": "Add Student",
+      "addProgram": "Add Program",
+      "viewPayments": "View Payments",
+      "reviewTrials": "Review Trials"
+    },
+    "alerts": {
+      "title": "Operational Alerts"
+    },
+    "empty": {
+      "title": "No dashboard data found",
+      "description": "Dashboard data could not be loaded. Please try again.",
+      "reload": "Reload Dashboard"
+    }
+  },
+  "studentsPage": {
+    "badge": "Students Management",
+    "title": "Students Management",
+    "description": "Manage all registered students, programs, branches, subscriptions, payment status, attendance, and parent contact details from one database-ready page.",
+    "actions": {
+      "refresh": "Refresh",
+      "addStudent": "Add Student",
+      "view": "View Student",
+      "edit": "Edit Student"
+    },
+    "summary": {
+      "totalStudents": "Total Students",
+      "activeStudents": "Active Students",
+      "pendingPayments": "Pending Payments",
+      "expiredSubscriptions": "Expired Subscriptions"
+    },
+    "filters": {
+      "title": "Search & Filters",
+      "description": "Filter students by name, program, branch, coach, status, payment, subscription, or skill level.",
+      "reset": "Reset Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by student name, code, parent, or phone...",
+      "program": "Program",
+      "allPrograms": "All Programs",
+      "branch": "Branch",
+      "allBranches": "All Branches",
+      "coach": "Coach",
+      "allCoaches": "All Coaches",
+      "status": "Student Status",
+      "allStatuses": "All Statuses",
+      "payment": "Payment Status",
+      "allPayments": "All Payments",
+      "subscription": "Subscription Status",
+      "allSubscriptions": "All Subscriptions",
+      "skillLevel": "Skill Level",
+      "allSkillLevels": "All Skill Levels"
+    },
+    "table": {
+      "title": "Students List",
+      "description": "A complete operational list of students prepared for future API and database integration.",
+      "loading": "Loading students...",
+      "results": "{{count}} result(s)",
+      "student": "Student",
+      "parent": "Parent",
+      "program": "Program",
+      "branch": "Branch",
+      "coach": "Coach",
+      "status": "Status",
+      "payment": "Payment",
+      "subscription": "Subscription",
+      "attendance": "Attendance",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "suspended": "Suspended",
+      "archived": "Archived"
+    },
+    "payment": {
+      "paid": "Paid",
+      "pending": "Pending",
+      "overdue": "Overdue",
+      "refunded": "Refunded"
+    },
+    "subscription": {
+      "active": "Active",
+      "expired": "Expired",
+      "expiringSoon": "Expiring Soon",
+      "notStarted": "Not Started"
+    },
+    "skill": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "elite": "Elite"
+    },
+    "empty": {
+      "title": "No students found",
+      "description": "No students match the current filters. Try changing the search criteria or resetting the filters."
+    }
+  },
+  "studentDetailsPage": {
+    "backToStudents": "Back to Students",
+    "notFound": {
+      "title": "Student not found",
+      "description": "The student profile you are trying to open does not exist or may have been removed.",
+      "back": "Back to Students"
+    },
+    "common": {
+      "notAvailable": "Not available"
+    },
+    "profile": {
+      "yearsOld": "years old",
+      "program": "Program",
+      "branch": "Branch",
+      "coach": "Coach",
+      "attendanceRate": "Attendance Rate"
+    },
+    "parent": {
+      "title": "Parent Information",
+      "description": "Main parent or guardian contact information linked to this student.",
+      "name": "Parent Name",
+      "phone": "Phone Number",
+      "email": "Email Address"
+    },
+    "subscription": {
+      "title": "Subscription Information",
+      "description": "Current subscription dates, payment status, and plan status.",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "paymentStatus": "Payment Status",
+      "subscriptionStatus": "Subscription Status"
+    },
+    "attendance": {
+      "title": "Attendance Overview",
+      "description": "Recent attendance records and overall attendance rate for this student.",
+      "attendanceRate": "Attendance Rate",
+      "lastAttendance": "Last Attendance",
+      "empty": "No recent attendance records found.",
+      "status": {
+        "present": "Present",
+        "absent": "Absent",
+        "late": "Late",
+        "excused": "Excused"
+      }
+    },
+    "progress": {
+      "title": "Progress Notes",
+      "description": "Coach notes, skill observations, and performance updates.",
+      "empty": "No progress notes have been added yet."
+    },
+    "medical": {
+      "title": "Medical & Safety Information",
+      "description": "Important health, safety, allergy, injury, and emergency contact information.",
+      "medicalNotes": "Medical Notes",
+      "allergies": "Allergies",
+      "injuries": "Injuries",
+      "emergencyContact": "Emergency Contact"
+    },
+    "payments": {
+      "title": "Payment History",
+      "description": "Invoices, payment status, due dates, and paid dates.",
+      "dueDate": "Due Date",
+      "paidAt": "Paid At",
+      "empty": "No payment history found."
+    },
+    "documents": {
+      "title": "Documents",
+      "description": "Medical documents, consent forms, ID files, and other uploaded documents.",
+      "empty": "No documents have been uploaded yet."
+    }
+  },
+  "newStudentPage": {
+    "backToStudents": "Back to Students",
+    "badge": "New Student",
+    "title": "Add New Student",
+    "description": "Create a complete student profile including parent details, program assignment, medical notes, emergency contact, and training preferences.",
+    "sideCard": {
+      "title": "Database-ready student profile",
+      "description": "This form is connected to the students service now, and later it will be connected directly to the backend and database."
+    },
+    "success": {
+      "title": "Student created successfully.",
+      "description": "The student profile has been created. You will be redirected to the student details page."
+    },
+    "formHeader": {
+      "badge": "Student Registration Form",
+      "title": "Complete the student profile",
+      "description": "Enter accurate student, parent, program, medical, and emergency information to create a complete academy record."
+    },
+    "submitLabel": "Create Student"
+  },
+  "studentForm": {
+    "notice": {
+      "createTitle": "Creating a new student profile",
+      "createDescription": "Fill in the required details carefully. This information will later be saved in the academy database.",
+      "editTitle": "Editing student profile",
+      "editDescription": "Update only the information that needs to be changed. Existing data will remain saved."
+    },
+    "sections": {
+      "student": {
+        "title": "Student Information",
+        "description": "Basic details about the student joining the academy."
+      },
+      "parent": {
+        "title": "Parent / Guardian Information",
+        "description": "Main contact details for the parent or guardian."
+      },
+      "program": {
+        "title": "Program Assignment",
+        "description": "Assign the student to a program, branch, and coach."
+      },
+      "preferences": {
+        "title": "Training Preferences",
+        "description": "Preferred training days and time for this student."
+      },
+      "medical": {
+        "title": "Medical Information",
+        "description": "Important medical notes, allergies, and injury information."
+      },
+      "emergency": {
+        "title": "Emergency Contact",
+        "description": "Emergency contact details used if the academy needs urgent communication."
+      }
+    },
+    "fields": {
+      "fullName": "Student Full Name",
+      "dateOfBirth": "Date of Birth",
+      "gender": "Gender",
+      "skillLevel": "Skill Level",
+      "parentName": "Parent Full Name",
+      "parentPhone": "Parent Phone",
+      "parentEmail": "Parent Email",
+      "program": "Program",
+      "branch": "Branch",
+      "coach": "Coach",
+      "preferredTrainingDays": "Preferred Training Days",
+      "preferredTrainingTime": "Preferred Training Time",
+      "medicalNotes": "Medical Notes",
+      "allergies": "Allergies",
+      "injuries": "Injuries",
+      "emergencyContactName": "Emergency Contact Name",
+      "emergencyContactPhone": "Emergency Contact Phone"
+    },
+    "placeholders": {
+      "fullName": "Enter student full name",
+      "parentName": "Enter parent full name",
+      "selectProgram": "Select program",
+      "selectBranch": "Select branch",
+      "selectCoach": "Select coach",
+      "preferredTrainingTime": "Example: 5:00 PM - 7:00 PM",
+      "medicalNotes": "Mention any medical notes or training restrictions",
+      "allergies": "Mention any allergies if applicable",
+      "injuries": "Mention any current or previous injuries",
+      "emergencyContactName": "Enter emergency contact name"
+    },
+    "options": {
+      "gender": {
+        "male": "Male",
+        "female": "Female"
+      },
+      "skill": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced",
+        "elite": "Elite"
+      },
+      "programs": {
+        "football": "Football Academy",
+        "swimming": "Swimming Program",
+        "basketball": "Basketball Training",
+        "multiSport": "Multi-Sport Program"
+      },
+      "branches": {
+        "dubai": "Dubai Branch",
+        "abuDhabi": "Abu Dhabi Branch",
+        "sharjah": "Sharjah Branch"
+      },
+      "coaches": {
+        "ahmed": "Ahmed Al Mansoori",
+        "sara": "Sara Khaled",
+        "omar": "Omar Hassan",
+        "fatima": "Fatima Al Nuaimi"
+      },
+      "days": {
+        "sunday": "Sunday",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday"
+      }
+    },
+    "submit": {
+      "title": "Ready to save this student?",
+      "description": "Review the information before submitting. Required fields must be completed.",
+      "saving": "Saving..."
+    }
+  },
+  "editStudentPage": {
+    "backToStudents": "Back to Students",
+    "badge": "Edit Student",
+    "title": "Edit Student Profile",
+    "description": "Update the student profile, parent contact details, program assignment, medical notes, emergency contact, and training preferences.",
+    "sideCard": {
+      "title": "Safe profile update",
+      "description": "Changes are currently saved through the students service. Later, this page will update the real backend and database record."
+    },
+    "success": {
+      "title": "Student updated successfully.",
+      "description": "The student profile has been updated. You will be redirected to the student details page."
+    },
+    "formHeader": {
+      "badge": "Update Student Record",
+      "description": "Review and update the existing student information carefully before saving changes."
+    },
+    "submitLabel": "Save Changes",
+    "notFound": {
+      "title": "Student not found",
+      "description": "The student profile you are trying to edit does not exist or may have been removed.",
+      "back": "Back to Students"
+    }
+  },
+  "parentsPage": {
+    "badge": "Parents Management",
+    "title": "Parents Management",
+    "description": "Manage parent profiles, children, contact details, payment status, outstanding balances, and communication preferences from one database-ready page.",
+    "actions": {
+      "refresh": "Refresh",
+      "addParent": "Add Parent",
+      "view": "View Parent",
+      "edit": "Edit Parent"
+    },
+    "summary": {
+      "totalParents": "Total Parents",
+      "activeParents": "Active Parents",
+      "pendingPayments": "Pending Payments",
+      "overduePayments": "Overdue Payments"
+    },
+    "financial": {
+      "title": "Financial Overview",
+      "description": "Track outstanding balances across all parents and payment follow-up cases.",
+      "totalOutstanding": "Total Outstanding"
+    },
+    "filters": {
+      "title": "Search & Filters",
+      "description": "Filter parents by name, phone, email, child name, city, status, payment status, or preferred contact method.",
+      "reset": "Reset Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by parent, phone, email, or child name...",
+      "city": "City",
+      "allCities": "All Cities",
+      "status": "Parent Status",
+      "allStatuses": "All Statuses",
+      "payment": "Payment Status",
+      "allPayments": "All Payments",
+      "contact": "Preferred Contact",
+      "allContacts": "All Contact Methods"
+    },
+    "table": {
+      "title": "Parents List",
+      "description": "A complete operational list of parents prepared for future API and database integration.",
+      "loading": "Loading parents...",
+      "results": "{{count}} result(s)",
+      "parent": "Parent",
+      "contact": "Contact",
+      "children": "Children",
+      "childrenCount": "child/children",
+      "activeSubscriptions": "active subscription(s)",
+      "status": "Status",
+      "payment": "Payment",
+      "outstanding": "Outstanding",
+      "paid": "Paid",
+      "lastContact": "Last Contact",
+      "actions": "Actions",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "blocked": "Blocked",
+      "archived": "Archived"
+    },
+    "payment": {
+      "paid": "Paid",
+      "pending": "Pending",
+      "overdue": "Overdue",
+      "mixed": "Mixed"
+    },
+    "contact": {
+      "phone": "Phone Call",
+      "whatsapp": "WhatsApp",
+      "email": "Email"
+    },
+    "common": {
+      "notAvailable": "Not available"
+    },
+    "empty": {
+      "title": "No parents found",
+      "description": "No parents match the current filters. Try changing the search criteria or resetting the filters."
+    }
+  },
+  "parentDetailsPage": {
+    "backToParents": "Back to Parents",
+    "notFound": {
+      "title": "Parent not found",
+      "description": "The parent profile you are trying to open does not exist or may have been removed.",
+      "back": "Back to Parents"
+    },
+    "common": {
+      "notAvailable": "Not available"
+    },
+    "profile": {
+      "parentProfile": "Parent Profile",
+      "children": "child/children",
+      "yearsOld": "years old",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "outstanding": "Outstanding Balance",
+      "paid": "Total Paid"
+    },
+    "children": {
+      "title": "Children",
+      "description": "Children linked to this parent profile with their program, branch, subscription, and payment status.",
+      "empty": "No children are linked to this parent yet."
+    },
+    "payments": {
+      "title": "Recent Payments",
+      "description": "Recent invoices and payment records linked to this parent and their children.",
+      "amount": "Amount",
+      "dueDate": "Due Date",
+      "paidAt": "Paid At",
+      "empty": "No recent payments found."
+    },
+    "communication": {
+      "title": "Communication History",
+      "description": "Recent communication records with this parent including calls, WhatsApp messages, emails, and meetings.",
+      "empty": "No communication history found.",
+      "types": {
+        "call": "Phone Call",
+        "whatsapp": "WhatsApp",
+        "email": "Email",
+        "meeting": "Meeting"
+      }
+    },
+    "financial": {
+      "title": "Financial Summary",
+      "description": "A quick overview of paid amounts, outstanding balance, and payment follow-up cases.",
+      "totalPaid": "Total Paid",
+      "totalOutstanding": "Total Outstanding",
+      "pendingPayments": "Pending Payments",
+      "overduePayments": "Overdue Payments"
+    },
+    "contact": {
+      "title": "Contact Information",
+      "description": "Address, city, preferred contact method, and last communication date.",
+      "city": "City",
+      "address": "Address",
+      "preferredContact": "Preferred Contact Method",
+      "lastContact": "Last Contact"
+    },
+    "notes": {
+      "title": "Notes & Emergency Contact",
+      "description": "Internal notes and emergency contact information for this parent profile.",
+      "notes": "Notes",
+      "emergencyContact": "Emergency Contact"
+    }
+  },
+  "parentNewPage": {
+    "backToParents": "Back to Parents",
+    "badge": "New Parent",
+    "title": "Add New Parent",
+    "description": "Create a complete parent profile including contact details, city, preferred communication method, address, notes, and emergency contact.",
+    "sideCard": {
+      "title": "Database-ready parent profile",
+      "description": "This form is connected to the parents service now, and later it will be connected directly to the backend and database."
+    },
+    "success": {
+      "title": "Parent created successfully.",
+      "description": "The parent profile has been created. You will be redirected to the parent details page."
+    },
+    "formHeader": {
+      "badge": "Parent Registration Form",
+      "title": "Complete the parent profile",
+      "description": "Enter accurate parent contact, city, communication, address, and emergency information to create a complete academy record."
+    },
+    "submitLabel": "Create Parent"
+  },
+  "parentForm": {
+    "notice": {
+      "createTitle": "Creating a new parent profile",
+      "createDescription": "Fill in the required details carefully. This information will later be saved in the academy database.",
+      "editTitle": "Editing parent profile",
+      "editDescription": "Update only the information that needs to be changed. Existing data will remain saved."
+    },
+    "sections": {
+      "parent": {
+        "title": "Parent Information",
+        "description": "Basic contact details for the parent or guardian."
+      },
+      "communication": {
+        "title": "Communication Preferences",
+        "description": "Choose the preferred contact method and current account status."
+      },
+      "address": {
+        "title": "Address & Notes",
+        "description": "Optional address and internal notes about this parent profile."
+      },
+      "emergency": {
+        "title": "Emergency Contact",
+        "description": "Emergency contact information used if urgent communication is needed."
+      }
+    },
+    "fields": {
+      "fullName": "Parent Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "city": "City",
+      "preferredContactMethod": "Preferred Contact Method",
+      "status": "Parent Status",
+      "address": "Address",
+      "notes": "Internal Notes",
+      "emergencyContactName": "Emergency Contact Name",
+      "emergencyContactPhone": "Emergency Contact Phone"
+    },
+    "placeholders": {
+      "fullName": "Enter parent full name",
+      "selectCity": "Select city",
+      "address": "Enter parent address if available",
+      "notes": "Add any internal notes about this parent",
+      "emergencyContactName": "Enter emergency contact name"
+    },
+    "options": {
+      "cities": {
+        "dubai": "Dubai",
+        "abuDhabi": "Abu Dhabi",
+        "sharjah": "Sharjah",
+        "ajman": "Ajman"
+      },
+      "contact": {
+        "phone": "Phone Call",
+        "whatsapp": "WhatsApp",
+        "email": "Email"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "blocked": "Blocked",
+        "archived": "Archived"
+      }
+    },
+    "submit": {
+      "title": "Ready to save this parent?",
+      "description": "Review the information before submitting. Required fields must be completed.",
+      "saving": "Saving..."
+    }
+  },
+  "parentEditPage": {
+    "backToParents": "Back to Parents",
+    "badge": "Edit Parent",
+    "title": "Edit Parent Profile",
+    "description": "Update the parent profile, contact details, city, communication preference, address, notes, and emergency contact information.",
+    "sideCard": {
+      "title": "Safe parent profile update",
+      "description": "Changes are currently saved through the parents service. Later, this page will update the real backend and database record."
+    },
+    "success": {
+      "title": "Parent updated successfully.",
+      "description": "The parent profile has been updated. You will be redirected to the parent details page."
+    },
+    "formHeader": {
+      "badge": "Update Parent Record",
+      "description": "Review and update the existing parent information carefully before saving changes."
+    },
+    "submitLabel": "Save Changes",
+    "notFound": {
+      "title": "Parent not found",
+      "description": "The parent profile you are trying to edit does not exist or may have been removed.",
+      "back": "Back to Parents"
+    }
+  },
+  "coachesPage": {
+    "badge": "Coaches Management",
+    "title": "Coaches Management",
+    "description": "Manage coaches, specialties, branches, availability, assigned students, schedules, ratings, and performance indicators from one database-ready page.",
+    "actions": {
+      "refresh": "Refresh",
+      "addCoach": "Add Coach",
+      "view": "View Coach",
+      "edit": "Edit Coach"
+    },
+    "summary": {
+      "totalCoaches": "Total Coaches",
+      "activeCoaches": "Active Coaches",
+      "availableCoaches": "Available Coaches",
+      "assignedStudents": "Assigned Students"
+    },
+    "metrics": {
+      "averageRating": "Average Rating",
+      "averageRatingDescription": "Average internal performance rating across all registered coaches.",
+      "attendanceCompletion": "Attendance Completion",
+      "attendanceCompletionDescription": "Average completion rate of attendance records across coach sessions."
+    },
+    "filters": {
+      "title": "Search & Filters",
+      "description": "Filter coaches by name, code, phone, email, branch, specialty, status, availability, employment type, or skill level.",
+      "reset": "Reset Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by coach name, code, phone, email, or branch...",
+      "branch": "Branch",
+      "allBranches": "All Branches",
+      "specialty": "Specialty",
+      "allSpecialties": "All Specialties",
+      "status": "Coach Status",
+      "allStatuses": "All Statuses",
+      "availability": "Availability",
+      "allAvailability": "All Availability",
+      "employment": "Employment Type",
+      "allEmployment": "All Employment Types",
+      "skillLevel": "Skill Level",
+      "allSkillLevels": "All Skill Levels"
+    },
+    "table": {
+      "title": "Coaches List",
+      "description": "A complete operational list of coaches prepared for future API and database integration.",
+      "loading": "Loading coaches...",
+      "results": "{{count}} result(s)",
+      "coach": "Coach",
+      "contact": "Contact",
+      "specialty": "Specialty",
+      "branch": "Branch",
+      "status": "Status",
+      "availability": "Availability",
+      "students": "Students",
+      "rating": "Rating",
+      "actions": "Actions",
+      "weeklySessions": "weekly session(s)",
+      "activePrograms": "active program(s)"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "on_leave": "On Leave",
+      "suspended": "Suspended",
+      "archived": "Archived"
+    },
+    "availability": {
+      "available": "Available",
+      "busy": "Busy",
+      "limited": "Limited",
+      "unavailable": "Unavailable"
+    },
+    "employment": {
+      "full_time": "Full Time",
+      "part_time": "Part Time",
+      "freelance": "Freelance",
+      "contract": "Contract"
+    },
+    "skill": {
+      "junior": "Junior",
+      "mid_level": "Mid-Level",
+      "senior": "Senior",
+      "expert": "Expert"
+    },
+    "specialty": {
+      "football": "Football",
+      "swimming": "Swimming",
+      "basketball": "Basketball",
+      "multi_sport": "Multi-Sport",
+      "fitness": "Fitness",
+      "martial_arts": "Martial Arts",
+      "tennis": "Tennis",
+      "other": "Other"
+    },
+    "empty": {
+      "title": "No coaches found",
+      "description": "No coaches match the current filters. Try changing the search criteria or resetting the filters."
+    }
+  },
+  "coachDetailsPage": {
+    "backToCoaches": "Back to Coaches",
+    "actions": {
+      "editCoach": "Edit Coach"
+    },
+    "notFound": {
+      "title": "Coach not found",
+      "description": "The coach profile you are trying to open does not exist or may have been removed.",
+      "back": "Back to Coaches"
+    },
+    "common": {
+      "notAvailable": "Not available"
+    },
+    "profile": {
+      "assignedStudents": "Assigned Students",
+      "weeklySessions": "Weekly Sessions",
+      "rating": "Rating",
+      "attendanceCompletion": "Attendance Completion"
+    },
+    "assignedStudents": {
+      "title": "Assigned Students",
+      "description": "Students currently assigned to this coach with attendance, subscription, and payment status.",
+      "empty": "No students are assigned to this coach yet.",
+      "yearsOld": "years old",
+      "attendanceRate": "Attendance Rate"
+    },
+    "upcomingSessions": {
+      "title": "Upcoming Sessions",
+      "description": "Scheduled training sessions assigned to this coach.",
+      "empty": "No upcoming sessions found."
+    },
+    "recentSessions": {
+      "title": "Recent Sessions",
+      "description": "Recently completed, cancelled, or postponed sessions.",
+      "empty": "No recent sessions found."
+    },
+    "sessions": {
+      "studentsCount": "Students Count"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "description": "Professional certificates and coaching qualifications linked to this coach.",
+      "empty": "No certifications have been added yet.",
+      "issuedAt": "Issued At",
+      "expiresAt": "Expires At"
+    },
+    "performance": {
+      "title": "Performance Metrics",
+      "description": "Key performance indicators and operational metrics for this coach.",
+      "empty": "No performance metrics available."
+    },
+    "contact": {
+      "title": "Contact Information",
+      "description": "Phone, email, address, and emergency contact information.",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "address": "Address",
+      "emergencyContact": "Emergency Contact"
+    },
+    "workInfo": {
+      "title": "Work Information",
+      "description": "Employment type, joining date, experience, and latest session information.",
+      "employmentType": "Employment Type",
+      "joinedAt": "Joined At",
+      "experienceYears": "Experience Years",
+      "lastSession": "Last Session"
+    },
+    "languages": {
+      "title": "Languages",
+      "description": "Languages used by this coach during training and communication.",
+      "empty": "No languages have been added."
+    },
+    "notes": {
+      "title": "Bio, Specialties & Notes",
+      "description": "Coach biography, technical specialties, and internal notes.",
+      "bio": "Bio",
+      "specialties": "Specialties",
+      "notes": "Internal Notes"
+    },
+    "sessionStatus": {
+      "scheduled": "Scheduled",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "postponed": "Postponed"
+    },
+    "subscription": {
+      "active": "Active",
+      "expired": "Expired",
+      "expiring_soon": "Expiring Soon",
+      "not_started": "Not Started"
+    },
+    "payment": {
+      "paid": "Paid",
+      "pending": "Pending",
+      "overdue": "Overdue",
+      "refunded": "Refunded"
+    }
+  },
+  "coachNewPage": {
+    "backToCoaches": "Back to Coaches",
+    "badge": "New Coach",
+    "title": "Add New Coach",
+    "description": "Create a complete coach profile including personal details, contact information, specialty, branch, work status, availability, experience, languages, and notes.",
+    "sideCard": {
+      "title": "Database-ready coach profile",
+      "description": "This form is connected to the coaches service now, and later it will be connected directly to the backend and database."
+    },
+    "success": {
+      "title": "Coach created successfully.",
+      "description": "The coach profile has been created. You will be redirected to the coach details page."
+    },
+    "formHeader": {
+      "badge": "Coach Registration Form",
+      "title": "Complete the coach profile",
+      "description": "Enter accurate coach information to create a complete operational record inside the academy system."
+    },
+    "submitLabel": "Create Coach"
+  },
+  "coachForm": {
+    "notice": {
+      "createTitle": "Creating a new coach profile",
+      "createDescription": "Fill in the coach information carefully. This data will later be saved in the academy database.",
+      "editTitle": "Editing coach profile",
+      "editDescription": "Update only the information that needs to be changed. Existing data will remain saved."
+    },
+    "sections": {
+      "personal": {
+        "title": "Personal Information",
+        "description": "Basic personal details for the coach."
+      },
+      "contact": {
+        "title": "Contact & Emergency Information",
+        "description": "Phone, email, and emergency contact details."
+      },
+      "sport": {
+        "title": "Sport & Branch Assignment",
+        "description": "Coach specialty, skill level, branch, and years of experience."
+      },
+      "work": {
+        "title": "Work Status",
+        "description": "Employment type, coach status, and availability."
+      },
+      "experience": {
+        "title": "Experience, Languages & Notes",
+        "description": "Languages, specialties, bio, and internal notes."
+      },
+      "address": {
+        "title": "Address Information",
+        "description": "Optional address details for the coach profile."
+      }
+    },
+    "fields": {
+      "fullName": "Coach Full Name",
+      "gender": "Gender",
+      "nationality": "Nationality",
+      "dateOfBirth": "Date of Birth",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "emergencyContactName": "Emergency Contact Name",
+      "emergencyContactPhone": "Emergency Contact Phone",
+      "sportSpecialty": "Sport Specialty",
+      "skillLevel": "Skill Level",
+      "branch": "Branch",
+      "experienceYears": "Experience Years",
+      "employmentType": "Employment Type",
+      "status": "Coach Status",
+      "availabilityStatus": "Availability Status",
+      "languages": "Languages",
+      "specialties": "Specialties",
+      "bio": "Bio",
+      "notes": "Internal Notes",
+      "address": "Address"
+    },
+    "placeholders": {
+      "fullName": "Enter coach full name",
+      "nationality": "Example: Emirati, Egyptian, Jordanian",
+      "emergencyContactName": "Enter emergency contact name",
+      "selectBranch": "Select branch",
+      "languages": "Example: Arabic, English",
+      "specialties": "Example: Youth Football, Fitness, Water Safety",
+      "bio": "Write a short professional bio for the coach",
+      "notes": "Add any internal notes about this coach",
+      "address": "Enter coach address if available"
+    },
+    "options": {
+      "gender": {
+        "male": "Male",
+        "female": "Female"
+      },
+      "branches": {
+        "dubai": "Dubai Branch",
+        "abuDhabi": "Abu Dhabi Branch",
+        "sharjah": "Sharjah Branch",
+        "ajman": "Ajman Branch"
+      },
+      "specialty": {
+        "football": "Football",
+        "swimming": "Swimming",
+        "basketball": "Basketball",
+        "multi_sport": "Multi-Sport",
+        "fitness": "Fitness",
+        "martial_arts": "Martial Arts",
+        "tennis": "Tennis",
+        "other": "Other"
+      },
+      "skill": {
+        "junior": "Junior",
+        "mid_level": "Mid-Level",
+        "senior": "Senior",
+        "expert": "Expert"
+      },
+      "employment": {
+        "full_time": "Full Time",
+        "part_time": "Part Time",
+        "freelance": "Freelance",
+        "contract": "Contract"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "on_leave": "On Leave",
+        "suspended": "Suspended",
+        "archived": "Archived"
+      },
+      "availability": {
+        "available": "Available",
+        "busy": "Busy",
+        "limited": "Limited",
+        "unavailable": "Unavailable"
+      }
+    },
+    "submit": {
+      "title": "Ready to save this coach?",
+      "description": "Review the information before submitting. Required fields must be completed.",
+      "saving": "Saving..."
+    }
+  },
+  "coachEditPage": {
+    "backToCoaches": "Back to Coaches",
+    "badge": "Edit Coach",
+    "title": "Edit Coach Profile",
+    "description": "Update the coach profile, contact details, sport specialty, branch assignment, work status, availability, experience, languages, and internal notes.",
+    "sideCard": {
+      "title": "Safe coach profile update",
+      "description": "Changes are currently saved through the coaches service. Later, this page will update the real backend and database record."
+    },
+    "success": {
+      "title": "Coach updated successfully.",
+      "description": "The coach profile has been updated. You will be redirected to the coach details page."
+    },
+    "formHeader": {
+      "badge": "Update Coach Record",
+      "description": "Review and update the existing coach information carefully before saving changes."
+    },
+    "submitLabel": "Save Changes",
+    "notFound": {
+      "title": "Coach not found",
+      "description": "The coach profile you are trying to edit does not exist or may have been removed.",
+      "back": "Back to Coaches"
+    }
+  },
+  "programsPage": {
+    "badge": "Programs Management",
+    "title": "Programs Management",
+    "description": "Manage academy programs, sports, levels, age groups, enrollment status, pricing, capacity, attendance, and performance from one database-ready page.",
+    "actions": {
+      "refresh": "Refresh",
+      "addProgram": "Add Program",
+      "view": "View Program",
+      "edit": "Edit Program"
+    },
+    "summary": {
+      "totalPrograms": "Total Programs",
+      "activePrograms": "Active Programs",
+      "openEnrollment": "Open Enrollment",
+      "enrolledStudents": "Enrolled Students"
+    },
+    "metrics": {
+      "capacity": "Enrollment Capacity",
+      "capacityDescription": "Total enrolled students compared to the available capacity across all programs.",
+      "averageAttendance": "Average Attendance",
+      "averageAttendanceDescription": "Average attendance rate across all academy programs.",
+      "averageRating": "Average Rating",
+      "averageRatingDescription": "Average internal rating across all programs."
+    },
+    "filters": {
+      "title": "Search & Filters",
+      "description": "Filter programs by name, code, description, sport, level, age group, program status, or enrollment status.",
+      "reset": "Reset Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by program name, code, or description...",
+      "sport": "Sport",
+      "allSports": "All Sports",
+      "level": "Level",
+      "allLevels": "All Levels",
+      "ageGroup": "Age Group",
+      "allAgeGroups": "All Age Groups",
+      "status": "Program Status",
+      "allStatuses": "All Statuses",
+      "enrollment": "Enrollment Status",
+      "allEnrollmentStatuses": "All Enrollment Statuses"
+    },
+    "table": {
+      "title": "Programs List",
+      "description": "A complete operational list of academy programs prepared for future API and database integration.",
+      "loading": "Loading programs...",
+      "results": "{{count}} result(s)",
+      "program": "Program",
+      "sport": "Sport",
+      "ageLevel": "Age / Level",
+      "capacity": "Capacity",
+      "price": "Price",
+      "status": "Status",
+      "enrollment": "Enrollment",
+      "performance": "Performance",
+      "actions": "Actions",
+      "branches": "branch(es)",
+      "coaches": "coach(es)",
+      "students": "students",
+      "years": "years",
+      "monthly": "Monthly",
+      "attendance": "attendance"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "draft": "Draft",
+      "archived": "Archived",
+      "seasonal": "Seasonal"
+    },
+    "enrollment": {
+      "open": "Open",
+      "limited": "Limited",
+      "full": "Full",
+      "closed": "Closed"
+    },
+    "sport": {
+      "football": "Football",
+      "swimming": "Swimming",
+      "basketball": "Basketball",
+      "multi_sport": "Multi-Sport",
+      "fitness": "Fitness",
+      "martial_arts": "Martial Arts",
+      "tennis": "Tennis",
+      "other": "Other"
+    },
+    "level": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "elite": "Elite",
+      "all_levels": "All Levels"
+    },
+    "ageGroup": {
+      "kids": "Kids",
+      "juniors": "Juniors",
+      "teens": "Teens",
+      "adults": "Adults",
+      "all_ages": "All Ages"
+    },
+    "empty": {
+      "title": "No programs found",
+      "description": "No programs match the current filters. Try changing the search criteria or resetting the filters."
+    }
+  },
+  "programDetailsPage": {
+    "backToPrograms": "Back to Programs",
+    "actions": {
+      "editProgram": "Edit Program"
+    },
+    "notFound": {
+      "title": "Program not found",
+      "description": "The program you are trying to open does not exist or may have been removed.",
+      "back": "Back to Programs"
+    },
+    "common": {
+      "notAvailable": "Not available",
+      "minutes": "minutes",
+      "years": "years"
+    },
+    "profile": {
+      "capacity": "Capacity",
+      "monthlyPrice": "Monthly Price",
+      "rating": "Rating",
+      "attendanceAverage": "Attendance Average"
+    },
+    "overview": {
+      "title": "Program Overview",
+      "description": "Main description and operational duration details for this program.",
+      "durationWeeks": "Duration Weeks",
+      "sessionsPerWeek": "Sessions Per Week",
+      "sessionDuration": "Session Duration"
+    },
+    "objectives": {
+      "title": "Objectives",
+      "description": "Key learning and development objectives of this program.",
+      "empty": "No objectives have been added yet."
+    },
+    "requirements": {
+      "title": "Requirements",
+      "description": "Items, conditions, or approvals required before joining this program.",
+      "empty": "No requirements have been added yet."
+    },
+    "branches": {
+      "title": "Branches",
+      "description": "Branches where this program is currently available.",
+      "empty": "No branches are linked to this program yet.",
+      "students": "students"
+    },
+    "coaches": {
+      "title": "Coaches",
+      "description": "Coaches assigned to deliver this program.",
+      "empty": "No coaches are assigned to this program yet."
+    },
+    "schedule": {
+      "title": "Schedule",
+      "description": "Weekly schedule slots assigned to this program.",
+      "empty": "No schedule slots have been added yet."
+    },
+    "pricing": {
+      "title": "Pricing Plans",
+      "description": "Available pricing cycles and fees for this program.",
+      "empty": "No pricing plans have been added yet.",
+      "sessions": "sessions",
+      "unlimitedSessions": "Unlimited sessions",
+      "recommended": "Recommended"
+    },
+    "performance": {
+      "title": "Performance Metrics",
+      "description": "Attendance, rating, and operational performance indicators.",
+      "empty": "No performance metrics are available."
+    },
+    "quickInfo": {
+      "title": "Quick Information",
+      "description": "Important classification and timeline details for this program.",
+      "sport": "Sport",
+      "level": "Level",
+      "ageGroup": "Age Group",
+      "ageRange": "Age Range",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
+    },
+    "notes": {
+      "title": "Internal Notes",
+      "description": "Internal administrative notes related to this program.",
+      "notes": "Notes"
+    },
+    "pricingCycle": {
+      "monthly": "Monthly",
+      "quarterly": "Quarterly",
+      "semi_annual": "Semi-Annual",
+      "annual": "Annual",
+      "per_session": "Per Session"
+    },
+    "days": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    }
+  },
+  "programForm": {
+    "notice": {
+      "createTitle": "Creating a new program",
+      "createDescription": "Fill in the program information carefully. This data will later be saved in the academy database.",
+      "editTitle": "Editing program",
+      "editDescription": "Update only the information that needs to be changed. Existing data will remain saved."
+    },
+    "sections": {
+      "basic": {
+        "title": "Basic Program Information",
+        "description": "Main program name, short description, and full description."
+      },
+      "classification": {
+        "title": "Program Classification",
+        "description": "Sport type, level, and age group for this program."
+      },
+      "age": {
+        "title": "Age Range",
+        "description": "Define the minimum and maximum age allowed for this program."
+      },
+      "duration": {
+        "title": "Duration & Sessions",
+        "description": "Program duration, weekly sessions, and session length."
+      },
+      "pricing": {
+        "title": "Pricing & Status",
+        "description": "Monthly price, program status, and enrollment availability."
+      },
+      "objectives": {
+        "title": "Objectives & Requirements",
+        "description": "Learning objectives and requirements needed before joining the program."
+      },
+      "media": {
+        "title": "Media & Internal Notes",
+        "description": "Optional cover image URL and internal administrative notes."
+      }
+    },
+    "fields": {
+      "name": "Program Name",
+      "shortDescription": "Short Description",
+      "description": "Full Description",
+      "sportType": "Sport Type",
+      "level": "Level",
+      "ageGroup": "Age Group",
+      "minAge": "Minimum Age",
+      "maxAge": "Maximum Age",
+      "durationWeeks": "Duration Weeks",
+      "sessionsPerWeek": "Sessions Per Week",
+      "sessionDurationMinutes": "Session Duration Minutes",
+      "monthlyPrice": "Monthly Price",
+      "status": "Program Status",
+      "enrollmentStatus": "Enrollment Status",
+      "objectives": "Objectives",
+      "requirements": "Requirements",
+      "coverImageUrl": "Cover Image URL",
+      "notes": "Internal Notes"
+    },
+    "placeholders": {
+      "name": "Example: Football Academy",
+      "shortDescription": "Write a short summary for this program",
+      "description": "Write the full program description",
+      "objectives": "Write each objective on a new line or separate by commas",
+      "requirements": "Write each requirement on a new line or separate by commas",
+      "coverImageUrl": "Paste image URL if available",
+      "notes": "Add any internal notes about this program"
+    },
+    "options": {
+      "sport": {
+        "football": "Football",
+        "swimming": "Swimming",
+        "basketball": "Basketball",
+        "multi_sport": "Multi-Sport",
+        "fitness": "Fitness",
+        "martial_arts": "Martial Arts",
+        "tennis": "Tennis",
+        "other": "Other"
+      },
+      "level": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced",
+        "elite": "Elite",
+        "all_levels": "All Levels"
+      },
+      "ageGroup": {
+        "kids": "Kids",
+        "juniors": "Juniors",
+        "teens": "Teens",
+        "adults": "Adults",
+        "all_ages": "All Ages"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "draft": "Draft",
+        "archived": "Archived",
+        "seasonal": "Seasonal"
+      },
+      "enrollment": {
+        "open": "Open",
+        "limited": "Limited",
+        "full": "Full",
+        "closed": "Closed"
+      }
+    },
+    "submit": {
+      "title": "Ready to save this program?",
+      "description": "Review the information before submitting. Required fields must be completed.",
+      "saving": "Saving..."
+    }
+  },
+  "programEditPage": {
+    "backToPrograms": "Back to Programs",
+    "badge": "Edit Program",
+    "title": "Edit Program",
+    "description": "Update program information, classification, pricing, duration, objectives, requirements, media, and internal notes.",
+    "sideCard": {
+      "title": "Safe program update",
+      "description": "Changes are currently saved through the programs service. Later, this page will update the real backend and database record."
+    },
+    "success": {
+      "title": "Program updated successfully.",
+      "description": "The program has been updated. You will be redirected to the program details page."
+    },
+    "formHeader": {
+      "badge": "Update Program Record",
+      "title": "Review and update program details",
+      "description": "Edit the existing program information carefully before saving changes."
+    },
+    "submitLabel": "Save Changes",
+    "notFound": {
+      "title": "Program not found",
+      "description": "The program you are trying to edit does not exist or may have been removed.",
+      "back": "Back to Programs"
+    }
+  },
+  "programNewPage": {
+    "backToPrograms": "Back to Programs",
+    "badge": "New Program",
+    "title": "Add New Program",
+    "description": "Create a complete academy program including name, sport type, level, age group, duration, pricing, objectives, requirements, media, and internal notes.",
+    "sideCard": {
+      "title": "Database-ready program profile",
+      "description": "This form is connected to the programs service now, and later it will be connected directly to the backend and database."
+    },
+    "success": {
+      "title": "Program created successfully.",
+      "description": "The program has been created. You will be redirected to the program details page."
+    },
+    "formHeader": {
+      "badge": "Program Creation Form",
+      "title": "Complete the program profile",
+      "description": "Enter accurate program information to create a complete operational record inside the academy system."
+    },
+    "submitLabel": "Create Program"
+  },
+  "branchesPage": {
+    "badge": "Branches Management",
+    "title": "Branches Management",
+    "description": "Manage academy branches, cities, managers, facilities, capacity, utilization, programs, coaches, and operational performance from one database-ready page.",
+    "actions": {
+      "refresh": "Refresh",
+      "addBranch": "Add Branch",
+      "view": "View Branch",
+      "edit": "Edit Branch"
+    },
+    "summary": {
+      "totalBranches": "Total Branches",
+      "activeBranches": "Active Branches",
+      "maintenanceBranches": "Under Maintenance",
+      "totalStudents": "Total Students"
+    },
+    "metrics": {
+      "capacity": "Enrollment Capacity",
+      "capacityDescription": "Total students compared to total branch capacity across all academy branches.",
+      "utilization": "Average Utilization",
+      "utilizationDescription": "Average utilization rate across all academy branches.",
+      "rating": "Average Rating",
+      "ratingDescription": "Average internal rating across all academy branches."
+    },
+    "filters": {
+      "title": "Search & Filters",
+      "description": "Filter branches by name, code, area, address, contact details, manager, city, status, or branch type.",
+      "reset": "Reset Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by branch name, code, area, address, phone, email, or manager...",
+      "city": "City",
+      "allCities": "All Cities",
+      "status": "Branch Status",
+      "allStatuses": "All Statuses",
+      "type": "Branch Type",
+      "allTypes": "All Types"
+    },
+    "table": {
+      "title": "Branches List",
+      "description": "A complete operational list of academy branches prepared for future API and database integration.",
+      "loading": "Loading branches...",
+      "results": "{{count}} result(s)",
+      "branch": "Branch",
+      "location": "Location",
+      "contact": "Contact",
+      "manager": "Manager",
+      "status": "Status",
+      "capacity": "Capacity",
+      "operations": "Operations",
+      "rating": "Rating",
+      "actions": "Actions",
+      "utilization": "utilization",
+      "programs": "program(s)",
+      "coaches": "coach(es)",
+      "sessions": "session(s)"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "under_maintenance": "Under Maintenance",
+      "archived": "Archived"
+    },
+    "type": {
+      "main": "Main Branch",
+      "satellite": "Satellite Branch",
+      "partner": "Partner Branch",
+      "temporary": "Temporary Branch"
+    },
+    "city": {
+      "dubai": "Dubai",
+      "abu_dhabi": "Abu Dhabi",
+      "sharjah": "Sharjah",
+      "ajman": "Ajman",
+      "ras_al_khaimah": "Ras Al Khaimah",
+      "fujairah": "Fujairah",
+      "umm_al_quwain": "Umm Al Quwain",
+      "al_ain": "Al Ain"
+    },
+    "empty": {
+      "title": "No branches found",
+      "description": "No branches match the current filters. Try changing the search criteria or resetting the filters."
+    }
+  },
+  "branchDetailsPage": {
+    "backToBranches": "Back to Branches",
+    "actions": {
+      "editBranch": "Edit Branch"
+    },
+    "notFound": {
+      "title": "Branch not found",
+      "description": "The branch you are trying to open does not exist or may have been removed.",
+      "back": "Back to Branches"
+    },
+    "common": {
+      "notAvailable": "Not available",
+      "login": "Login",
+      "logout": "Logout",
+      "language": "Language",
+      "darkMode": "Dark Mode",
+      "lightMode": "Light Mode",
+      "bookTrial": "Book Trial"
+    },
+    "profile": {
+      "students": "Students / Capacity",
+      "programs": "Programs",
+      "weeklySessions": "Weekly Sessions",
+      "rating": "Rating"
+    },
+    "overview": {
+      "title": "Branch Overview",
+      "description": "General branch description and operational summary.",
+      "facilitiesCount": "Facilities",
+      "coachesCount": "Coaches",
+      "utilizationRate": "Utilization Rate"
+    },
+    "facilities": {
+      "title": "Facilities",
+      "description": "Facilities and spaces available inside this branch.",
+      "empty": "No facilities have been added yet.",
+      "capacity": "Capacity",
+      "available": "Available",
+      "unavailable": "Unavailable"
+    },
+    "operatingHours": {
+      "title": "Operating Hours",
+      "description": "Weekly opening and closing hours for this branch.",
+      "empty": "No operating hours have been added yet.",
+      "closed": "Closed"
+    },
+    "programs": {
+      "title": "Programs",
+      "description": "Programs currently available in this branch.",
+      "empty": "No programs are linked to this branch yet.",
+      "students": "students"
+    },
+    "coaches": {
+      "title": "Coaches",
+      "description": "Coaches currently assigned to this branch.",
+      "empty": "No coaches are assigned to this branch yet.",
+      "weeklySessions": "weekly session(s)"
+    },
+    "schedule": {
+      "title": "Branch Schedule",
+      "description": "Scheduled sessions taking place in this branch.",
+      "empty": "No schedule slots have been added yet.",
+      "studentsCount": "Students Count"
+    },
+    "performance": {
+      "title": "Performance Metrics",
+      "description": "Utilization, rating, and operational performance indicators.",
+      "empty": "No performance metrics are available."
+    },
+    "contact": {
+      "title": "Contact Information",
+      "description": "Branch contact details and manager information.",
+      "phone": "Branch Phone",
+      "email": "Branch Email",
+      "managerName": "Manager Name",
+      "managerPhone": "Manager Phone"
+    },
+    "location": {
+      "title": "Location Information",
+      "description": "City, area, address, and coordinates for this branch.",
+      "city": "City",
+      "area": "Area",
+      "address": "Address",
+      "coordinates": "Coordinates"
+    },
+    "notes": {
+      "title": "Internal Notes",
+      "description": "Internal administrative notes related to this branch.",
+      "notes": "Notes"
+    },
+    "facilityType": {
+      "football_pitch": "Football Pitch",
+      "swimming_pool": "Swimming Pool",
+      "indoor_court": "Indoor Court",
+      "fitness_area": "Fitness Area",
+      "multi_purpose_hall": "Multi-Purpose Hall",
+      "kids_zone": "Kids Zone",
+      "reception": "Reception",
+      "parking": "Parking",
+      "changing_rooms": "Changing Rooms",
+      "medical_room": "Medical Room",
+      "storage": "Storage"
+    },
+    "days": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    }
+  },
+  "branchForm": {
+    "notice": {
+      "createTitle": "Creating a new branch",
+      "createDescription": "Fill in the branch information carefully. This data will later be saved in the academy database.",
+      "editTitle": "Editing branch",
+      "editDescription": "Update only the information that needs to be changed. Existing data will remain saved."
+    },
+    "sections": {
+      "basic": {
+        "title": "Basic Branch Information",
+        "description": "Branch name, type, status, and total capacity."
+      },
+      "location": {
+        "title": "Location Information",
+        "description": "City, area, full address, and optional map coordinates."
+      },
+      "contact": {
+        "title": "Branch Contact Information",
+        "description": "Main phone number and email address for this branch."
+      },
+      "manager": {
+        "title": "Branch Manager",
+        "description": "Manager name and direct contact number."
+      },
+      "notes": {
+        "title": "Description & Internal Notes",
+        "description": "Optional branch description and internal administrative notes."
+      }
+    },
+    "fields": {
+      "name": "Branch Name",
+      "type": "Branch Type",
+      "status": "Branch Status",
+      "capacity": "Capacity",
+      "city": "City",
+      "area": "Area",
+      "address": "Address",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "phone": "Branch Phone",
+      "email": "Branch Email",
+      "managerName": "Manager Name",
+      "managerPhone": "Manager Phone",
+      "description": "Branch Description",
+      "notes": "Internal Notes"
+    },
+    "placeholders": {
+      "name": "Example: Dubai Branch",
+      "area": "Example: Nad Al Sheba",
+      "address": "Enter the full branch address",
+      "managerName": "Enter branch manager name",
+      "description": "Write a short description for this branch",
+      "notes": "Add any internal notes about this branch"
+    },
+    "options": {
+      "type": {
+        "main": "Main Branch",
+        "satellite": "Satellite Branch",
+        "partner": "Partner Branch",
+        "temporary": "Temporary Branch"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "under_maintenance": "Under Maintenance",
+        "archived": "Archived"
+      },
+      "city": {
+        "dubai": "Dubai",
+        "abu_dhabi": "Abu Dhabi",
+        "sharjah": "Sharjah",
+        "ajman": "Ajman",
+        "ras_al_khaimah": "Ras Al Khaimah",
+        "fujairah": "Fujairah",
+        "umm_al_quwain": "Umm Al Quwain",
+        "al_ain": "Al Ain"
+      }
+    },
+    "submit": {
+      "title": "Ready to save this branch?",
+      "description": "Review the information before submitting. Required fields must be completed.",
+      "saving": "Saving..."
+    }
+  },
+  "branchNewPage": {
+    "backToBranches": "Back to Branches",
+    "badge": "New Branch",
+    "title": "Add New Branch",
+    "description": "Create a complete academy branch profile including branch information, location, contact details, manager, capacity, map coordinates, description, and internal notes.",
+    "sideCard": {
+      "title": "Database-ready branch profile",
+      "description": "This form is connected to the branches service now, and later it will be connected directly to the backend and database."
+    },
+    "success": {
+      "title": "Branch created successfully.",
+      "description": "The branch profile has been created. You will be redirected to the branch details page."
+    },
+    "formHeader": {
+      "badge": "Branch Creation Form",
+      "title": "Complete the branch profile",
+      "description": "Enter accurate branch information to create a complete operational record inside the academy system."
+    },
+    "submitLabel": "Create Branch"
+  },
+  "branchEditPage": {
+    "backToBranches": "Back to Branches",
+    "badge": "Edit Branch",
+    "title": "Edit Branch Profile",
+    "description": "Update branch information, location, contact details, manager, capacity, coordinates, description, and internal notes.",
+    "sideCard": {
+      "title": "Safe branch profile update",
+      "description": "Changes are currently saved through the branches service. Later, this page will update the real backend and database record."
+    },
+    "success": {
+      "title": "Branch updated successfully.",
+      "description": "The branch profile has been updated. You will be redirected to the branch details page."
+    },
+    "formHeader": {
+      "badge": "Update Branch Record",
+      "description": "Review and update the existing branch information carefully before saving changes."
+    },
+    "submitLabel": "Save Changes",
+    "notFound": {
+      "title": "Branch not found",
+      "description": "The branch profile you are trying to edit does not exist or may have been removed.",
+      "back": "Back to Branches"
+    }
+  },
+  "sidebar": {
+    "title": "Admin Panel",
+    "navigation": "Navigation",
+    "searchPlaceholder": "Search menu...",
+    "items": {
+      "dashboard": "Dashboard",
+      "students": "Students",
+      "parents": "Parents",
+      "coaches": "Coaches",
+      "programs": "Programs",
+      "sports": "Sports",
+      "branches": "Branches",
+      "schedule": "Schedule",
+      "attendance": "Attendance",
+      "finance": "Finance",
+      "subscriptions": "Subscriptions",
+      "payments": "Payments",
+      "invoices": "Invoices",
+      "offers": "Offers",
+      "coupons": "Coupons",
+      "events": "Events",
+      "camps": "Camps",
+      "leads": "Leads",
+      "trialRequests": "Trial Requests",
+      "reports": "Reports",
+      "notifications": "Notifications",
+      "cms": "Content Management",
+      "cmsHome": "Home Content",
+      "cmsGallery": "Gallery Content",
+      "users": "Users",
+      "rolesPermissions": "Roles & Permissions",
+      "settings": "System Settings",
+      "auditLogs": "Audit Logs",
+      "todaySessions": "Today Sessions",
+      "assignedStudents": "Assigned Students",
+      "assessments": "Assessments",
+      "progressNotes": "Progress Notes",
+      "incidentReport": "Incident Report",
+      "documents": "Documents",
+      "messages": "Messages",
+      "profileSettings": "Profile Settings",
+      "myChildren": "My Children",
+      "makeUpRequest": "Make-up Request"
+    },
+    "roles": {
+      "admin": "Administrator",
+      "accountant": "Accountant",
+      "coach": "Coach",
+      "parent": "Parent",
+      "unknown": "Unknown Role"
+    },
+    "footer": {
+      "label": "Current Access"
+    },
+    "groups": {
+      "main": "Main",
+      "people": "People Management",
+      "operations": "Operations",
+      "finance": "Finance",
+      "marketing": "Marketing",
+      "content": "Content",
+      "system": "System",
+      "account": "Account"
+    }
+  },
+  "topbar": {
+    "systemLabel": "Academy Portal",
+    "adminPortal": "Admin Portal",
+    "coachPortal": "Coach Portal",
+    "parentPortal": "Parent Portal",
+    "welcome": "Welcome",
+    "currentAccess": "Current Access",
+    "language": "Language",
+    "logout": "Logout",
+    "login": "Login",
+    "languageSwitch": {
+      "ariaLabel": "Change language",
+      "arabic": "العربية",
+      "english": "English"
+    },
+    "theme": {
+      "dark": "Dark",
+      "light": "Light",
+      "switchToDark": "Switch to dark mode",
+      "switchToLight": "Switch to light mode"
+    },
+    "roles": {
+      "admin": "Administrator",
+      "accountant": "Accountant",
+      "coach": "Coach",
+      "parent": "Parent",
+      "guest": "Guest",
+      "unknown": "Unknown Role"
+    }
+  },
+  "schedulePage": {
+    "badge": "Schedule Management",
+    "title": "Schedule Management",
+    "description": "Manage academy sessions, dates, coaches, branches, programs, facilities, attendance status, capacity, and operational schedule from one database-ready page.",
+    "actions": {
+      "refresh": "Refresh",
+      "addSession": "Add Session",
+      "view": "View Session",
+      "edit": "Edit Session"
+    },
+    "summary": {
+      "totalSessions": "Total Sessions",
+      "todaySessions": "Today Sessions",
+      "completedSessions": "Completed Sessions",
+      "totalStudentsScheduled": "Scheduled Students"
+    },
+    "metrics": {
+      "capacityUsage": "Capacity Usage",
+      "capacityUsageDescription": "Average student capacity usage across all scheduled sessions.",
+      "upcomingSessions": "Upcoming Sessions",
+      "upcomingSessionsDescription": "Total future sessions that are still scheduled.",
+      "attendanceCompletion": "Attendance Completion",
+      "attendanceCompletionDescription": "Sessions with completed attendance compared to total sessions."
+    },
+    "filters": {
+      "title": "Search & Filters",
+      "description": "Filter sessions by title, code, branch, program, coach, sport, status, attendance, or date range.",
+      "reset": "Reset Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by session title, code, branch, program, coach, or facility...",
+      "status": "Session Status",
+      "allStatuses": "All Statuses",
+      "sessionType": "Session Type",
+      "allSessionTypes": "All Session Types",
+      "sport": "Sport",
+      "allSports": "All Sports",
+      "attendance": "Attendance Status",
+      "allAttendanceStatuses": "All Attendance Statuses",
+      "branch": "Branch",
+      "allBranches": "All Branches",
+      "dateFrom": "Date From",
+      "dateTo": "Date To"
+    },
+    "table": {
+      "title": "Schedule List",
+      "description": "A complete operational list of academy sessions prepared for future API and database integration.",
+      "loading": "Loading schedule...",
+      "results": "{{count}} result(s)",
+      "session": "Session",
+      "dateTime": "Date & Time",
+      "program": "Program",
+      "branch": "Branch",
+      "coach": "Coach",
+      "facility": "Facility",
+      "capacity": "Capacity",
+      "status": "Status",
+      "attendance": "Attendance",
+      "actions": "Actions",
+      "minutes": "minutes",
+      "students": "students"
+    },
+    "status": {
+      "scheduled": "Scheduled",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "postponed": "Postponed"
+    },
+    "sessionType": {
+      "regular_training": "Regular Training",
+      "trial_session": "Trial Session",
+      "makeup_session": "Make-up Session",
+      "assessment": "Assessment",
+      "private_session": "Private Session",
+      "event_session": "Event Session"
+    },
+    "sport": {
+      "football": "Football",
+      "swimming": "Swimming",
+      "basketball": "Basketball",
+      "multi_sport": "Multi-Sport",
+      "fitness": "Fitness",
+      "martial_arts": "Martial Arts",
+      "tennis": "Tennis",
+      "other": "Other"
+    },
+    "attendance": {
+      "not_taken": "Not Taken",
+      "partially_taken": "Partially Taken",
+      "completed": "Completed"
+    },
+    "branches": {
+      "dubai": "Dubai Branch",
+      "abuDhabi": "Abu Dhabi Branch",
+      "sharjah": "Sharjah Branch"
+    },
+    "days": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    },
+    "empty": {
+      "title": "No sessions found",
+      "description": "No sessions match the current filters. Try changing the search criteria or resetting the filters."
+    }
+  },
+  "scheduleDetailsPage": {
+    "backToSchedule": "Back to Schedule",
+    "actions": {
+      "editSession": "Edit Session"
+    },
+    "notFound": {
+      "title": "Session not found",
+      "description": "The session you are trying to open does not exist or may have been removed.",
+      "back": "Back to Schedule"
+    },
+    "common": {
+      "notAvailable": "Not available",
+      "minutes": "minutes",
+      "years": "years old"
+    },
+    "profile": {
+      "date": "Session Date",
+      "time": "Session Time",
+      "students": "Students / Capacity",
+      "duration": "Duration"
+    },
+    "overview": {
+      "title": "Session Overview",
+      "description": "Main operational information about this scheduled session.",
+      "sessionType": "Session Type",
+      "sport": "Sport",
+      "day": "Day",
+      "status": "Session Status",
+      "attendanceStatus": "Attendance Status",
+      "capacityUsage": "Capacity Usage"
+    },
+    "branch": {
+      "title": "Branch Information",
+      "description": "Branch where this session will take place.",
+      "viewBranch": "View Branch"
+    },
+    "program": {
+      "title": "Program Information",
+      "description": "Program linked to this scheduled session.",
+      "viewProgram": "View Program"
+    },
+    "coach": {
+      "title": "Coach Information",
+      "description": "Coach assigned to this session.",
+      "viewCoach": "View Coach"
+    },
+    "students": {
+      "title": "Students Attendance",
+      "description": "Students assigned to this session and their attendance status.",
+      "empty": "No students are assigned to this session yet."
+    },
+    "facility": {
+      "title": "Facility Information",
+      "description": "Facility or training area assigned to this session.",
+      "name": "Facility Name",
+      "type": "Facility Type",
+      "capacity": "Facility Capacity"
+    },
+    "statusDetails": {
+      "title": "Status Details",
+      "description": "Session status, attendance status, and related operational reasons.",
+      "status": "Session Status",
+      "attendanceStatus": "Attendance Status",
+      "cancellationReason": "Cancellation Reason",
+      "postponementReason": "Postponement Reason"
+    },
+    "notes": {
+      "title": "Internal Notes",
+      "description": "Internal administrative notes related to this session.",
+      "notes": "Notes"
+    },
+    "timeline": {
+      "title": "Record Timeline",
+      "description": "Creation and latest update dates for this session record.",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
+    },
+    "facilityType": {
+      "football_pitch": "Football Pitch",
+      "swimming_pool": "Swimming Pool",
+      "indoor_court": "Indoor Court",
+      "fitness_area": "Fitness Area",
+      "multi_purpose_hall": "Multi-Purpose Hall",
+      "kids_zone": "Kids Zone",
+      "other": "Other"
+    },
+    "studentAttendance": {
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "excused": "Excused",
+      "not_marked": "Not Marked"
+    }
+  },
+  "scheduleForm": {
+    "notice": {
+      "createTitle": "Creating a new schedule session",
+      "createDescription": "Fill in the session details carefully. This information will later be saved in the academy database.",
+      "editTitle": "Editing schedule session",
+      "editDescription": "Update only the information that needs to be changed. Existing session data will remain saved."
+    },
+    "sections": {
+      "basic": {
+        "title": "Basic Session Information",
+        "description": "Session title, type, and description."
+      },
+      "time": {
+        "title": "Date & Time",
+        "description": "Choose the session date, day, start time, end time, and duration."
+      },
+      "assignment": {
+        "title": "Session Assignment",
+        "description": "Assign the session to a program, sport, branch, coach, and facility."
+      },
+      "capacity": {
+        "title": "Capacity & Students",
+        "description": "Set the session capacity and current number of scheduled students."
+      },
+      "status": {
+        "title": "Status & Attendance",
+        "description": "Define the session status, attendance status, and any cancellation or postponement reasons."
+      },
+      "notes": {
+        "title": "Internal Notes",
+        "description": "Add internal administrative notes related to this session."
+      }
+    },
+    "fields": {
+      "title": "Session Title",
+      "description": "Session Description",
+      "sessionType": "Session Type",
+      "status": "Session Status",
+      "attendanceStatus": "Attendance Status",
+      "sport": "Sport",
+      "date": "Session Date",
+      "dayOfWeek": "Day of Week",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "durationMinutes": "Duration Minutes",
+      "program": "Program",
+      "branch": "Branch",
+      "coach": "Coach",
+      "facility": "Facility",
+      "capacity": "Capacity",
+      "studentsCount": "Students Count",
+      "cancellationReason": "Cancellation Reason",
+      "postponementReason": "Postponement Reason",
+      "notes": "Internal Notes"
+    },
+    "placeholders": {
+      "title": "Example: Football Academy - Kids Group A",
+      "description": "Write a short description for this session",
+      "cancellationReason": "Write the cancellation reason if the session is cancelled",
+      "postponementReason": "Write the postponement reason if the session is postponed",
+      "notes": "Add any internal notes about this session"
+    },
+    "submit": {
+      "title": "Ready to save this session?",
+      "description": "Review the session information before submitting. Required fields must be completed.",
+      "saving": "Saving..."
+    }
+  },
+  "scheduleNewPage": {
+    "backToSchedule": "Back to Schedule",
+    "badge": "New Session",
+    "title": "Add New Schedule Session",
+    "description": "Create a complete scheduled session including date, time, program, branch, coach, facility, capacity, status, attendance status, and internal notes.",
+    "sideCard": {
+      "title": "Database-ready schedule record",
+      "description": "This form is connected to the schedule service now, and later it will be connected directly to the backend and database."
+    },
+    "success": {
+      "title": "Session created successfully.",
+      "description": "The schedule session has been created. You will be redirected to the session details page."
+    },
+    "formHeader": {
+      "badge": "Schedule Session Form",
+      "title": "Complete the session details",
+      "description": "Enter accurate session information to create a complete operational schedule record inside the academy system."
+    },
+    "submitLabel": "Create Session"
+  },
+  "scheduleEditPage": {
+    "backToSchedule": "Back to Schedule",
+    "badge": "Edit Session",
+    "title": "Edit Schedule Session",
+    "description": "Update session date, time, program, branch, coach, facility, capacity, status, attendance status, and internal notes.",
+    "sideCard": {
+      "title": "Safe schedule update",
+      "description": "Changes are currently saved through the schedule service. Later, this page will update the real backend and database record."
+    },
+    "success": {
+      "title": "Session updated successfully.",
+      "description": "The schedule session has been updated. You will be redirected to the session details page."
+    },
+    "formHeader": {
+      "badge": "Update Schedule Record",
+      "description": "Review and update the existing session information carefully before saving changes."
+    },
+    "submitLabel": "Save Changes",
+    "notFound": {
+      "title": "Session not found",
+      "description": "The session you are trying to edit does not exist or may have been removed.",
+      "back": "Back to Schedule"
+    }
+  },
+  "attendancePage": {
+    "badge": "Attendance Management",
+    "title": "Attendance Management",
+    "description": "Manage attendance sheets, student presence, absences, late arrivals, excused cases, attendance rates, sessions, coaches, branches, and programs from one database-ready page.",
+    "actions": {
+      "refresh": "Refresh",
+      "markAttendance": "Mark Attendance",
+      "view": "View Attendance",
+      "mark": "Mark / Edit Attendance"
+    },
+    "summary": {
+      "totalSheets": "Total Attendance Sheets",
+      "completedSheets": "Completed Sheets",
+      "inProgressSheets": "In Progress",
+      "lockedSheets": "Locked Sheets"
+    },
+    "metrics": {
+      "totalStudents": "Total Students",
+      "totalStudentsDescription": "Total students included in all attendance sheets.",
+      "present": "Present Students",
+      "presentDescription": "Total students marked as present across attendance sheets.",
+      "absent": "Absent Students",
+      "absentDescription": "Total students marked as absent across attendance sheets.",
+      "averageRate": "Average Attendance Rate",
+      "averageRateDescription": "Average attendance rate across all attendance sheets."
+    },
+    "filters": {
+      "title": "Search & Filters",
+      "description": "Filter attendance sheets by session, student, parent, branch, program, coach, sport, attendance status, or date range.",
+      "reset": "Reset Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by attendance code, session, student, parent, branch, program, coach, or facility...",
+      "sessionStatus": "Sheet Status",
+      "allSessionStatuses": "All Sheet Statuses",
+      "recordStatus": "Student Attendance Status",
+      "allRecordStatuses": "All Attendance Statuses",
+      "sessionType": "Session Type",
+      "allSessionTypes": "All Session Types",
+      "sport": "Sport",
+      "allSports": "All Sports",
+      "branch": "Branch",
+      "allBranches": "All Branches",
+      "dateFrom": "Date From",
+      "dateTo": "Date To"
+    },
+    "table": {
+      "title": "Attendance Sheets",
+      "description": "A complete operational list of attendance sheets prepared for future API and database integration.",
+      "loading": "Loading attendance sheets...",
+      "results": "{{count}} result(s)",
+      "session": "Session",
+      "dateTime": "Date & Time",
+      "program": "Program",
+      "branch": "Branch",
+      "coach": "Coach",
+      "status": "Status",
+      "students": "Students",
+      "studentsShort": "students",
+      "rate": "Rate",
+      "markedBy": "Marked By",
+      "actions": "Actions"
+    },
+    "common": {
+      "notAvailable": "Not available"
+    },
+    "sessionStatus": {
+      "not_started": "Not Started",
+      "in_progress": "In Progress",
+      "completed": "Completed",
+      "locked": "Locked"
+    },
+    "recordStatus": {
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "excused": "Excused",
+      "not_marked": "Not Marked"
+    },
+    "sessionType": {
+      "regular_training": "Regular Training",
+      "trial_session": "Trial Session",
+      "makeup_session": "Make-up Session",
+      "assessment": "Assessment",
+      "private_session": "Private Session",
+      "event_session": "Event Session"
+    },
+    "sport": {
+      "football": "Football",
+      "swimming": "Swimming",
+      "basketball": "Basketball",
+      "multi_sport": "Multi-Sport",
+      "fitness": "Fitness",
+      "martial_arts": "Martial Arts",
+      "tennis": "Tennis",
+      "other": "Other"
+    },
+    "branches": {
+      "dubai": "Dubai Branch",
+      "abuDhabi": "Abu Dhabi Branch",
+      "sharjah": "Sharjah Branch"
+    },
+    "empty": {
+      "title": "No attendance sheets found",
+      "description": "No attendance sheets match the current filters. Try changing the search criteria or resetting the filters."
+    }
+  },
+  "markAttendancePage": {
+    "backToAttendance": "Back to Attendance",
+    "badge": "Mark Attendance",
+    "title": "Mark Attendance",
+    "description": "Record and update student attendance for scheduled academy sessions, including presence, absence, lateness, excused cases, check-in time, check-out time, and notes.",
+    "actions": {
+      "save": "Save Attendance",
+      "saving": "Saving...",
+      "lock": "Lock Sheet",
+      "unlock": "Unlock Sheet"
+    },
+    "success": {
+      "title": "Attendance saved successfully.",
+      "description": "The attendance sheet has been updated and recalculated."
+    },
+    "notFound": {
+      "title": "Attendance sheet not found",
+      "description": "The attendance sheet you are trying to open does not exist or may have been removed.",
+      "back": "Back to Attendance"
+    },
+    "stats": {
+      "total": "Total Students",
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "rate": "Attendance Rate"
+    },
+    "sheetSelector": {
+      "title": "Attendance Sheet",
+      "description": "Choose the attendance sheet you want to review or update.",
+      "label": "Select Attendance Sheet"
+    },
+    "sheetStatus": {
+      "title": "Sheet Status",
+      "description": "Control the operational status of this attendance sheet.",
+      "label": "Current Sheet Status"
+    },
+    "bulk": {
+      "title": "Bulk Actions",
+      "description": "Quickly apply one attendance status to all students when needed.",
+      "markAllPresent": "Mark All Present",
+      "markAllAbsent": "Mark All Absent",
+      "resetAll": "Reset All"
+    },
+    "notes": {
+      "title": "General Notes",
+      "description": "Add administrative or coaching notes related to this attendance sheet.",
+      "placeholder": "Write general notes about this attendance sheet..."
+    },
+    "students": {
+      "title": "Students Attendance",
+      "description": "Update each student's attendance status, check-in time, check-out time, late minutes, and notes."
+    },
+    "fields": {
+      "checkInTime": "Check-in Time",
+      "checkOutTime": "Check-out Time",
+      "lateMinutes": "Late Minutes",
+      "notes": "Student Notes",
+      "notesPlaceholder": "Write notes for this student..."
+    },
+    "common": {
+      "years": "years old"
+    }
+  },
+  "attendanceDetailsPage": {
+    "backToAttendance": "Back to Attendance",
+    "actions": {
+      "markAttendance": "Mark / Edit Attendance"
+    },
+    "notFound": {
+      "title": "Attendance sheet not found",
+      "description": "The attendance sheet you are trying to open does not exist or may have been removed.",
+      "back": "Back to Attendance"
+    },
+    "common": {
+      "notAvailable": "Not available",
+      "years": "years old"
+    },
+    "locked": {
+      "label": "Locked",
+      "title": "Lock Information",
+      "description": "Information about whether this attendance sheet has been locked after review.",
+      "lockedBy": "Locked By",
+      "lockedAt": "Locked At"
+    },
+    "profile": {
+      "totalStudents": "Total Students",
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "rate": "Attendance Rate"
+    },
+    "overview": {
+      "title": "Attendance Overview",
+      "description": "Main operational information and status summary for this attendance sheet.",
+      "sheetStatus": "Sheet Status",
+      "sessionType": "Session Type",
+      "sport": "Sport",
+      "attendanceRate": "Attendance Rate",
+      "markedBy": "Marked By",
+      "markedAt": "Marked At"
+    },
+    "session": {
+      "title": "Session Information",
+      "description": "Session, timing, branch, program, coach, and facility details linked to this attendance sheet.",
+      "titleField": "Session Title",
+      "time": "Session Time",
+      "branch": "Branch",
+      "program": "Program",
+      "coach": "Coach",
+      "facility": "Facility"
+    },
+    "students": {
+      "title": "Students Attendance",
+      "description": "Detailed attendance status for every student included in this sheet.",
+      "empty": "No students are included in this attendance sheet yet."
+    },
+    "studentFields": {
+      "checkInTime": "Check-in Time",
+      "checkOutTime": "Check-out Time",
+      "lateMinutes": "Late Minutes",
+      "notes": "Notes"
+    },
+    "statusBreakdown": {
+      "title": "Attendance Breakdown",
+      "description": "Distribution of students by attendance status."
+    },
+    "notes": {
+      "title": "General Notes",
+      "description": "General administrative or coaching notes related to this attendance sheet.",
+      "generalNotes": "General Notes"
+    },
+    "timeline": {
+      "title": "Record Timeline",
+      "description": "Creation and latest update dates for this attendance sheet.",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
+    }
+  },
+  "reportsPage": {
+    "badge": "Reports & Analytics",
+    "title": "Reports Dashboard",
+    "description": "Monitor academy performance through attendance analytics, schedule operations, branch performance, program performance, coach performance, student risk indicators, and exportable management reports.",
+    "actions": {
+      "refresh": "Refresh",
+      "exportPdf": "Export PDF",
+      "exporting": "Exporting..."
+    },
+    "filters": {
+      "title": "Report Filters",
+      "description": "Filter reports by period, branch, program, sport, and custom date range.",
+      "reset": "Reset Filters",
+      "period": "Report Period",
+      "branch": "Branch",
+      "program": "Program",
+      "sport": "Sport",
+      "allBranches": "All Branches",
+      "allPrograms": "All Programs",
+      "allSports": "All Sports",
+      "dateFrom": "Date From",
+      "dateTo": "Date To"
+    },
+    "period": {
+      "today": "Today",
+      "this_week": "This Week",
+      "this_month": "This Month",
+      "this_quarter": "This Quarter",
+      "this_year": "This Year",
+      "custom": "Custom Range"
+    },
+    "branches": {
+      "dubai": "Dubai Branch",
+      "abuDhabi": "Abu Dhabi Branch",
+      "sharjah": "Sharjah Branch"
+    },
+    "programs": {
+      "football": "Football Academy",
+      "swimming": "Swimming Program",
+      "basketball": "Basketball Training",
+      "multiSport": "Multi-Sport Program"
+    },
+    "sport": {
+      "football": "Football",
+      "swimming": "Swimming",
+      "basketball": "Basketball",
+      "multi_sport": "Multi-Sport",
+      "fitness": "Fitness",
+      "martial_arts": "Martial Arts",
+      "tennis": "Tennis",
+      "other": "Other"
+    },
+    "healthStatus": {
+      "excellent": "Excellent",
+      "good": "Good",
+      "warning": "Warning",
+      "critical": "Critical"
+    },
+    "kpi": {
+      "attendance-rate": {
+        "title": "Average Attendance Rate",
+        "description": "Average attendance rate across all selected attendance sheets."
+      },
+      "completed-sessions": {
+        "title": "Completed Sessions",
+        "description": "Total completed sessions within the selected filters."
+      },
+      "capacity-usage": {
+        "title": "Capacity Usage",
+        "description": "Average capacity usage across selected branches and programs."
+      },
+      "pending-attendance": {
+        "title": "Pending Attendance Sheets",
+        "description": "Attendance sheets that still require completion or review."
+      }
+    },
+    "attendanceOverview": {
+      "title": "Attendance Overview",
+      "description": "A summary of student attendance, completed sheets, pending sheets, absence, lateness, and overall attendance status.",
+      "totalStudents": "Total Students",
+      "completedSheets": "Completed Sheets",
+      "pendingSheets": "Pending Sheets",
+      "presentCount": "Present",
+      "absentCount": "Absent",
+      "lateCount": "Late"
+    },
+    "scheduleOperations": {
+      "title": "Schedule Operations",
+      "description": "Operational summary of sessions, completed sessions, upcoming sessions, and average capacity usage.",
+      "totalSessions": "Total Sessions",
+      "completedSessions": "Completed Sessions",
+      "upcomingSessions": "Upcoming Sessions",
+      "capacityUsage": "Capacity Usage"
+    },
+    "charts": {
+      "attendanceByStatus": "Attendance by Status",
+      "branchAttendance": "Branch Attendance Rate",
+      "programAttendance": "Program Attendance Rate"
+    },
+    "trend": {
+      "title": "Attendance Trend",
+      "description": "Weekly attendance rate, session count, and student volume trend.",
+      "sessions": "sessions",
+      "students": "students"
+    },
+    "studentRisks": {
+      "title": "Student Attendance Risk",
+      "description": "Students who may need follow-up based on absence, lateness, or low attendance rate.",
+      "empty": "No student attendance risk records match the current filters."
+    },
+    "branchPerformance": {
+      "title": "Branch Performance",
+      "description": "Compare branches by sessions, students, capacity usage, attendance rate, absences, lateness, and operational health."
+    },
+    "programPerformance": {
+      "title": "Program Performance",
+      "description": "Compare programs by sport, sessions, enrolled students, attendance rate, absences, lateness, and performance health."
+    },
+    "coachPerformance": {
+      "title": "Coach Performance",
+      "description": "Compare coaches by sessions, pending attendance sheets, handled students, attendance rate, absences, lateness, and performance health."
+    },
+    "table": {
+      "branch": "Branch",
+      "program": "Program",
+      "coach": "Coach",
+      "sport": "Sport",
+      "sessions": "Sessions",
+      "pendingSheets": "Pending Sheets",
+      "students": "Students",
+      "capacityUsage": "Capacity Usage",
+      "attendanceRate": "Attendance Rate",
+      "absent": "Absent",
+      "late": "Late",
+      "status": "Status"
+    },
+    "export": {
+      "title": "Export Reports",
+      "description": "Export the current report dashboard using the selected filters. Backend export will later generate the actual downloadable file.",
+      "pdf": "Export PDF",
+      "excel": "Export Excel",
+      "csv": "Export CSV",
+      "successTitle": "Report export prepared.",
+      "successMessage": "The report file {{fileName}} has been generated successfully."
+    }
+  },
+  "financePage": {
+    "badge": "Finance Management",
+    "title": "Finance Dashboard",
+    "description": "Manage subscriptions, invoices, payments, outstanding balances, overdue amounts, collection rate, and financial performance from one database-ready page.",
+    "quickStatus": {
+      "activeSubscriptions": {
+        "title": "Active Subscriptions",
+        "description": "View current active subscriptions only."
+      },
+      "overdueInvoices": {
+        "title": "Overdue Invoices",
+        "description": "Jump directly to invoices that need urgent collection follow-up."
+      },
+      "successfulPayments": {
+        "title": "Successful Payments",
+        "description": "View payments that were successfully collected."
+      }
+    },
+    "tabs": {
+      "subscriptions": "Subscriptions",
+      "invoices": "Invoices",
+      "payments": "Payments"
+    },
+    "emptyStates": {
+      "clearFilters": "Clear Filters",
+      "subscriptions": {
+        "title": "No subscriptions found",
+        "description": "No subscription records match the current filters. Try changing the search keyword, status, branch, or date range."
+      },
+      "invoices": {
+        "title": "No invoices found",
+        "description": "No invoice records match the current filters. Try changing the invoice status, search keyword, branch, or date range."
+      },
+      "payments": {
+        "title": "No payments found",
+        "description": "No payment records match the current filters. Try changing the payment status, payment method, search keyword, or date range."
+      }
+    },
+    "actions": {
+      "refresh": "Refresh",
+      "createSubscription": "Create Subscription",
+      "createInvoice": "Create Invoice",
+      "createPayment": "Create Payment",
+      "exportPdf": "Export PDF",
+      "exporting": "Exporting..."
+    },
+    "filters": {
+      "title": "Search & Filters",
+      "description": "Filter financial records by student, parent, subscription, invoice, payment status, method, branch, and date range.",
+      "reset": "Reset Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by student, parent, subscription, invoice, payment code, branch, or program...",
+      "subscriptionStatus": "Subscription Status",
+      "allSubscriptionStatuses": "All Subscription Statuses",
+      "invoiceStatus": "Invoice Status",
+      "allInvoiceStatuses": "All Invoice Statuses",
+      "paymentStatus": "Payment Status",
+      "allPaymentStatuses": "All Payment Statuses",
+      "paymentMethod": "Payment Method",
+      "allPaymentMethods": "All Payment Methods",
+      "branch": "Branch",
+      "allBranches": "All Branches",
+      "dateFrom": "Date From",
+      "dateTo": "Date To"
+    },
+    "summary": {
+      "totalRevenue": "Total Revenue",
+      "totalCollected": "Total Collected",
+      "totalOutstanding": "Outstanding Balance",
+      "totalOverdue": "Overdue Amount"
+    },
+    "metrics": {
+      "collectionRate": "Collection Rate",
+      "collectionRateDescription": "Percentage of collected revenue compared to total expected revenue.",
+      "activeSubscriptions": "Active Subscriptions",
+      "activeSubscriptionsDescription": "Current active subscriptions within the selected filters.",
+      "unpaidInvoices": "Unpaid Invoices",
+      "unpaidInvoicesDescription": "Invoices that are issued or partially paid and still have a balance due.",
+      "successfulPayments": "Successful Payments",
+      "successfulPaymentsDescription": "Payments successfully collected from parents or students."
+    },
+    "charts": {
+      "revenueByMonth": "Revenue by Month",
+      "revenueByProgram": "Revenue by Program",
+      "revenueByBranch": "Revenue by Branch",
+      "paymentMethodBreakdown": "Payment Method Breakdown",
+      "noData": "No chart data available."
+    },
+    "subscriptions": {
+      "title": "Subscriptions",
+      "description": "List of student subscriptions including plan, period, sessions, amount, balance, and subscription status."
+    },
+    "invoices": {
+      "title": "Invoices",
+      "description": "List of issued invoices including due dates, paid amounts, remaining balances, and invoice status."
+    },
+    "payments": {
+      "title": "Payments",
+      "description": "List of collected payments including method, amount, reference number, receiver, and payment status."
+    },
+    "table": {
+      "subscription": "Subscription",
+      "student": "Student",
+      "program": "Program",
+      "branch": "Branch",
+      "plan": "Plan",
+      "period": "Period",
+      "sessions": "Sessions",
+      "amount": "Amount",
+      "balance": "Balance",
+      "status": "Status",
+      "invoice": "Invoice",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "total": "Total",
+      "paid": "Paid",
+      "payment": "Payment",
+      "date": "Date",
+      "method": "Method",
+      "reference": "Reference",
+      "receivedBy": "Received By",
+      "actions": "Actions"
+    },
+    "rowActions": {
+      "viewDetails": "View",
+      "edit": "Edit"
+    },
+    "subscriptionStatus": {
+      "active": "Active",
+      "pending": "Pending",
+      "expired": "Expired",
+      "cancelled": "Cancelled",
+      "paused": "Paused"
+    },
+    "invoiceStatus": {
+      "draft": "Draft",
+      "issued": "Issued",
+      "paid": "Paid",
+      "partially_paid": "Partially Paid",
+      "overdue": "Overdue",
+      "cancelled": "Cancelled"
+    },
+    "paymentStatus": {
+      "paid": "Paid",
+      "pending": "Pending",
+      "overdue": "Overdue",
+      "failed": "Failed",
+      "refunded": "Refunded",
+      "cancelled": "Cancelled"
+    },
+    "paymentMethod": {
+      "cash": "Cash",
+      "card": "Card",
+      "bank_transfer": "Bank Transfer",
+      "online_payment": "Online Payment",
+      "wallet": "Wallet",
+      "other": "Other"
+    },
+    "plan": {
+      "monthly": "Monthly",
+      "quarterly": "Quarterly",
+      "semi_annual": "Semi-Annual",
+      "annual": "Annual",
+      "custom": "Custom"
+    },
+    "branches": {
+      "dubai": "Dubai Branch",
+      "abuDhabi": "Abu Dhabi Branch",
+      "sharjah": "Sharjah Branch"
+    },
+    "common": {
+      "notAvailable": "Not available"
+    },
+    "export": {
+      "title": "Export Finance Reports",
+      "description": "Export the current finance dashboard using the selected filters. Backend export will later generate the actual downloadable file.",
+      "pdf": "Export PDF",
+      "excel": "Export Excel",
+      "csv": "Export CSV",
+      "successTitle": "Finance report export prepared.",
+      "successMessage": "The finance report file {{fileName}} has been generated successfully."
+    }
+  },
+  "financeSubscriptionDetailsPage": {
+    "backToFinance": "Back to Finance",
+    "actions": {
+      "backToFinance": "Back to Finance Dashboard",
+      "editSubscription": "Edit Subscription"
+    },
+    "delete": {
+      "title": "Delete this subscription?",
+      "description": "This action will remove the subscription record from the finance module. This cannot be undone in the current mock service.",
+      "confirm": "Delete Subscription"
+    },
+    "notFound": {
+      "title": "Subscription not found",
+      "description": "The subscription you are trying to open does not exist or may have been removed.",
+      "back": "Back to Finance"
+    },
+    "common": {
+      "notAvailable": "Not available"
+    },
+    "profile": {
+      "totalAmount": "Total Amount",
+      "paidAmount": "Paid Amount",
+      "balanceDue": "Balance Due",
+      "sessions": "Sessions Used",
+      "nextDueDate": "Next Due Date"
+    },
+    "overview": {
+      "title": "Subscription Overview",
+      "description": "Main subscription information including plan, status, dates, and payment due date.",
+      "code": "Subscription Code",
+      "plan": "Plan",
+      "status": "Status",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "nextPaymentDueDate": "Next Payment Due Date"
+    },
+    "student": {
+      "title": "Student & Parent Information",
+      "description": "Student and parent details connected to this subscription.",
+      "studentName": "Student Name",
+      "studentCode": "Student Code",
+      "parentName": "Parent Name",
+      "parentPhone": "Parent Phone"
+    },
+    "program": {
+      "title": "Program & Branch Information",
+      "description": "Program and branch details linked to this subscription.",
+      "programName": "Program Name",
+      "programCode": "Program Code",
+      "branchName": "Branch Name",
+      "branchLocation": "Branch Location"
+    },
+    "invoices": {
+      "title": "Related Invoices",
+      "description": "Invoices generated for this subscription, including totals, paid amounts, balances, and invoice status.",
+      "empty": "No invoices are linked to this subscription yet."
+    },
+    "payments": {
+      "title": "Related Payments",
+      "description": "Payments collected for this subscription, including method, amount, reference, and payment status.",
+      "empty": "No payments are linked to this subscription yet."
+    },
+    "amounts": {
+      "title": "Financial Amounts",
+      "description": "Financial breakdown of this subscription including base amount, discount, total, paid amount, and balance due.",
+      "baseAmount": "Base Amount",
+      "discount": "Discount",
+      "totalAmount": "Total Amount",
+      "paidAmount": "Paid Amount",
+      "balanceDue": "Balance Due"
+    },
+    "sessions": {
+      "title": "Sessions Usage",
+      "description": "Usage summary of included, used, and remaining sessions for this subscription.",
+      "included": "Included Sessions",
+      "used": "Used Sessions",
+      "remaining": "Remaining Sessions"
+    },
+    "notes": {
+      "title": "Internal Notes",
+      "description": "Internal administrative notes related to this subscription.",
+      "notes": "Notes"
+    },
+    "timeline": {
+      "title": "Record Timeline",
+      "description": "Creation and latest update dates for this subscription record.",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
+    }
+  },
+  "financeInvoiceDetailsPage": {
+    "backToFinance": "Back to Finance",
+    "actions": {
+      "backToFinance": "Back to Finance Dashboard",
+      "editInvoice": "Edit Invoice"
+    },
+    "delete": {
+      "title": "Delete this invoice?",
+      "description": "This action will remove the invoice record from the finance module. This cannot be undone in the current mock service.",
+      "confirm": "Delete Invoice"
+    },
+    "notFound": {
+      "title": "Invoice not found",
+      "description": "The invoice you are trying to open does not exist or may have been removed.",
+      "back": "Back to Finance"
+    },
+    "common": {
+      "notAvailable": "Not available",
+      "noSubscription": "No subscription linked to this invoice"
+    },
+    "profile": {
+      "totalAmount": "Total Amount",
+      "paidAmount": "Paid Amount",
+      "balanceDue": "Balance Due",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date"
+    },
+    "overview": {
+      "title": "Invoice Overview",
+      "description": "Main invoice information including invoice number, status, currency, issue date, due date, and linked subscription.",
+      "invoiceNumber": "Invoice Number",
+      "status": "Invoice Status",
+      "currency": "Currency",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "subscriptionCode": "Subscription Code"
+    },
+    "student": {
+      "title": "Student & Parent Information",
+      "description": "Student and parent details connected to this invoice.",
+      "studentName": "Student Name",
+      "studentCode": "Student Code",
+      "parentName": "Parent Name",
+      "parentPhone": "Parent Phone",
+      "parentEmail": "Parent Email"
+    },
+    "lineItems": {
+      "title": "Invoice Line Items",
+      "description": "Detailed invoice items including description, quantity, price, discount, tax, and total.",
+      "empty": "No line items are available for this invoice.",
+      "descriptionField": "Description",
+      "quantity": "Quantity",
+      "unitPrice": "Unit Price",
+      "discount": "Discount",
+      "tax": "Tax",
+      "total": "Total"
+    },
+    "payments": {
+      "title": "Related Payments",
+      "description": "Payments collected against this invoice, including payment method, amount, reference, and status.",
+      "empty": "No payments are linked to this invoice yet."
+    },
+    "amounts": {
+      "title": "Invoice Amounts",
+      "description": "Financial breakdown of this invoice including subtotal, discount, tax, total amount, paid amount, and balance due.",
+      "subtotal": "Subtotal",
+      "discountAmount": "Discount Amount",
+      "taxAmount": "Tax Amount",
+      "totalAmount": "Total Amount",
+      "paidAmount": "Paid Amount",
+      "balanceDue": "Balance Due"
+    },
+    "subscription": {
+      "title": "Linked Subscription",
+      "description": "Subscription information connected to this invoice.",
+      "subscriptionCode": "Subscription Code",
+      "viewSubscription": "View Subscription"
+    },
+    "notes": {
+      "title": "Notes & Terms",
+      "description": "Administrative notes and payment terms related to this invoice.",
+      "notes": "Notes",
+      "terms": "Terms"
+    },
+    "timeline": {
+      "title": "Record Timeline",
+      "description": "Creation and latest update dates for this invoice record.",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
+    }
+  },
+  "financePaymentDetailsPage": {
+    "backToFinance": "Back to Finance",
+    "actions": {
+      "backToFinance": "Back to Finance Dashboard",
+      "editPayment": "Edit Payment"
+    },
+    "delete": {
+      "title": "Delete this payment?",
+      "description": "This action will remove the payment record from the finance module. This cannot be undone in the current mock service.",
+      "confirm": "Delete Payment"
+    },
+    "notFound": {
+      "title": "Payment not found",
+      "description": "The payment record you are trying to open does not exist or may have been removed.",
+      "back": "Back to Finance"
+    },
+    "common": {
+      "notAvailable": "Not available",
+      "noLinkedRecord": "No invoice or subscription linked to this payment"
+    },
+    "profile": {
+      "amount": "Payment Amount",
+      "paymentDate": "Payment Date",
+      "paymentMethod": "Payment Method",
+      "status": "Payment Status",
+      "reference": "Reference Number"
+    },
+    "overview": {
+      "title": "Payment Overview",
+      "description": "Main payment information including payment code, transaction type, status, method, currency, and receiver.",
+      "paymentCode": "Payment Code",
+      "transactionType": "Transaction Type",
+      "status": "Payment Status",
+      "method": "Payment Method",
+      "currency": "Currency",
+      "receivedBy": "Received By"
+    },
+    "student": {
+      "title": "Student & Parent Information",
+      "description": "Student and parent details connected to this payment.",
+      "studentName": "Student Name",
+      "studentCode": "Student Code",
+      "parentName": "Parent Name",
+      "parentPhone": "Parent Phone",
+      "parentEmail": "Parent Email"
+    },
+    "invoice": {
+      "title": "Linked Invoice",
+      "description": "Invoice information connected to this payment.",
+      "invoiceNumber": "Invoice Number",
+      "status": "Invoice Status",
+      "totalAmount": "Total Amount",
+      "balanceDue": "Balance Due",
+      "viewInvoice": "View Invoice",
+      "empty": "No invoice is linked to this payment."
+    },
+    "subscription": {
+      "title": "Linked Subscription",
+      "description": "Subscription information connected to this payment.",
+      "subscriptionCode": "Subscription Code",
+      "status": "Subscription Status",
+      "totalAmount": "Total Amount",
+      "balanceDue": "Balance Due",
+      "viewSubscription": "View Subscription",
+      "empty": "No subscription is linked to this payment."
+    },
+    "amounts": {
+      "title": "Payment Amount Details",
+      "description": "Financial details of this payment including amount, currency, and reference number.",
+      "amount": "Amount",
+      "currency": "Currency",
+      "referenceNumber": "Reference Number"
+    },
+    "notes": {
+      "title": "Payment Notes",
+      "description": "Internal notes related to this payment record.",
+      "notes": "Notes"
+    },
+    "timeline": {
+      "title": "Record Timeline",
+      "description": "Creation and latest update dates for this payment record.",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
+    },
+    "transactionType": {
+      "subscription_payment": "Subscription Payment",
+      "invoice_payment": "Invoice Payment",
+      "refund": "Refund",
+      "adjustment": "Adjustment",
+      "discount": "Discount",
+      "late_fee": "Late Fee"
+    }
+  },
+  "financeSubscriptionForm": {
+    "notice": {
+      "createTitle": "Creating a new subscription",
+      "createDescription": "Fill in the subscription details carefully. This record will be used for financial tracking, invoices, payments, and session balance.",
+      "editTitle": "Editing subscription",
+      "editDescription": "Update only the subscription information that needs to be changed. Existing financial data will remain saved."
+    },
+    "sections": {
+      "student": {
+        "title": "Student & Parent Information",
+        "description": "Select the student and confirm the linked parent information."
+      },
+      "assignment": {
+        "title": "Program & Branch Assignment",
+        "description": "Assign this subscription to the correct program and branch."
+      },
+      "subscription": {
+        "title": "Subscription Details",
+        "description": "Define the subscription plan, status, start date, end date, and next payment due date."
+      },
+      "sessions": {
+        "title": "Sessions Balance",
+        "description": "Set the number of sessions included in this subscription and how many have already been used."
+      },
+      "amounts": {
+        "title": "Financial Amounts",
+        "description": "Set the currency, base amount, discount, paid amount, and payment-related values."
+      },
+      "notes": {
+        "title": "Internal Notes",
+        "description": "Add internal administrative notes related to this subscription."
+      }
+    },
+    "fields": {
+      "student": "Student",
+      "studentCode": "Student Code",
+      "parentName": "Parent Name",
+      "parentPhone": "Parent Phone",
+      "program": "Program",
+      "branch": "Branch",
+      "plan": "Subscription Plan",
+      "status": "Subscription Status",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "nextPaymentDueDate": "Next Payment Due Date",
+      "sessionsIncluded": "Included Sessions",
+      "sessionsUsed": "Used Sessions",
+      "currency": "Currency",
+      "baseAmount": "Base Amount",
+      "discountType": "Discount Type",
+      "discountValue": "Discount Value",
+      "paidAmount": "Paid Amount",
+      "notes": "Internal Notes"
+    },
+    "discountType": {
+      "none": "No Discount",
+      "percentage": "Percentage Discount",
+      "fixed_amount": "Fixed Amount Discount"
+    },
+    "placeholders": {
+      "notes": "Add any internal notes about this subscription..."
+    },
+    "submit": {
+      "title": "Ready to save this subscription?",
+      "description": "Review the subscription information before submitting. Required fields must be completed.",
+      "saving": "Saving..."
+    }
+  },
+  "financeSubscriptionNewPage": {
+    "backToFinance": "Back to Finance",
+    "badge": "New Subscription",
+    "title": "Create New Subscription",
+    "description": "Create a new student subscription including student information, parent details, program, branch, plan, sessions, financial amounts, payment due date, and internal notes.",
+    "sideCard": {
+      "title": "Database-ready subscription record",
+      "description": "This form is connected to the finance service now, and later it will be connected directly to the backend and database."
+    },
+    "success": {
+      "title": "Subscription created successfully.",
+      "description": "The subscription has been created. You will be redirected to the subscription details page."
+    },
+    "formHeader": {
+      "badge": "Subscription Form",
+      "title": "Complete the subscription details",
+      "description": "Enter accurate subscription information to create a complete financial record for the student."
+    },
+    "submitLabel": "Create Subscription"
+  },
+  "financeSubscriptionEditPage": {
+    "backToSubscription": "Back to Subscription",
+    "badge": "Edit Subscription",
+    "title": "Edit Subscription",
+    "description": "Update the subscription information including student, parent, program, branch, plan, sessions, financial amounts, payment due date, and internal notes.",
+    "sideCard": {
+      "title": "Safe subscription update",
+      "description": "Changes are currently saved through the finance service. Later, this page will update the real backend and database record."
+    },
+    "success": {
+      "title": "Subscription updated successfully.",
+      "description": "The subscription has been updated. You will be redirected to the subscription details page."
+    },
+    "formHeader": {
+      "badge": "Update Subscription Record",
+      "description": "Review and update the existing subscription information carefully before saving changes."
+    },
+    "submitLabel": "Save Changes",
+    "notFound": {
+      "title": "Subscription not found",
+      "description": "The subscription you are trying to edit does not exist or may have been removed.",
+      "back": "Back to Finance"
+    }
+  },
+  "financeInvoiceForm": {
+    "notice": {
+      "createTitle": "Creating a new invoice",
+      "createDescription": "Fill in the invoice details carefully. This invoice can be linked to a subscription and will be used for payment tracking.",
+      "editTitle": "Editing invoice",
+      "editDescription": "Update only the invoice information that needs to be changed. Existing payment records will remain saved."
+    },
+    "sections": {
+      "subscription": {
+        "title": "Linked Subscription",
+        "description": "Select the subscription connected to this invoice. Student and parent data will be filled automatically."
+      },
+      "student": {
+        "title": "Student & Parent Information",
+        "description": "Confirm the student and parent details related to this invoice."
+      },
+      "invoice": {
+        "title": "Invoice Details",
+        "description": "Set the issue date, due date, invoice status, and currency."
+      },
+      "lineItems": {
+        "title": "Invoice Line Items",
+        "description": "Add one or more invoice items with quantity, unit price, discount, tax, and total."
+      },
+      "amounts": {
+        "title": "Invoice Amounts",
+        "description": "Review invoice totals, discounts, taxes, paid amount, and remaining balance."
+      },
+      "notes": {
+        "title": "Notes & Terms",
+        "description": "Add internal notes and payment terms related to this invoice."
+      }
+    },
+    "fields": {
+      "subscription": "Subscription",
+      "subscriptionCode": "Subscription Code",
+      "studentName": "Student Name",
+      "studentCode": "Student Code",
+      "parentName": "Parent Name",
+      "parentPhone": "Parent Phone",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "status": "Invoice Status",
+      "currency": "Currency",
+      "description": "Description",
+      "quantity": "Quantity",
+      "unitPrice": "Unit Price",
+      "lineDiscount": "Line Discount",
+      "lineTax": "Line Tax",
+      "discountAmount": "Invoice Discount",
+      "taxAmount": "Invoice Tax",
+      "paidAmount": "Paid Amount",
+      "notes": "Notes",
+      "terms": "Terms"
+    },
+    "lineItem": {
+      "title": "Line Item {{number}}",
+      "remove": "Remove",
+      "add": "Add Line Item",
+      "total": "Line Total"
+    },
+    "preview": {
+      "subtotal": "Subtotal",
+      "discount": "Total Discount",
+      "tax": "Total Tax",
+      "totalAmount": "Total Amount",
+      "balanceDue": "Balance Due"
+    },
+    "placeholders": {
+      "notes": "Add any internal notes about this invoice...",
+      "terms": "Write payment terms for this invoice..."
+    },
+    "submit": {
+      "title": "Ready to save this invoice?",
+      "description": "Review the invoice details, line items, totals, and payment information before submitting.",
+      "saving": "Saving..."
+    }
+  },
+  "financeInvoiceNewPage": {
+    "backToFinance": "Back to Finance",
+    "badge": "New Invoice",
+    "title": "Create New Invoice",
+    "description": "Create a new invoice linked to a student subscription, including invoice dates, line items, discounts, taxes, paid amount, balance, notes, and payment terms.",
+    "sideCard": {
+      "title": "Database-ready invoice record",
+      "description": "This form is connected to the finance service now, and later it will be connected directly to the backend and database."
+    },
+    "success": {
+      "title": "Invoice created successfully.",
+      "description": "The invoice has been created. You will be redirected to the invoice details page."
+    },
+    "formHeader": {
+      "badge": "Invoice Form",
+      "title": "Complete the invoice details",
+      "description": "Enter accurate invoice information, review line items, totals, payment status, and due dates before saving."
+    },
+    "submitLabel": "Create Invoice"
+  },
+  "financeInvoiceEditPage": {
+    "backToInvoice": "Back to Invoice",
+    "badge": "Edit Invoice",
+    "title": "Edit Invoice",
+    "description": "Update the invoice information including linked subscription, student and parent details, invoice dates, line items, discounts, taxes, paid amount, notes, and payment terms.",
+    "sideCard": {
+      "title": "Safe invoice update",
+      "description": "Changes are currently saved through the finance service. Later, this page will update the real backend and database record."
+    },
+    "success": {
+      "title": "Invoice updated successfully.",
+      "description": "The invoice has been updated. You will be redirected to the invoice details page."
+    },
+    "formHeader": {
+      "badge": "Update Invoice Record",
+      "description": "Review and update the existing invoice information carefully before saving changes."
+    },
+    "submitLabel": "Save Changes",
+    "notFound": {
+      "title": "Invoice not found",
+      "description": "The invoice you are trying to edit does not exist or may have been removed.",
+      "back": "Back to Finance"
+    }
+  },
+  "financePaymentForm": {
+    "notice": {
+      "createTitle": "Creating a new payment",
+      "createDescription": "Fill in the payment details carefully. This payment can be linked to an invoice or subscription and will update the financial tracking flow.",
+      "editTitle": "Editing payment",
+      "editDescription": "Update only the payment information that needs to be changed. Linked invoice and subscription information should be reviewed before saving."
+    },
+    "sections": {
+      "linkedRecord": {
+        "title": "Linked Record",
+        "description": "Choose whether this payment is linked to an invoice, a subscription, or recorded as a standalone payment."
+      },
+      "student": {
+        "title": "Student & Parent Information",
+        "description": "Confirm the student and parent details related to this payment."
+      },
+      "payment": {
+        "title": "Payment Details",
+        "description": "Set the payment date, method, status, and transaction type."
+      },
+      "amounts": {
+        "title": "Payment Amounts",
+        "description": "Enter the payment amount, currency, reference number, and receiver."
+      },
+      "summary": {
+        "title": "Payment Summary",
+        "description": "Review the linked invoice, linked subscription, and payment amount before saving."
+      },
+      "notes": {
+        "title": "Payment Notes",
+        "description": "Add internal notes related to this payment."
+      }
+    },
+    "fields": {
+      "linkedRecordType": "Linked Record Type",
+      "invoice": "Invoice",
+      "subscription": "Subscription",
+      "studentName": "Student Name",
+      "studentCode": "Student Code",
+      "parentName": "Parent Name",
+      "parentPhone": "Parent Phone",
+      "paymentDate": "Payment Date",
+      "paymentMethod": "Payment Method",
+      "status": "Payment Status",
+      "transactionType": "Transaction Type",
+      "currency": "Currency",
+      "amount": "Amount",
+      "referenceNumber": "Reference Number",
+      "receivedBy": "Received By",
+      "notes": "Internal Notes"
+    },
+    "linkedRecordType": {
+      "invoice": "Linked to Invoice",
+      "subscription": "Linked to Subscription",
+      "none": "Standalone Payment"
+    },
+    "preview": {
+      "linkedInvoice": "Linked Invoice",
+      "linkedSubscription": "Linked Subscription",
+      "amount": "Payment Amount",
+      "notLinked": "Not linked"
+    },
+    "placeholders": {
+      "notes": "Add any internal notes about this payment..."
+    },
+    "submit": {
+      "title": "Ready to save this payment?",
+      "description": "Review the payment details, linked records, amount, reference, and receiver before submitting.",
+      "saving": "Saving..."
+    }
+  },
+  "financePaymentNewPage": {
+    "backToFinance": "Back to Finance",
+    "badge": "New Payment",
+    "title": "Create New Payment",
+    "description": "Create a new payment record linked to an invoice, subscription, or standalone financial transaction, including payment method, status, amount, reference number, receiver, and internal notes.",
+    "sideCard": {
+      "title": "Database-ready payment record",
+      "description": "This form is connected to the finance service now, and later it will be connected directly to the backend and database."
+    },
+    "success": {
+      "title": "Payment created successfully.",
+      "description": "The payment record has been created. You will be redirected to the payment details page."
+    },
+    "formHeader": {
+      "badge": "Payment Form",
+      "title": "Complete the payment details",
+      "description": "Enter accurate payment information, review the linked invoice or subscription, confirm the amount, method, reference, and receiver before saving."
+    },
+    "submitLabel": "Create Payment"
+  },
+  "financePaymentEditPage": {
+    "backToPayment": "Back to Payment",
+    "badge": "Edit Payment",
+    "title": "Edit Payment",
+    "description": "Update the payment information including linked invoice or subscription, student and parent details, payment date, method, status, transaction type, amount, reference number, receiver, and internal notes.",
+    "sideCard": {
+      "title": "Safe payment update",
+      "description": "Changes are currently saved through the finance service. Later, this page will update the real backend and database record."
+    },
+    "success": {
+      "title": "Payment updated successfully.",
+      "description": "The payment record has been updated. You will be redirected to the payment details page."
+    },
+    "formHeader": {
+      "badge": "Update Payment Record",
+      "description": "Review and update the existing payment information carefully before saving changes."
+    },
+    "submitLabel": "Save Changes",
+    "notFound": {
+      "title": "Payment not found",
+      "description": "The payment record you are trying to edit does not exist or may have been removed.",
+      "back": "Back to Finance"
+    }
+  },
+  "financeDeleteButton": {
+    "cancel": "Cancel",
+    "deleting": "Deleting..."
+  }
+}

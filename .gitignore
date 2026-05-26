@@ -1,0 +1,86 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build
+dist
+dist-ssr
+*.local
+
+# Env
+.env
+.env.local
+.env.*.local
+node_modules
+dist
+server/.env
+server/node_modules
+server/dist
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# TypeScript
+*.tsbuildinfo
+
+# Test
+coverage
+
+# Misc
+*.zip
+# Backend / Server
+server/logs
+server/tmp
+server/temp
+server/uploads
+server/dist
+server/*.tsbuildinfo
+
+# Prisma / Local database files
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+prisma/dev.db
+prisma/dev.db-journal
+server/prisma/dev.db
+server/prisma/dev.db-journal
+
+# Generated project audit files
+project-files.txt
+project-tree.txt
+project-files*.txt
+project-tree*.txt
+
+# Local backups
+backup
+backups
+*.bak
+
+# Tool caches
+.cache
+.turbo
+.vercel
+.netlify
+
+# Test artifacts
+playwright-report
+test-results
