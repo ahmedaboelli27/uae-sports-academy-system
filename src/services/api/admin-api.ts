@@ -14,8 +14,22 @@ import type { Invoice, Payment, Subscription } from '@/types/finance.types';
 import type { Parent } from '@/types/parent.types';
 import type { Program } from '@/types/program.types';
 import type { Student } from '@/types/student.types';
+import type { User } from '@/types/user.types';
 
 export const adminApi = {
+  getUsers: (filters?: ListFilters) =>
+    USE_MOCK_API
+      ? mockApi.getUsers().then((result) => ({
+          success: true as const,
+          data: result.data,
+          meta: {
+            page: filters?.page ?? 1,
+            pageSize: filters?.pageSize ?? result.data.length,
+            totalItems: result.data.length,
+            totalPages: 1,
+          },
+        }))
+      : getPaginated<User>(ENDPOINTS.admin.users.list, filters),
   getStudents: (filters?: ListFilters) =>
     USE_MOCK_API
       ? mockApi.getStudents(filters)

@@ -1,92 +1,58 @@
-import { USE_MOCK_API } from "@/config/api-mode";
-import { ENDPOINTS } from "@/services/api/endpoints";
-import { axiosClient } from "@/services/api/axios-client";
-import type { UserRole } from "@/types/role.types";
-import { create } from "zustand";
+import type { UserRole } from '@/types/role.types';
+import { create } from 'zustand';
+import { login as loginData, loadCurrentUser } from '@/features/auth/services/auth-data.service';
 
 export interface AuthUser {
-    id: string;
-    name: string;
-    email: string;
-    role: UserRole;
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string | null;
+  role: UserRole;
 }
 
 interface AuthState {
-    currentUser: AuthUser | null;
-    role: UserRole | null;
-    isAuthenticated: boolean;
-    loginMock: (role: Exclude<UserRole, 'guest'>) => void;
-    logout: () => void;
+  currentUser: AuthUser | null;
+  role: UserRole;
+  isAuthenticated: boolean;
+  loginMock: (role: Exclude<UserRole, 'guest' | 'accountant'>) => Promise<void>;
+  loginWithCredentials: (email: string, password: string, mockRole?: Exclude<UserRole, 'guest' | 'accountant'>) => Promise<void>;
+  hydrateMe: () => Promise<void>;
+  logout: () => void;
 }
 
-const mockUsers: Record<Exclude<UserRole, 'guest'>, AuthUser> = {
-    parent: {
-        id: "parent-demo-user",
-        name: "Parent Demo",
-        email: "parent@aspirex.com",
-        role: "parent",
-    },
-    coach: {
-        id: "coach-demo-user",
-        name: "Coach Demo",
-        email: "coach@aspirex.com",
-        role: "coach",
-    },
-    accountant: {
-        id: "accountant-demo-user",
-        name: "Accountant Demo",
-        email: "accountant@aspirex.com",
-        role: "accountant",
-    },
-    admin: {
-        id: "admin-demo-user",
-        name: "Admin Demo",
-        email: "admin@aspirex.com",
-        role: "admin",
-    },
-};
+function setAuthFromUser(set: (updater: Partial<AuthState>) => void, user: AuthUser | null) {
+  set({
+    currentUser: user,
+    role: user?.role ?? 'guest',
+    isAuthenticated: Boolean(user),
+  });
+}
 
 export const useAuthStore = create<AuthState>((set) => ({
-    currentUser: null,
-    role: null,
-    isAuthenticated: false,
+  currentUser: null,
+  role: 'guest',
+  isAuthenticated: false,
 
-    loginMock: (role) => {
-        const user = mockUsers[role];
+  loginMock: async (role) => {
+    const result = await loginData({ email: '', password: '' }, role);
+    if (result.token) localStorage.setItem('access_token', result.token);
+    setAuthFromUser(set, result.user);
+  },
 
-        set({
-            currentUser: user,
-            role,
-            isAuthenticated: true,
-        });
+  loginWithCredentials: async (email, password, mockRole) => {
+    const result = await loginData({ email, password }, mockRole);
+    if (result.token) localStorage.setItem('access_token', result.token);
+    setAuthFromUser(set, result.user);
+  },
 
-        if (!USE_MOCK_API && (role === "admin" || role === "accountant")) {
-            const email =
-                role === "accountant" ? "finance@academy.ae" : "admin@academy.ae";
+  hydrateMe: async () => {
+    const user = await loadCurrentUser();
+    setAuthFromUser(set, user);
+  },
 
-            void axiosClient
-                .post(ENDPOINTS.auth.login, {
-                    email,
-                    password: "Admin@123",
-                })
-                .then((response) => {
-                    const token = response.data?.data?.token as string | undefined;
-                    if (token) {
-                        localStorage.setItem("access_token", token);
-                    }
-                })
-                .catch(() => {
-                    localStorage.removeItem("access_token");
-                });
-        }
-    },
-
-    logout: () => {
-        localStorage.removeItem("access_token");
-        set({
-            currentUser: null,
-            role: null,
-            isAuthenticated: false,
-        });
-    },
+  logout: () => {
+    localStorage.removeItem('access_token');
+    setAuthFromUser(set, null);
+  },
 }));

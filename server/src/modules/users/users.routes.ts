@@ -1,14 +1,13 @@
 import { Router } from 'express';
+import { asyncHandler } from '../../utils/async-handler.js';
+import * as controller from './users.controller.js';
 
-/** Placeholder — user management CRUD can be added in a follow-up phase */
 const router = Router();
 
-router.get('/', (_req, res) => {
-  res.status(501).json({
-    success: false,
-    message: 'Users module not implemented yet',
-    code: 'NOT_IMPLEMENTED',
-  });
-});
+router.get('/', asyncHandler(controller.list));
+router.get('/:id', asyncHandler(controller.getById));
+router.post('/', asyncHandler(controller.create));
+router.patch('/:id', asyncHandler(controller.update));
+router.delete('/:id', asyncHandler(controller.remove));
 
 export default router;

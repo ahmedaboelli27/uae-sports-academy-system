@@ -4,12 +4,24 @@ const API = '/api';
 
 export const ENDPOINTS = {
   health: `${API}/health`,
+  public: {
+    academySummary: `${API}/public/academy-summary`,
+    home: `${API}/public/home`,
+    loginShowcase: `${API}/public/login-showcase`,
+  },
   auth: {
     login: `${API}/auth/login`,
+    register: `${API}/auth/register`,
+    registerParent: `${API}/auth/register/parent`,
+    registerCoachRequest: `${API}/auth/register/coach-request`,
     me: `${API}/auth/me`,
   },
   admin: {
     dashboard: `${API}/admin/dashboard`,
+    users: {
+      list: `${API}/admin/users`,
+      detail: (id: string) => `${API}/admin/users/${id}`,
+    },
     students: {
       list: `${API}/admin/students`,
       detail: (id: string) => `${API}/admin/students/${id}`,

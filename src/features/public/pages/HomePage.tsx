@@ -1,3 +1,4 @@
+import { loadPublicHomeContent, publicFallbackContent } from '@/features/public/services/public-data.service';
 import type { LucideIcon } from 'lucide-react';
 import {
   ArrowRight,
@@ -65,6 +66,17 @@ const trainingImages = [
 export default function HomePage() {
   const { i18n } = useTranslation();
   const isArabic = i18n.language?.startsWith('ar');
+  const [publicContent, setPublicContent] = useState(publicFallbackContent);
+
+  useEffect(() => {
+    let mounted = true;
+    void loadPublicHomeContent().then((data) => {
+      if (mounted) setPublicContent(data);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const content = useMemo(() => {
     if (isArabic) {
@@ -493,25 +505,48 @@ export default function HomePage() {
   const socials: SocialItem[] = [
     {
       label: 'TikTok',
-      href: 'https://www.tiktok.com/@your-academy',
+      href: 'https://l.instagram.com/?u=https%3A%2F%2Fwww.tiktok.com%2F%40aspirex.sports.ae%3F_r%3D1%26_t%3DZS-95fHvA1XfzY%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnH7kmJCHSK1Wp_xEjGpOWOpCchYgMlFGOOuvB96Afun3-lCJs7Hmni8jFwMA_aem_4Whb_MawQJly8pb9UAyZZQ&e=AUBj81gTIaZvVg7DZUc-f8A5sfd3byJhSr4skpgVpcStY5gwzHWe_IBdLyvJ7t12RoLBCMECgvqxKusIk0AVYqHB9-xRbJ6_scJ2yyAV5KxhvyjZlyOQOU7BspuUJMWtcAbgpCU',
       icon: Music2,
     },
     {
       label: 'Instagram',
-      href: 'https://www.instagram.com/your-academy',
+      href: 'https://www.instagram.com/aspirexsportsacademy/?hl=en',
       icon: Instagram,
     },
     {
       label: 'Facebook',
-      href: 'https://www.facebook.com/your-academy',
+      href: 'https://www.facebook.com/profile.php?id=61583164192321',
       icon: Facebook,
     },
     {
       label: 'WhatsApp',
-      href: 'https://wa.me/971500000000',
+      href: 'https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F971503310514%3Ftext%3DHello%2BI%2Bwant%2Bto%2Bbook%2Ba%2Btrial%2Bsession%2Bfor%2BAspireX%26utm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnjQ7U0WcI3YHpa1h5CwtW9P-9In081TAQOMI7QaQplvmTT_NOByNrSyKPPZQ_aem_q6LQB1LuJnpVGWmo87fYeg&e=AUCISwWQzn4IfUWxZnJ3k4OHtLUkV-nBAV6kK9y6oRgQST9P2P-mH7ZZIbHK3z8K8-Btzzo14U3wgNy2MEWp25FIaHGaSnrw6U--nlKArwMFBpFmyzB9aWjsXhHaqK_QVWPP0Fs',
       icon: MessageCircle,
     },
   ];
+
+  const resolvedKpis = publicContent.kpis.length > 0 ? publicContent.kpis : content.kpis;
+  const resolvedPrograms: ProgramItem[] =
+    publicContent.programs.length > 0
+      ? publicContent.programs.map((program, index) => ({
+        title: program.title,
+        age: program.age,
+        level: program.level,
+        description: program.description,
+        icon: [Trophy, Waves, Dumbbell][index % 3],
+        image: program.image || trainingImages[index % trainingImages.length],
+      }))
+      : content.programs;
+  const resolvedBranches =
+    publicContent.branches.length > 0 ? publicContent.branches : content.branches;
+  const resolvedGallery =
+    publicContent.gallery.length > 0
+      ? publicContent.gallery.map((item, index) => ({
+        title: item.title,
+        subtitle: item.subtitle,
+        image: item.image || trainingImages[index % trainingImages.length],
+      }))
+      : content.gallery;
 
   return (
     <main className="relative isolate overflow-hidden text-white">
@@ -635,7 +670,7 @@ export default function HomePage() {
 
           <ScrollReveal delay={200}>
             <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 rounded-sm">
-              {content.kpis.map((item) => (
+              {resolvedKpis.map((item) => (
                 <GlassCard key={item.label} className="p-5">
                   <p className="text-3xl font-black text-brand-yellow">
                     {item.value}
@@ -707,7 +742,7 @@ export default function HomePage() {
       <SectionBlock compact>
         <PageContainer>
           <div className="grid gap-6 lg:grid-cols-3">
-            {content.programs.map((program, index) => (
+            {resolvedPrograms.map((program, index) => (
               <ScrollReveal key={program.title} delay={index * 100}>
                 <ProgramCard
                   program={program}
@@ -758,7 +793,7 @@ export default function HomePage() {
       <SectionBlock compact>
         <PageContainer>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {content.gallery.map((item, index) => (
+            {resolvedGallery.map((item, index) => (
               <ScrollReveal key={item.title} delay={index * 80}>
                 <article className="group overflow-hidden rounded-[2rem] bg-[#071033]/78 shadow-2xl ring-1 ring-white/10 backdrop-blur-2xl transition hover:-translate-y-2">
                   <div className="relative h-72 overflow-hidden">
@@ -823,7 +858,7 @@ export default function HomePage() {
       <SectionBlock compact>
         <PageContainer>
           <div className="grid gap-6 md:grid-cols-3">
-            {content.branches.map((branch, index) => (
+            {resolvedBranches.map((branch, index) => (
               <ScrollReveal key={branch.city} delay={index * 90}>
                 <article className="rounded-[2rem] bg-[#071033]/78 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-2xl transition hover:-translate-y-2">
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-yellow text-brand-blue">

@@ -461,7 +461,25 @@
       "password": "Password",
       "selectRole": "Select demo role",
       "submit": "Sign In",
-      "demoNote": "Demo mode: email and password are not validated yet. The selected role controls the redirect destination."
+      "demoNote": "Demo mode: email and password are not validated yet. The selected role controls the redirect destination.",
+      "invalidCredentials": "Invalid credentials.",
+      "loading": "Signing in..."
+    },
+    "register": {
+      "title": "Create account",
+      "description": "Register as parent or coach request.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "accountType": "Account type",
+      "terms": "I agree to terms and privacy policy.",
+      "submit": "Create account",
+      "submitting": "Submitting...",
+      "success": "Registration successful. You can sign in now.",
+      "error": "Registration failed. Please try again."
     }
   },
   "adminDashboard": {

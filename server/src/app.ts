@@ -19,6 +19,7 @@ import financeRoutes from './modules/finance/finance.routes.js';
 import dashboardRoutes from './modules/dashboard/dashboard.routes.js';
 import reportsRoutes from './modules/reports/reports.routes.js';
 import usersRoutes from './modules/users/users.routes.js';
+import publicRoutes from './modules/public/public.routes.js';
 
 export function createApp() {
   const app = express();
@@ -36,6 +37,7 @@ export function createApp() {
   });
 
   app.use('/api/auth', authRoutes);
+  app.use('/api/public', publicRoutes);
 
   const adminRouter = express.Router();
   adminRouter.use(authMiddleware, adminOnly);

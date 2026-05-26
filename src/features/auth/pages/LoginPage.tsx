@@ -1,6 +1,8 @@
 import BrandLogo from "@/components/shared/BrandLogo";
 import LanguageToggle from "@/components/shared/LanguageToggle";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { USE_MOCK_API } from "@/config/api-mode";
+import { loadPublicLoginShowcase } from "@/features/public/services/public-data.service";
 import { useAuthStore } from "@/features/auth/pages/auth.store";
 import type { UserRole } from "@/types/role.types";
 import { ROLE_REDIRECT_PATHS } from "@/types/role.types";
@@ -19,7 +21,7 @@ import {
   UserPlus,
   Users,
 } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -32,9 +34,32 @@ export default function LoginPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const loginMock = useAuthStore((state) => state.loginMock);
+  const loginWithCredentials = useAuthStore((state) => state.loginWithCredentials);
 
   const [selectedRole, setSelectedRole] =
     useState<Exclude<UserRole, "guest" | "accountant">>("admin");
+  const [email, setEmail] = useState("admin@aspirex.com");
+  const [password, setPassword] = useState("password");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [showcase, setShowcase] = useState({
+    features: [
+      { id: "f-kpi", title: t("auth.login.features.kpi") },
+      { id: "f-ops", title: t("auth.login.features.operations") },
+      { id: "f-att", title: t("auth.login.features.attendance") },
+    ],
+    metrics: [
+      { id: "m-players", value: "1,200+", label: "Players" },
+      { id: "m-coaches", value: "35+", label: "Coaches" },
+      { id: "m-branches", value: "8", label: "Branches" },
+    ],
+  });
+
+  useEffect(() => {
+    void loadPublicLoginShowcase().then((data) => {
+      if (data.features.length && data.metrics.length) setShowcase(data);
+    });
+  }, []);
 
   const roleOptions: RoleOption[] = [
     { value: "admin", icon: ShieldCheck },
@@ -42,10 +67,23 @@ export default function LoginPage() {
     { value: "parent", icon: Users },
   ];
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    loginMock(selectedRole);
-    navigate(ROLE_REDIRECT_PATHS[selectedRole]);
+    setIsSubmitting(true);
+    setError("");
+    try {
+      if (USE_MOCK_API) {
+        await loginMock(selectedRole);
+        navigate(ROLE_REDIRECT_PATHS[selectedRole]);
+        return;
+      }
+      await loginWithCredentials(email, password);
+      navigate("/portal");
+    } catch {
+      setError(t("auth.login.invalidCredentials", { defaultValue: "Invalid credentials." }));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -76,25 +114,20 @@ export default function LoginPage() {
               </div>
 
               <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                <SideFeature
-                  icon={BarChart3}
-                  title={t("auth.login.features.kpi")}
-                />
-                <SideFeature
-                  icon={UserCog}
-                  title={t("auth.login.features.operations")}
-                />
-                <SideFeature
-                  icon={CheckCircle2}
-                  title={t("auth.login.features.attendance")}
-                />
+                {showcase.features.map((feature, index) => (
+                  <SideFeature
+                    key={feature.id}
+                    icon={[BarChart3, UserCog, CheckCircle2][index % 3]}
+                    title={feature.title}
+                  />
+                ))}
               </div>
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
-              <MetricCard value="1,200+" label="Players" />
-              <MetricCard value="35+" label="Coaches" />
-              <MetricCard value="8" label="Branches" />
+              {showcase.metrics.map((metric) => (
+                <MetricCard key={metric.id} value={metric.value} label={metric.label} />
+              ))}
             </div>
           </div>
         </div>
@@ -148,7 +181,8 @@ export default function LoginPage() {
 
                     <input
                       type="email"
-                      defaultValue="admin@aspirex.com"
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
                       placeholder="admin@aspirex.com"
                       className="h-12 w-full rounded-2xl border border-border bg-background px-4 ps-12 text-sm font-semibold outline-none transition placeholder:text-muted-foreground/70 focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 dark:focus:border-brand-yellow dark:focus:ring-brand-yellow/10"
                     />
@@ -165,14 +199,15 @@ export default function LoginPage() {
 
                     <input
                       type="password"
-                      defaultValue="password"
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
                       placeholder="••••••••"
                       className="h-12 w-full rounded-2xl border border-border bg-background px-4 ps-12 text-sm font-semibold outline-none transition placeholder:text-muted-foreground/70 focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 dark:focus:border-brand-yellow dark:focus:ring-brand-yellow/10"
                     />
                   </div>
                 </label>
 
-                <div>
+                {USE_MOCK_API ? <div>
                   <p className="mb-3 text-sm font-black">
                     {t("auth.login.selectRole")}
                   </p>
@@ -227,14 +262,20 @@ export default function LoginPage() {
                       );
                     })}
                   </div>
-                </div>
+                </div> : null}
 
                 <div className="space-y-3">
+                  {error ? (
+                    <div className="rounded-xl border border-red-300 bg-red-50 px-3 py-2 text-sm font-semibold text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300">
+                      {error}
+                    </div>
+                  ) : null}
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 text-sm font-black text-brand-blue shadow-[0_18px_45px_rgba(255,212,0,0.22)] transition hover:-translate-y-0.5 hover:bg-white dark:bg-brand-yellow dark:text-brand-blue"
                   >
-                    {t("auth.login.submit")}
+                    {isSubmitting ? t("auth.login.loading", { defaultValue: "Signing in..." }) : t("auth.login.submit")}
                     <ArrowRight className="h-4 w-4 rtl:rotate-180" />
                   </button>
 
