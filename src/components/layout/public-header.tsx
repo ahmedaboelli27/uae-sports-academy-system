@@ -46,8 +46,8 @@ function PublicHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[100] border-b border-brand-yellow/20 bg-brand-blue/95 shadow-[0_14px_40px_rgba(0,18,155,0.20)] backdrop-blur-2xl dark:border-brand-yellow/15 dark:bg-brand-dark/95">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_50%,rgba(255,212,0,0.16),transparent_28%),radial-gradient(circle_at_82%_20%,rgba(255,255,255,0.10),transparent_26%)]" />
+      <header className="fixed inset-x-0 top-0 z-[100] border-b border-brand-blue/10 bg-white/90 shadow-[0_12px_38px_rgba(0,18,155,0.08)] backdrop-blur-2xl dark:border-brand-yellow/15 dark:bg-brand-dark/95 dark:shadow-[0_16px_44px_rgba(0,0,0,0.35)]">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_50%,rgba(255,212,0,0.16),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(0,18,155,0.08),transparent_28%)] dark:bg-[radial-gradient(circle_at_12%_50%,rgba(255,212,0,0.15),transparent_28%),radial-gradient(circle_at_82%_20%,rgba(255,255,255,0.08),transparent_26%)]" />
 
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <Link
@@ -56,20 +56,24 @@ function PublicHeader() {
             className="group flex shrink-0 items-center gap-3"
             aria-label="Go to home page"
           >
-            <div className="rounded-2xl bg-white/8 px-2 py-1 ring-1 ring-white/10 transition group-hover:scale-[1.02] group-hover:bg-white/12">
+            <div className="rounded-2xl bg-white/75 px-2 py-1 ring-1 ring-brand-blue/10 transition group-hover:scale-[1.02] group-hover:bg-white group-hover:ring-brand-yellow/50 dark:hidden">
+              <BrandLogo size="md" showText />
+            </div>
+
+            <div className="hidden rounded-2xl bg-white/8 px-2 py-1 ring-1 ring-white/10 transition group-hover:scale-[1.02] group-hover:bg-white/12 dark:block">
               <BrandLogo size="md" showText variant="white" />
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-1 rounded-full bg-white/8 p-1 ring-1 ring-white/10 backdrop-blur-xl lg:flex">
+          <nav className="hidden items-center gap-1 rounded-full bg-brand-blue/[0.04] p-1 ring-1 ring-brand-blue/10 backdrop-blur-xl dark:bg-white/8 dark:ring-white/10 lg:flex">
             <NavLink
               to="/"
               className={({ isActive }) =>
                 cn(
                   "inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-black transition",
                   isActive
-                    ? "bg-brand-yellow text-brand-blue shadow-[0_10px_24px_rgba(255,212,0,0.22)]"
-                    : "text-white/78 hover:bg-white/10 hover:text-white",
+                    ? "bg-brand-blue text-white shadow-[0_10px_24px_rgba(0,18,155,0.18)] dark:bg-brand-yellow dark:text-brand-blue dark:shadow-[0_10px_24px_rgba(255,212,0,0.22)]"
+                    : "text-slate-650 hover:bg-white hover:text-brand-blue hover:shadow-sm dark:text-white/78 dark:hover:bg-white/10 dark:hover:text-white",
                 )
               }
             >
@@ -92,8 +96,8 @@ function PublicHeader() {
                     cn(
                       "inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-black transition",
                       isActive
-                        ? "bg-brand-yellow text-brand-blue shadow-[0_10px_24px_rgba(255,212,0,0.22)]"
-                        : "text-white/78 hover:bg-white/10 hover:text-white",
+                        ? "bg-brand-blue text-white shadow-[0_10px_24px_rgba(0,18,155,0.18)] dark:bg-brand-yellow dark:text-brand-blue dark:shadow-[0_10px_24px_rgba(255,212,0,0.22)]"
+                        : "text-slate-650 hover:bg-white hover:text-brand-blue hover:shadow-sm dark:text-white/78 dark:hover:bg-white/10 dark:hover:text-white",
                     )
                   }
                 >
@@ -109,14 +113,14 @@ function PublicHeader() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <div className="flex items-center gap-2 rounded-full bg-white/8 p-1 ring-1 ring-white/10 backdrop-blur-xl">
+            <div className="flex items-center gap-2 rounded-full bg-brand-blue/[0.04] p-1 ring-1 ring-brand-blue/10 backdrop-blur-xl dark:bg-white/8 dark:ring-white/10">
               <LanguageToggle />
               <ThemeToggle />
             </div>
 
             <Link
               to="/auth/login"
-              className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-black text-brand-blue transition hover:bg-brand-blue/10 hover:text-brand-blue dark:text-white/88 dark:hover:bg-white/10 dark:hover:text-white"
             >
               <LogIn className="h-4 w-4" />
               {loginLabel}
@@ -124,7 +128,7 @@ function PublicHeader() {
 
             <Link
               to="/book-trial"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-5 py-2.5 text-sm font-black text-brand-blue shadow-[0_14px_28px_rgba(255,212,0,0.25)] transition hover:-translate-y-0.5 hover:bg-white"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-[0_14px_28px_rgba(0,18,155,0.20)] transition hover:-translate-y-0.5 hover:bg-brand-blue-dark dark:bg-brand-yellow dark:text-brand-blue dark:shadow-[0_14px_28px_rgba(255,212,0,0.25)] dark:hover:bg-white"
             >
               <Sparkles className="h-4 w-4" />
               {bookTrialLabel}
@@ -132,7 +136,7 @@ function PublicHeader() {
           </div>
 
           <div className="flex items-center gap-2 lg:hidden">
-            <div className="flex items-center gap-1 rounded-full bg-white/8 p-1 ring-1 ring-white/10 backdrop-blur-xl">
+            <div className="flex items-center gap-1 rounded-full bg-brand-blue/[0.04] p-1 ring-1 ring-brand-blue/10 backdrop-blur-xl dark:bg-white/8 dark:ring-white/10">
               <LanguageToggle />
               <ThemeToggle />
             </div>
@@ -140,7 +144,7 @@ function PublicHeader() {
             <Link
               to="/auth/login"
               onClick={() => setIsOpen(false)}
-              className="inline-flex h-10 items-center justify-center rounded-full bg-brand-yellow px-4 text-xs font-black text-brand-blue shadow-sm transition hover:bg-white"
+              className="inline-flex h-10 items-center justify-center rounded-full bg-brand-blue px-4 text-xs font-black text-white shadow-sm transition hover:bg-brand-blue-dark dark:bg-brand-yellow dark:text-brand-blue dark:hover:bg-white"
             >
               {loginLabel}
             </Link>
@@ -148,7 +152,7 @@ function PublicHeader() {
             <button
               type="button"
               onClick={() => setIsOpen((value) => !value)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/15 transition hover:bg-white/15"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-brand-blue shadow-sm ring-1 ring-brand-blue/10 transition hover:bg-brand-blue/5 dark:bg-white/10 dark:text-white dark:ring-white/15 dark:hover:bg-white/15"
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
@@ -158,7 +162,7 @@ function PublicHeader() {
         </div>
 
         {isOpen ? (
-          <div className="border-t border-brand-yellow/15 bg-brand-blue/98 px-4 py-4 shadow-2xl backdrop-blur-2xl dark:bg-brand-dark/98 lg:hidden">
+          <div className="border-t border-brand-blue/10 bg-white/96 px-4 py-4 shadow-2xl backdrop-blur-2xl dark:border-brand-yellow/15 dark:bg-brand-dark/98 lg:hidden">
             <div className="mx-auto flex max-w-7xl flex-col gap-2">
               <NavLink
                 to="/"
@@ -167,8 +171,8 @@ function PublicHeader() {
                   cn(
                     "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-black transition",
                     isActive
-                      ? "bg-brand-yellow text-brand-blue"
-                      : "text-white/82 hover:bg-white/10 hover:text-white",
+                      ? "bg-brand-blue text-white dark:bg-brand-yellow dark:text-brand-blue"
+                      : "text-slate-700 hover:bg-brand-blue/5 hover:text-brand-blue dark:text-white/82 dark:hover:bg-white/10 dark:hover:text-white",
                   )
                 }
               >
@@ -192,8 +196,8 @@ function PublicHeader() {
                       cn(
                         "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-black transition",
                         isActive
-                          ? "bg-brand-yellow text-brand-blue"
-                          : "text-white/82 hover:bg-white/10 hover:text-white",
+                          ? "bg-brand-blue text-white dark:bg-brand-yellow dark:text-brand-blue"
+                          : "text-slate-700 hover:bg-brand-blue/5 hover:text-brand-blue dark:text-white/82 dark:hover:bg-white/10 dark:hover:text-white",
                       )
                     }
                   >
@@ -211,7 +215,7 @@ function PublicHeader() {
                 <Link
                   to="/auth/login"
                   onClick={() => setIsOpen(false)}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/10 px-4 py-3 text-center text-sm font-black text-white ring-1 ring-white/12 transition hover:bg-white/15"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-blue/8 px-4 py-3 text-center text-sm font-black text-brand-blue ring-1 ring-brand-blue/10 transition hover:bg-brand-blue/12 dark:bg-white/10 dark:text-white dark:ring-white/12 dark:hover:bg-white/15"
                 >
                   <LogIn className="h-4 w-4" />
                   {loginLabel}
@@ -220,7 +224,7 @@ function PublicHeader() {
                 <Link
                   to="/book-trial"
                   onClick={() => setIsOpen(false)}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-yellow px-4 py-3 text-center text-sm font-black text-brand-blue shadow-[0_14px_28px_rgba(255,212,0,0.22)] transition hover:bg-white"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-blue px-4 py-3 text-center text-sm font-black text-white shadow-[0_14px_28px_rgba(0,18,155,0.18)] transition hover:bg-brand-blue-dark dark:bg-brand-yellow dark:text-brand-blue dark:shadow-[0_14px_28px_rgba(255,212,0,0.22)] dark:hover:bg-white"
                 >
                   <Sparkles className="h-4 w-4" />
                   {bookTrialLabel}

@@ -11,6 +11,7 @@ export function ThemeToggle() {
       variant="outline"
       size="sm"
       onClick={toggleTheme}
+      className="rounded-full"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
