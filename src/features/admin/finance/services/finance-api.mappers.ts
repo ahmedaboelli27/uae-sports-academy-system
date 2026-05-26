@@ -6,7 +6,7 @@ import type {
   FinanceChartPointDto,
   FinanceCurrency,
   FinanceDashboardDto,
-  FinanceDiscountType,
+  // FinanceDiscountType,
   FinanceFiltersDto,
   FinanceInvoiceDetailsDto,
   FinanceInvoiceLineItemDto,
