@@ -9,21 +9,22 @@ import {
   ArrowRight,
   BarChart3,
   CheckCircle2,
-  CreditCard,
+  Home,
   Lock,
   Mail,
   ShieldCheck,
   Sparkles,
   Trophy,
   UserCog,
+  UserPlus,
   Users,
 } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface RoleOption {
-  value: Exclude<UserRole, 'guest'>;
+  value: Exclude<UserRole, "guest" | "accountant">;
   icon: LucideIcon;
 }
 
@@ -32,11 +33,11 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const loginMock = useAuthStore((state) => state.loginMock);
 
-  const [selectedRole, setSelectedRole] = useState<Exclude<UserRole, 'guest'>>("admin");
+  const [selectedRole, setSelectedRole] =
+    useState<Exclude<UserRole, "guest" | "accountant">>("admin");
 
   const roleOptions: RoleOption[] = [
     { value: "admin", icon: ShieldCheck },
-    { value: "accountant", icon: CreditCard },
     { value: "coach", icon: Trophy },
     { value: "parent", icon: Users },
   ];
@@ -48,23 +49,24 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-100 text-foreground dark:bg-slate-950">
+    <main className="min-h-screen overflow-hidden bg-slate-100 text-foreground dark:bg-slate-950">
       <section className="grid min-h-screen lg:grid-cols-2">
         <div className="relative hidden overflow-hidden lg:flex">
           <div className="absolute inset-0 bg-gradient-to-br from-brand-blue via-brand-blue-dark to-brand-dark" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,212,0,0.28),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.12),transparent_35%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,212,0,0.30),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.14),transparent_35%)]" />
+          <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-slate-950/35 to-transparent" />
 
           <div className="relative z-10 flex w-full flex-col justify-between px-10 py-10 xl:px-14 xl:py-14">
             <div>
               <BrandLogo size="lg" showText variant="white" />
 
               <div className="mt-16 max-w-xl">
-                <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-brand-yellow px-4 py-2 text-sm font-black text-brand-blue">
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-brand-yellow px-4 py-2 text-sm font-black text-brand-blue shadow-[0_16px_35px_rgba(255,212,0,0.22)]">
                   <Sparkles className="h-4 w-4" />
                   {t("auth.login.badge")}
                 </div>
 
-                <h1 className="text-4xl font-black leading-tight tracking-tight text-white xl:text-5xl">
+                <h1 className="text-4xl font-black leading-tight tracking-tight text-white drop-shadow-2xl xl:text-5xl">
                   {t("auth.login.sideTitle")}
                 </h1>
 
@@ -98,19 +100,34 @@ export default function LoginPage() {
         </div>
 
         <div className="relative flex min-h-screen items-center justify-center px-4 py-8 sm:px-6 lg:px-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,18,155,0.07),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(255,212,0,0.12),transparent_25%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(255,212,0,0.08),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(0,18,155,0.18),transparent_25%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,18,155,0.09),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(255,212,0,0.16),transparent_25%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(255,212,0,0.08),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(0,18,155,0.20),transparent_25%)]" />
 
           <div className="relative z-10 w-full max-w-xl">
             <div className="mb-6 flex items-center justify-between gap-4">
               <BrandLogo size="md" showText />
+
               <div className="flex items-center gap-2">
+                <Link
+                  to="/"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-brand-blue shadow-sm transition hover:-translate-y-0.5 hover:border-brand-yellow hover:bg-brand-yellow hover:text-brand-blue dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:hover:border-brand-yellow dark:hover:bg-brand-yellow dark:hover:text-brand-blue"
+                  aria-label="Go to home page"
+                  title="Home"
+                >
+                  <Home className="h-4 w-4" />
+                </Link>
+
                 <LanguageToggle />
                 <ThemeToggle />
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/60 bg-white/90 p-6 shadow-[0_25px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/90 dark:shadow-[0_25px_80px_rgba(0,0,0,0.45)] sm:p-8">
+            <div className="rounded-[2rem] border border-white/60 bg-white/92 p-6 shadow-[0_25px_90px_rgba(15,23,42,0.14)] backdrop-blur-2xl dark:border-slate-800 dark:bg-slate-900/92 dark:shadow-[0_25px_90px_rgba(0,0,0,0.48)] sm:p-8">
               <div className="mb-8">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-brand-yellow/20 px-4 py-2 text-xs font-black text-brand-blue dark:bg-brand-yellow/15 dark:text-brand-yellow">
+                  <ShieldCheck className="h-4 w-4" />
+                  AspireX Secure Portal
+                </div>
+
                 <h2 className="text-3xl font-black tracking-tight text-brand-blue dark:text-white sm:text-4xl">
                   {t("auth.login.title")}
                 </h2>
@@ -160,7 +177,7 @@ export default function LoginPage() {
                     {t("auth.login.selectRole")}
                   </p>
 
-                  <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="grid gap-3 sm:grid-cols-3">
                     {roleOptions.map((role) => {
                       const Icon = role.icon;
                       const isSelected = selectedRole === role.value;
@@ -173,16 +190,16 @@ export default function LoginPage() {
                           className={[
                             "rounded-2xl border p-4 text-start transition",
                             isSelected
-                              ? "border-brand-blue bg-brand-blue text-white shadow-brand dark:border-brand-yellow dark:bg-brand-yellow dark:text-brand-blue"
-                              : "border-border bg-background hover:border-brand-blue/40 dark:hover:border-brand-yellow/40",
+                              ? "border-brand-yellow bg-brand-yellow text-brand-blue shadow-[0_18px_45px_rgba(255,212,0,0.24)]"
+                              : "border-border bg-background hover:border-brand-blue/40 hover:bg-brand-blue/5 dark:hover:border-brand-yellow/40 dark:hover:bg-brand-yellow/5",
                           ].join(" ")}
                         >
-                          <div className="flex items-start gap-3">
+                          <div className="flex items-start gap-3 sm:flex-col">
                             <div
                               className={[
                                 "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl",
                                 isSelected
-                                  ? "bg-white/15"
+                                  ? "bg-brand-blue/10 text-brand-blue"
                                   : "bg-brand-blue/10 text-brand-blue dark:bg-brand-yellow/10 dark:text-brand-yellow",
                               ].join(" ")}
                             >
@@ -193,11 +210,12 @@ export default function LoginPage() {
                               <p className="text-sm font-black">
                                 {t(`auth.roles.${role.value}`)}
                               </p>
+
                               <p
                                 className={[
-                                  "mt-1 text-xs leading-5 font-semibold",
+                                  "mt-1 text-xs font-semibold leading-5",
                                   isSelected
-                                    ? "text-white/80 dark:text-brand-blue/75"
+                                    ? "text-brand-blue/75"
                                     : "text-muted-foreground",
                                 ].join(" ")}
                               >
@@ -211,13 +229,25 @@ export default function LoginPage() {
                   </div>
                 </div>
 
-                <button
-                  type="submit"
-                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-blue px-6 text-sm font-black text-white shadow-brand transition hover:-translate-y-0.5 hover:bg-brand-blue-dark dark:bg-brand-yellow dark:text-brand-blue"
-                >
-                  {t("auth.login.submit")}
-                  <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-                </button>
+                <div className="space-y-3">
+                  <button
+                    type="submit"
+                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 text-sm font-black text-brand-blue shadow-[0_18px_45px_rgba(255,212,0,0.22)] transition hover:-translate-y-0.5 hover:bg-white dark:bg-brand-yellow dark:text-brand-blue"
+                  >
+                    {t("auth.login.submit")}
+                    <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                  </button>
+
+                  <Link
+                    to="/auth/register"
+                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-brand-blue/20 bg-brand-blue px-6 text-sm font-black text-white shadow-brand transition hover:-translate-y-0.5 hover:bg-brand-blue-dark dark:border-brand-yellow/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
+                  >
+                    <UserPlus className="h-4 w-4" />
+                    {t("common.register", {
+                      defaultValue: "Create a regular account",
+                    })}
+                  </Link>
+                </div>
               </form>
 
               <div className="mt-6 rounded-2xl border border-brand-yellow/40 bg-brand-yellow/15 p-4 text-sm font-bold leading-6 text-brand-blue dark:bg-brand-yellow/10 dark:text-brand-yellow">
