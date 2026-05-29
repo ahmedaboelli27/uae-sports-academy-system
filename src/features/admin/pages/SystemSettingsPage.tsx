@@ -1,1504 +1,1403 @@
-import type { LucideIcon } from 'lucide-react';
 import {
-  AlertTriangle,
-  Bell,
-  Building2,
-  CalendarDays,
-  CheckCircle2,
-  Clock3,
-  CreditCard,
-  Database,
-  Eye,
-  FileText,
-  Globe2,
-  Image,
-  Info,
-  KeyRound,
-  Languages,
-  Link2,
-  Lock,
-  Mail,
-  MapPin,
-  MessageSquare,
-  Palette,
-  Receipt,
-  RefreshCcw,
-  RotateCcw,
-  Save,
-  Server,
-  Settings,
-  ShieldCheck,
-  Smartphone,
-  UserCheck,
-  Users,
-  WalletCards,
-} from 'lucide-react';
-import { useMemo, useState, type ReactNode } from 'react';
+  getAdminSettings,
+  updateAdminSettings,
+} from '@/features/settings/services/settings.service';
+import type {
+  SiteSettingsDto,
+  SiteSettingsGroup,
+} from '@/features/settings/types/settings.dto';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-type SettingsSectionKey =
-  | 'academy'
-  | 'branding'
-  | 'localization'
-  | 'schedule'
-  | 'enrollment'
-  | 'finance'
-  | 'notifications'
-  | 'security'
-  | 'integrations'
-  | 'data';
+type FormState = SiteSettingsDto;
+type FieldErrors = Record<string, string>;
+type ValidationErrorsByGroup = Partial<Record<SiteSettingsGroup, FieldErrors>>;
 
-interface SettingsSection {
-  key: SettingsSectionKey;
+const sectionOrder: Array<{
+  key: SiteSettingsGroup;
   title: string;
-  description: string;
-  icon: LucideIcon;
+  subtitle: string;
+  badge: string;
+}> = [
+    {
+      key: 'branding',
+      title: 'Branding',
+      subtitle: 'Control academy identity, logos, colors, and visual presence.',
+      badge: 'Identity',
+    },
+    {
+      key: 'contact',
+      title: 'Contact',
+      subtitle: 'Manage phone, WhatsApp, email, address, and working hours.',
+      badge: 'Public Info',
+    },
+    {
+      key: 'social',
+      title: 'Social',
+      subtitle: 'Connect public website visitors with official social channels.',
+      badge: 'Channels',
+    },
+    {
+      key: 'publicWebsite',
+      title: 'Public Website',
+      subtitle: 'Control public page visibility, hero copy, and SEO defaults.',
+      badge: 'Website',
+    },
+    {
+      key: 'system',
+      title: 'System',
+      subtitle: 'Manage maintenance mode, registration, trials, and locale.',
+      badge: 'Controls',
+    },
+  ];
+
+
+
+function isValidHexColor(value: string) {
+  return /^#[0-9A-Fa-f]{6}$/.test(value.trim());
 }
 
-const initialSettings = {
-  academyName: 'AspireX Sports Academy',
-  legalName: 'AspireX Sports Academy LLC',
-  academyCode: 'ASPX-UAE',
-  primaryEmail: 'info@academy.ae',
-  supportEmail: 'support@academy.ae',
-  primaryPhone: '+971 50 000 0000',
-  whatsappNumber: '+971 50 000 0000',
-  headquarters: 'Dubai, United Arab Emirates',
-  defaultBranch: 'Dubai Main Branch',
+function isValidUrl(value: string) {
+  const trimmed = value.trim();
 
-  primaryColor: '#00129B',
-  accentColor: '#FFD400',
-  logoUrl: '/logo.png',
-  faviconUrl: '/logo.png',
-  publicWebsiteEnabled: true,
-  showOffersOnHomepage: true,
-  showGalleryOnHomepage: true,
-  maintenanceMode: false,
+  if (!trimmed) {
+    return true;
+  }
 
-  defaultLanguage: 'en',
-  secondaryLanguage: 'ar',
-  timezone: 'Asia/Dubai',
-  dateFormat: 'DD/MM/YYYY',
-  timeFormat: '12h',
-  currency: 'AED',
-  firstDayOfWeek: 'monday',
+  return trimmed.startsWith('http://') || trimmed.startsWith('https://');
+}
 
-  sessionDuration: '60',
-  bufferBetweenSessions: '15',
-  maxStudentsPerSession: '18',
-  attendanceGraceMinutes: '10',
-  allowCoachAttendanceEdit: true,
-  allowMakeUpSessions: true,
-  autoMarkNoShow: true,
+function validateSettingsGroup(
+  group: SiteSettingsGroup,
+  settings: SiteSettingsDto,
+): FieldErrors {
+  const errors: FieldErrors = {};
 
-  trialBookingEnabled: true,
-  parentSelfRegistration: true,
-  coachRequestEnabled: true,
-  requireAdminApprovalForCoach: true,
-  requireTermsAcceptance: true,
-  minimumPlayerAge: '4',
-  maximumPlayerAge: '18',
-  trialExpiryDays: '7',
+  if (group === 'branding') {
+    if (!settings.branding.academyName.trim()) {
+      errors.academyName = 'Academy name is required.';
+    }
 
-  invoicePrefix: 'INV',
-  receiptPrefix: 'RCPT',
-  subscriptionPrefix: 'SUB',
-  taxEnabled: true,
-  taxName: 'VAT',
-  taxRate: '5',
-  paymentDueDays: '7',
-  latePaymentReminderDays: '3',
-  allowPartialPayments: true,
-  autoGenerateInvoices: true,
+    if (!settings.branding.shortName.trim()) {
+      errors.shortName = 'Short name is required.';
+    }
 
-  emailNotifications: true,
-  smsNotifications: false,
-  whatsappNotifications: true,
-  inAppNotifications: true,
-  notifyParentsOnAttendance: true,
-  notifyParentsOnInvoice: true,
-  notifyCoachesOnScheduleChange: true,
-  notificationSenderName: 'AspireX Academy',
+    if (!isValidHexColor(settings.branding.primaryColor)) {
+      errors.primaryColor = 'Primary color must be a valid HEX value.';
+    }
 
-  passwordMinLength: '8',
-  requireStrongPassword: true,
-  requireTwoFactorForAdmins: false,
-  sessionTimeoutMinutes: '60',
-  maxLoginAttempts: '5',
-  lockoutMinutes: '15',
-  allowMultipleSessions: true,
-  auditLogsEnabled: true,
+    if (!isValidHexColor(settings.branding.secondaryColor)) {
+      errors.secondaryColor = 'Secondary color must be a valid HEX value.';
+    }
 
-  googleAnalyticsId: '',
-  metaPixelId: '',
-  whatsappApiProvider: 'manual',
-  emailProvider: 'smtp',
-  smsProvider: 'disabled',
-  paymentGateway: 'manual',
-  mapProvider: 'google',
-  storageProvider: 'local',
+    for (const key of ['logoUrl', 'darkLogoUrl', 'faviconUrl'] as const) {
+      if (!isValidUrl(settings.branding[key])) {
+        errors[key] = 'URL must start with http:// or https://.';
+      }
+    }
+  }
 
-  backupEnabled: true,
-  backupFrequency: 'daily',
-  retentionDays: '90',
-  exportFormat: 'xlsx',
-  anonymizeDeletedUsers: true,
-  allowDataExport: true,
-  allowHardDelete: false,
-  systemHealthChecks: true,
-};
+  if (group === 'contact') {
+    if (!settings.contact.phone.trim()) {
+      errors.phone = 'Phone number is required.';
+    }
 
-type SettingsState = typeof initialSettings;
+    if (!settings.contact.email.trim()) {
+      errors.email = 'Email is required.';
+    } else if (!settings.contact.email.includes('@')) {
+      errors.email = 'Email must be valid.';
+    }
+  }
 
-const settingsSections: SettingsSection[] = [
-  {
-    key: 'academy',
-    title: 'Academy Profile',
-    description: 'Core academy identity, contact details, and default branch.',
-    icon: Building2,
-  },
-  {
-    key: 'branding',
-    title: 'Branding & Website',
-    description: 'Logo, colors, public website controls, and maintenance mode.',
-    icon: Palette,
-  },
-  {
-    key: 'localization',
-    title: 'Localization',
-    description: 'Language, timezone, dates, currency, and regional preferences.',
-    icon: Globe2,
-  },
-  {
-    key: 'schedule',
-    title: 'Scheduling',
-    description: 'Session duration, capacity, attendance grace, and make-up rules.',
-    icon: CalendarDays,
-  },
-  {
-    key: 'enrollment',
-    title: 'Enrollment',
-    description: 'Trial bookings, registration rules, approvals, and age limits.',
-    icon: Users,
-  },
-  {
-    key: 'finance',
-    title: 'Finance',
-    description: 'Invoices, receipts, VAT, reminders, and payment behavior.',
-    icon: WalletCards,
-  },
-  {
-    key: 'notifications',
-    title: 'Notifications',
-    description: 'Email, WhatsApp, SMS, in-app alerts, and user communication.',
-    icon: Bell,
-  },
-  {
-    key: 'security',
-    title: 'Security & Access',
-    description: 'Passwords, admin protection, sessions, lockouts, and audit logs.',
-    icon: ShieldCheck,
-  },
-  {
-    key: 'integrations',
-    title: 'Integrations',
-    description: 'Analytics, maps, WhatsApp, payment, email, and storage providers.',
-    icon: Link2,
-  },
-  {
-    key: 'data',
-    title: 'Data & Backups',
-    description: 'Backups, exports, retention, deletion policy, and system health.',
-    icon: Database,
-  },
-];
+  if (group === 'social') {
+    for (const key of [
+      'instagramUrl',
+      'facebookUrl',
+      'tiktokUrl',
+      'youtubeUrl',
+      'linkedinUrl',
+      'websiteUrl',
+    ] as const) {
+      if (!isValidUrl(settings.social[key])) {
+        errors[key] = 'URL must start with http:// or https://.';
+      }
+    }
+  }
+
+  if (group === 'publicWebsite') {
+    if (!settings.publicWebsite.heroTitle.trim()) {
+      errors.heroTitle = 'Hero title is required.';
+    }
+
+    if (!settings.publicWebsite.heroSubtitle.trim()) {
+      errors.heroSubtitle = 'Hero subtitle is required.';
+    }
+
+    if (!settings.publicWebsite.defaultMetaTitle.trim()) {
+      errors.defaultMetaTitle = 'Default meta title is required.';
+    }
+
+    if (!settings.publicWebsite.defaultMetaDescription.trim()) {
+      errors.defaultMetaDescription = 'Default meta description is required.';
+    }
+  }
+
+  if (group === 'system') {
+    if (!settings.system.defaultLocale.trim()) {
+      errors.defaultLocale = 'Default locale is required.';
+    }
+  }
+
+  return errors;
+}
 
 export default function SystemSettingsPage() {
-  const [activeSection, setActiveSection] =
-    useState<SettingsSectionKey>('academy');
-  const [settings, setSettings] = useState<SettingsState>(initialSettings);
-  const [savedMessage, setSavedMessage] = useState('');
+  const [settings, setSettings] = useState<FormState | null>(null);
+  const [savedSettings, setSavedSettings] = useState<FormState | null>(null);
+  const [activeGroup, setActiveGroup] = useState<SiteSettingsGroup>('branding');
 
-  const activeSectionMeta = useMemo(
+  const [loading, setLoading] = useState(true);
+  const [savingGroup, setSavingGroup] = useState<SiteSettingsGroup | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [validationErrors, setValidationErrors] =
+    useState<ValidationErrorsByGroup>({});
+
+  const loadSettings = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    setMessage(null);
+
+    try {
+      const data = await getAdminSettings();
+      setSettings(data);
+      setSavedSettings(data);
+    } catch {
+      setError('Failed to load settings.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    void loadSettings();
+  }, [loadSettings]);
+
+  const activeSection = useMemo(
     () =>
-      settingsSections.find((section) => section.key === activeSection) ??
-      settingsSections[0],
-    [activeSection],
+      sectionOrder.find((section) => section.key === activeGroup) ??
+      sectionOrder[0],
+    [activeGroup],
   );
 
-  const updateSetting = <K extends keyof SettingsState>(
+  const isDirty = useMemo(() => {
+    if (!settings || !savedSettings) {
+      return false;
+    }
+
+    return (
+      JSON.stringify(settings[activeGroup]) !==
+      JSON.stringify(savedSettings[activeGroup])
+    );
+  }, [activeGroup, savedSettings, settings]);
+
+  const enabledPublicFeatures = useMemo(() => {
+    if (!settings) {
+      return 0;
+    }
+
+    return [
+      settings.publicWebsite.enableOffers,
+      settings.publicWebsite.enableBlog,
+      settings.publicWebsite.enableGallery,
+      settings.publicWebsite.enableEvents,
+    ].filter(Boolean).length;
+  }, [settings]);
+
+  const filledSocialLinks = useMemo(() => {
+    if (!settings) {
+      return 0;
+    }
+
+    return Object.values(settings.social).filter(Boolean).length;
+  }, [settings]);
+
+  const updateField = <
+    G extends SiteSettingsGroup,
+    K extends keyof SiteSettingsDto[G],
+  >(
+    group: G,
     key: K,
-    value: SettingsState[K],
+    value: SiteSettingsDto[G][K],
   ) => {
-    setSettings((current) => ({
+    if (!settings) {
+      return;
+    }
+
+    setMessage(null);
+    setError(null);
+
+    setValidationErrors((current) => ({
       ...current,
-      [key]: value,
+      [group]: {
+        ...(current[group] ?? {}),
+        [String(key)]: '',
+      },
     }));
 
-    if (savedMessage) {
-      setSavedMessage('');
+    setSettings({
+      ...settings,
+      [group]: {
+        ...settings[group],
+        [key]: value,
+      },
+    });
+  };
+
+  const resetActiveGroup = () => {
+    if (!settings || !savedSettings) {
+      return;
+    }
+
+    setSettings({
+      ...settings,
+      [activeGroup]: {
+        ...savedSettings[activeGroup],
+      },
+    });
+
+    setValidationErrors((current) => ({
+      ...current,
+      [activeGroup]: {},
+    }));
+
+    setMessage(`${activeSection.title} changes reset.`);
+    setError(null);
+  };
+
+  const saveGroup = async (group: SiteSettingsGroup) => {
+    if (!settings) {
+      return;
+    }
+
+    const errors = validateSettingsGroup(group, settings);
+
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors((current) => ({
+        ...current,
+        [group]: errors,
+      }));
+      setMessage(null);
+      setError('Please fix the highlighted fields before saving.');
+      return;
+    }
+
+    setSavingGroup(group);
+    setMessage(null);
+    setError(null);
+
+    try {
+      const updated = await updateAdminSettings({
+        group,
+        values: settings[group] as unknown as Record<string, string | boolean>,
+      });
+
+      setSettings(updated);
+      setSavedSettings(updated);
+      setValidationErrors((current) => ({
+        ...current,
+        [group]: {},
+      }));
+      setMessage(`${activeSection.title} settings saved successfully.`);
+    } catch {
+      setError(`Failed to save ${activeSection.title} settings.`);
+    } finally {
+      setSavingGroup(null);
     }
   };
 
-  const handleSave = () => {
-    setSavedMessage('Settings saved locally. Backend connection will be added in the API phase.');
-  };
+  if (loading || !settings) {
+    return (
+      <div className="space-y-6">
+        <section className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+          <div className="h-8 w-64 animate-pulse rounded-full bg-muted" />
+          <div className="mt-4 h-4 w-full max-w-xl animate-pulse rounded-full bg-muted" />
+        </section>
 
-  const handleReset = () => {
-    setSettings(initialSettings);
-    setActiveSection('academy');
-    setSavedMessage('Settings restored to the default frontend configuration.');
-  };
+        <section className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+          <p className="text-sm font-bold text-muted-foreground">
+            Loading settings...
+          </p>
+        </section>
+      </div>
+    );
+  }
+
+  const activeErrors = validationErrors[activeGroup] ?? {};
 
   return (
     <div className="space-y-6">
-      <section className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-blue via-brand-blue-dark to-brand-dark p-6 text-white shadow-2xl sm:p-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,212,0,0.24),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.12),transparent_32%)]" />
+      <section className="relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_10%_10%,rgba(0,18,155,0.10),transparent_28%),radial-gradient(circle_at_90%_20%,rgba(255,212,0,0.16),transparent_28%)]" />
 
-        <div className="relative z-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-brand-yellow px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-brand-blue shadow-xl">
-              <Settings className="h-4 w-4" />
+            <div className="inline-flex rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-black text-brand-blue dark:bg-brand-yellow/15 dark:text-brand-yellow">
               Admin Control Center
             </div>
 
-            <h1 className="text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
+            <h1 className="mt-4 text-3xl font-black tracking-tight">
               System Settings
             </h1>
 
-            <p className="mt-4 max-w-3xl text-sm leading-7 text-white/75 sm:text-base">
-              Manage the complete academy configuration from one place:
-              identity, public website, scheduling, enrollment, finance,
-              notifications, security, integrations, backups, and data rules.
+            <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-muted-foreground">
+              Manage the public website identity, contact details, social links,
+              feature visibility, and system controls from one central place.
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-            <HeroMetric
-              icon={ShieldCheck}
-              label="Access Mode"
-              value="Admin Only"
+          <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[460px]">
+            <SummaryTile
+              label="Public features"
+              value={`${enabledPublicFeatures}/4`}
+              helper="Enabled"
             />
-            <HeroMetric
-              icon={Server}
-              label="Current Mode"
-              value="Frontend Mock"
+            <SummaryTile
+              label="Social links"
+              value={String(filledSocialLinks)}
+              helper="Configured"
             />
-            <HeroMetric
-              icon={Clock3}
-              label="Last Update"
-              value="Not synced"
+            <SummaryTile
+              label="Maintenance"
+              value={settings.system.maintenanceMode ? 'On' : 'Off'}
+              helper={
+                settings.system.maintenanceMode
+                  ? 'Public notice active'
+                  : 'Website available'
+              }
+              danger={settings.system.maintenanceMode}
             />
           </div>
         </div>
       </section>
 
-      {savedMessage ? (
-        <div className="flex items-start gap-3 rounded-2xl border border-green-500/30 bg-green-500/10 p-4 text-sm font-bold leading-6 text-green-700 dark:text-green-300">
-          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" />
-          <span>{savedMessage}</span>
-        </div>
+      {message ? (
+        <section className="rounded-2xl border border-green-300 bg-green-50 p-4 text-sm font-bold text-green-700 dark:border-green-500/40 dark:bg-green-500/10 dark:text-green-300">
+          {message}
+        </section>
       ) : null}
 
-      <section className="grid gap-6 xl:grid-cols-[22rem_1fr]">
-        <aside className="space-y-4">
-          <div className="rounded-[2rem] border border-border bg-card p-4 shadow-sm">
-            <div className="mb-4 flex items-center gap-3 px-1">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-blue text-white dark:bg-brand-yellow dark:text-brand-blue">
-                <Settings className="h-5 w-5" />
-              </div>
+      {error ? (
+        <section className="rounded-2xl border border-red-300 bg-red-50 p-4 text-sm font-bold text-red-700 dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-300">
+          {error}
+        </section>
+      ) : null}
 
-              <div>
-                <p className="text-sm font-black">Settings Menu</p>
-                <p className="text-xs font-bold text-muted-foreground">
-                  Choose a configuration area
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              {settingsSections.map((section) => {
-                const Icon = section.icon;
-                const isActive = activeSection === section.key;
-
-                return (
-                  <button
-                    key={section.key}
-                    type="button"
-                    onClick={() => setActiveSection(section.key)}
-                    className={[
-                      'flex w-full items-start gap-3 rounded-2xl border p-3 text-start transition',
-                      isActive
-                        ? 'border-brand-yellow bg-brand-yellow text-brand-blue shadow-[0_16px_35px_rgba(255,212,0,0.18)]'
-                        : 'border-transparent text-muted-foreground hover:border-border hover:bg-secondary hover:text-foreground',
-                    ].join(' ')}
-                  >
-                    <span
-                      className={[
-                        'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl',
-                        isActive
-                          ? 'bg-brand-blue/10 text-brand-blue'
-                          : 'bg-background text-muted-foreground',
-                      ].join(' ')}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </span>
-
-                    <span className="min-w-0">
-                      <span className="block text-sm font-black">
-                        {section.title}
-                      </span>
-                      <span
-                        className={[
-                          'mt-1 block text-xs font-semibold leading-5',
-                          isActive ? 'text-brand-blue/70' : 'text-muted-foreground',
-                        ].join(' ')}
-                      >
-                        {section.description}
-                      </span>
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="rounded-[2rem] border border-brand-yellow/30 bg-brand-yellow/10 p-5 text-brand-blue shadow-sm dark:text-brand-yellow">
-            <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-yellow text-brand-blue">
-              <AlertTriangle className="h-5 w-5" />
-            </div>
-
-            <p className="text-sm font-black">Important</p>
-            <p className="mt-2 text-xs font-bold leading-6 text-muted-foreground">
-              These settings are currently frontend-ready. When the backend
-              settings module is added, the same structure can be connected to
-              the database without changing the page design.
+      <section className="grid gap-6 xl:grid-cols-[320px_1fr]">
+        <aside className="rounded-3xl border border-border bg-card p-4 shadow-sm xl:sticky xl:top-24 xl:self-start">
+          <div className="mb-4 px-2">
+            <h2 className="text-sm font-black uppercase tracking-[0.18em] text-muted-foreground">
+              Settings areas
+            </h2>
+            <p className="mt-1 text-xs font-semibold text-muted-foreground">
+              Choose a section to edit and preview.
             </p>
           </div>
+
+          <div className="space-y-2">
+            {sectionOrder.map((section) => {
+              const isActive = section.key === activeGroup;
+              const hasErrors = Boolean(
+                validationErrors[section.key] &&
+                Object.values(validationErrors[section.key] ?? {}).some(
+                  Boolean,
+                ),
+              );
+
+              return (
+                <button
+                  key={section.key}
+                  type="button"
+                  onClick={() => {
+                    setActiveGroup(section.key);
+                    setMessage(null);
+                    setError(null);
+                  }}
+                  className={[
+                    'flex w-full items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left transition',
+                    isActive
+                      ? 'border-brand-blue bg-brand-blue text-white shadow-[0_14px_30px_rgba(0,18,155,0.18)] dark:border-brand-yellow dark:bg-brand-yellow dark:text-brand-blue'
+                      : 'border-transparent bg-background hover:border-border hover:bg-muted/40',
+                  ].join(' ')}
+                >
+                  <span>
+                    <span className="block text-sm font-black">
+                      {section.title}
+                    </span>
+                    <span
+                      className={[
+                        'mt-1 block text-xs font-semibold',
+                        isActive
+                          ? 'text-white/78 dark:text-brand-blue/70'
+                          : 'text-muted-foreground',
+                      ].join(' ')}
+                    >
+                      {section.badge}
+                    </span>
+                  </span>
+
+                  {hasErrors ? (
+                    <span className="rounded-full bg-red-500 px-2 py-1 text-[10px] font-black text-white">
+                      Fix
+                    </span>
+                  ) : null}
+                </button>
+              );
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => void loadSettings()}
+            className="mt-4 w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm font-black transition hover:bg-muted/50"
+          >
+            Reload from server
+          </button>
         </aside>
 
         <main className="space-y-6">
-          <SettingsPanel
-            icon={activeSectionMeta.icon}
-            title={activeSectionMeta.title}
-            description={activeSectionMeta.description}
-            actions={
-              <div className="flex flex-col gap-2 sm:flex-row">
+          <section className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+              <div>
+                <div className="inline-flex rounded-full bg-muted px-3 py-1 text-xs font-black text-muted-foreground">
+                  {activeSection.badge}
+                </div>
+                <h2 className="mt-3 text-2xl font-black">
+                  {activeSection.title}
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-muted-foreground">
+                  {activeSection.subtitle}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
                 <button
                   type="button"
-                  onClick={handleReset}
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-border bg-background px-5 text-sm font-black text-foreground transition hover:bg-secondary"
+                  onClick={resetActiveGroup}
+                  disabled={!isDirty || savingGroup === activeGroup}
+                  className="rounded-full border border-border bg-background px-5 py-2.5 text-sm font-black transition hover:bg-muted/50 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  <RotateCcw className="h-4 w-4" />
-                  Reset
+                  Reset changes
                 </button>
 
                 <button
                   type="button"
-                  onClick={handleSave}
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-brand-yellow px-5 text-sm font-black text-brand-blue shadow-[0_16px_30px_rgba(255,212,0,0.22)] transition hover:-translate-y-0.5 hover:bg-white"
+                  onClick={() => void saveGroup(activeGroup)}
+                  disabled={savingGroup === activeGroup}
+                  className="rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-[0_14px_28px_rgba(0,18,155,0.20)] transition hover:bg-brand-blue-dark disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-yellow dark:text-brand-blue dark:hover:bg-white"
                 >
-                  <Save className="h-4 w-4" />
-                  Save Settings
+                  {savingGroup === activeGroup ? 'Saving...' : 'Save changes'}
                 </button>
               </div>
-            }
-          >
-            {activeSection === 'academy' ? (
-              <div className="grid gap-5 lg:grid-cols-2">
-                <InputField
-                  icon={Building2}
-                  label="Academy display name"
-                  value={settings.academyName}
-                  onChange={(value) => updateSetting('academyName', value)}
-                />
+            </div>
 
-                <InputField
-                  icon={FileText}
-                  label="Legal entity name"
-                  value={settings.legalName}
-                  onChange={(value) => updateSetting('legalName', value)}
-                />
-
-                <InputField
-                  icon={KeyRound}
-                  label="Academy code"
-                  value={settings.academyCode}
-                  onChange={(value) => updateSetting('academyCode', value)}
-                />
-
-                <InputField
-                  icon={Mail}
-                  label="Primary email"
-                  type="email"
-                  value={settings.primaryEmail}
-                  onChange={(value) => updateSetting('primaryEmail', value)}
-                />
-
-                <InputField
-                  icon={Mail}
-                  label="Support email"
-                  type="email"
-                  value={settings.supportEmail}
-                  onChange={(value) => updateSetting('supportEmail', value)}
-                />
-
-                <InputField
-                  icon={Smartphone}
-                  label="Primary phone"
-                  value={settings.primaryPhone}
-                  onChange={(value) => updateSetting('primaryPhone', value)}
-                />
-
-                <InputField
-                  icon={MessageSquare}
-                  label="WhatsApp number"
-                  value={settings.whatsappNumber}
-                  onChange={(value) => updateSetting('whatsappNumber', value)}
-                />
-
-                <InputField
-                  icon={MapPin}
-                  label="Headquarters"
-                  value={settings.headquarters}
-                  onChange={(value) => updateSetting('headquarters', value)}
-                />
-
-                <InputField
-                  icon={Building2}
-                  label="Default branch"
-                  value={settings.defaultBranch}
-                  onChange={(value) => updateSetting('defaultBranch', value)}
-                />
+            {isDirty ? (
+              <div className="mt-5 rounded-2xl border border-amber-300 bg-amber-50 p-3 text-xs font-bold text-amber-800 dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-200">
+                You have unsaved changes in this section.
               </div>
             ) : null}
-
-            {activeSection === 'branding' ? (
-              <div className="space-y-6">
-                <div className="grid gap-5 lg:grid-cols-2">
-                  <InputField
-                    icon={Palette}
-                    label="Primary brand color"
-                    type="color"
-                    value={settings.primaryColor}
-                    onChange={(value) => updateSetting('primaryColor', value)}
-                  />
-
-                  <InputField
-                    icon={Palette}
-                    label="Accent brand color"
-                    type="color"
-                    value={settings.accentColor}
-                    onChange={(value) => updateSetting('accentColor', value)}
-                  />
-
-                  <InputField
-                    icon={Image}
-                    label="Logo URL"
-                    value={settings.logoUrl}
-                    onChange={(value) => updateSetting('logoUrl', value)}
-                  />
-
-                  <InputField
-                    icon={Image}
-                    label="Favicon URL"
-                    value={settings.faviconUrl}
-                    onChange={(value) => updateSetting('faviconUrl', value)}
-                  />
-                </div>
-
-                <SettingsGrid>
-                  <ToggleRow
-                    icon={Globe2}
-                    title="Enable public website"
-                    description="Allow visitors to access public pages and program information."
-                    checked={settings.publicWebsiteEnabled}
-                    onChange={(value) =>
-                      updateSetting('publicWebsiteEnabled', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={CreditCard}
-                    title="Show offers on homepage"
-                    description="Display current offers and seasonal promotions on the public homepage."
-                    checked={settings.showOffersOnHomepage}
-                    onChange={(value) =>
-                      updateSetting('showOffersOnHomepage', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={Image}
-                    title="Show gallery on homepage"
-                    description="Display training and academy images in the public website."
-                    checked={settings.showGalleryOnHomepage}
-                    onChange={(value) =>
-                      updateSetting('showGalleryOnHomepage', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={AlertTriangle}
-                    title="Maintenance mode"
-                    description="Temporarily hide public pages during major updates."
-                    checked={settings.maintenanceMode}
-                    onChange={(value) => updateSetting('maintenanceMode', value)}
-                    danger
-                  />
-                </SettingsGrid>
-              </div>
-            ) : null}
-
-            {activeSection === 'localization' ? (
-              <div className="grid gap-5 lg:grid-cols-2">
-                <SelectField
-                  icon={Languages}
-                  label="Default language"
-                  value={settings.defaultLanguage}
-                  onChange={(value) => updateSetting('defaultLanguage', value)}
-                  options={[
-                    { label: 'English', value: 'en' },
-                    { label: 'Arabic', value: 'ar' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={Languages}
-                  label="Secondary language"
-                  value={settings.secondaryLanguage}
-                  onChange={(value) => updateSetting('secondaryLanguage', value)}
-                  options={[
-                    { label: 'Arabic', value: 'ar' },
-                    { label: 'English', value: 'en' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={Globe2}
-                  label="Timezone"
-                  value={settings.timezone}
-                  onChange={(value) => updateSetting('timezone', value)}
-                  options={[
-                    { label: 'Asia/Dubai', value: 'Asia/Dubai' },
-                    { label: 'Africa/Cairo', value: 'Africa/Cairo' },
-                    { label: 'UTC', value: 'UTC' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={CalendarDays}
-                  label="Date format"
-                  value={settings.dateFormat}
-                  onChange={(value) => updateSetting('dateFormat', value)}
-                  options={[
-                    { label: 'DD/MM/YYYY', value: 'DD/MM/YYYY' },
-                    { label: 'MM/DD/YYYY', value: 'MM/DD/YYYY' },
-                    { label: 'YYYY-MM-DD', value: 'YYYY-MM-DD' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={Clock3}
-                  label="Time format"
-                  value={settings.timeFormat}
-                  onChange={(value) => updateSetting('timeFormat', value)}
-                  options={[
-                    { label: '12-hour', value: '12h' },
-                    { label: '24-hour', value: '24h' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={WalletCards}
-                  label="Currency"
-                  value={settings.currency}
-                  onChange={(value) => updateSetting('currency', value)}
-                  options={[
-                    { label: 'AED — UAE Dirham', value: 'AED' },
-                    { label: 'USD — US Dollar', value: 'USD' },
-                    { label: 'EGP — Egyptian Pound', value: 'EGP' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={CalendarDays}
-                  label="First day of week"
-                  value={settings.firstDayOfWeek}
-                  onChange={(value) => updateSetting('firstDayOfWeek', value)}
-                  options={[
-                    { label: 'Monday', value: 'monday' },
-                    { label: 'Sunday', value: 'sunday' },
-                    { label: 'Saturday', value: 'saturday' },
-                  ]}
-                />
-              </div>
-            ) : null}
-
-            {activeSection === 'schedule' ? (
-              <div className="space-y-6">
-                <div className="grid gap-5 lg:grid-cols-2">
-                  <InputField
-                    icon={Clock3}
-                    label="Default session duration / minutes"
-                    type="number"
-                    value={settings.sessionDuration}
-                    onChange={(value) => updateSetting('sessionDuration', value)}
-                  />
-
-                  <InputField
-                    icon={Clock3}
-                    label="Buffer between sessions / minutes"
-                    type="number"
-                    value={settings.bufferBetweenSessions}
-                    onChange={(value) =>
-                      updateSetting('bufferBetweenSessions', value)
-                    }
-                  />
-
-                  <InputField
-                    icon={Users}
-                    label="Maximum students per session"
-                    type="number"
-                    value={settings.maxStudentsPerSession}
-                    onChange={(value) =>
-                      updateSetting('maxStudentsPerSession', value)
-                    }
-                  />
-
-                  <InputField
-                    icon={Clock3}
-                    label="Attendance grace period / minutes"
-                    type="number"
-                    value={settings.attendanceGraceMinutes}
-                    onChange={(value) =>
-                      updateSetting('attendanceGraceMinutes', value)
-                    }
-                  />
-                </div>
-
-                <SettingsGrid>
-                  <ToggleRow
-                    icon={UserCheck}
-                    title="Allow coaches to edit attendance"
-                    description="Coaches can correct attendance records after marking sessions."
-                    checked={settings.allowCoachAttendanceEdit}
-                    onChange={(value) =>
-                      updateSetting('allowCoachAttendanceEdit', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={RefreshCcw}
-                    title="Allow make-up sessions"
-                    description="Parents can request replacement sessions for missed classes."
-                    checked={settings.allowMakeUpSessions}
-                    onChange={(value) =>
-                      updateSetting('allowMakeUpSessions', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={Eye}
-                    title="Auto mark no-show"
-                    description="Automatically mark students as no-show after the grace period."
-                    checked={settings.autoMarkNoShow}
-                    onChange={(value) => updateSetting('autoMarkNoShow', value)}
-                  />
-                </SettingsGrid>
-              </div>
-            ) : null}
-
-            {activeSection === 'enrollment' ? (
-              <div className="space-y-6">
-                <SettingsGrid>
-                  <ToggleRow
-                    icon={CalendarDays}
-                    title="Enable trial booking"
-                    description="Allow visitors to book trial sessions from the public website."
-                    checked={settings.trialBookingEnabled}
-                    onChange={(value) =>
-                      updateSetting('trialBookingEnabled', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={Users}
-                    title="Parent self-registration"
-                    description="Allow parents to create accounts from the public registration page."
-                    checked={settings.parentSelfRegistration}
-                    onChange={(value) =>
-                      updateSetting('parentSelfRegistration', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={UserCheck}
-                    title="Coach request registration"
-                    description="Allow coaches to submit requests without immediate active access."
-                    checked={settings.coachRequestEnabled}
-                    onChange={(value) =>
-                      updateSetting('coachRequestEnabled', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={ShieldCheck}
-                    title="Require admin approval for coaches"
-                    description="Coach accounts remain inactive until approved by an admin."
-                    checked={settings.requireAdminApprovalForCoach}
-                    onChange={(value) =>
-                      updateSetting('requireAdminApprovalForCoach', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={FileText}
-                    title="Require terms acceptance"
-                    description="Parents and coaches must accept terms before submitting forms."
-                    checked={settings.requireTermsAcceptance}
-                    onChange={(value) =>
-                      updateSetting('requireTermsAcceptance', value)
-                    }
-                  />
-                </SettingsGrid>
-
-                <div className="grid gap-5 lg:grid-cols-3">
-                  <InputField
-                    icon={Users}
-                    label="Minimum player age"
-                    type="number"
-                    value={settings.minimumPlayerAge}
-                    onChange={(value) =>
-                      updateSetting('minimumPlayerAge', value)
-                    }
-                  />
-
-                  <InputField
-                    icon={Users}
-                    label="Maximum player age"
-                    type="number"
-                    value={settings.maximumPlayerAge}
-                    onChange={(value) =>
-                      updateSetting('maximumPlayerAge', value)
-                    }
-                  />
-
-                  <InputField
-                    icon={Clock3}
-                    label="Trial request expiry / days"
-                    type="number"
-                    value={settings.trialExpiryDays}
-                    onChange={(value) =>
-                      updateSetting('trialExpiryDays', value)
-                    }
-                  />
-                </div>
-              </div>
-            ) : null}
-
-            {activeSection === 'finance' ? (
-              <div className="space-y-6">
-                <div className="grid gap-5 lg:grid-cols-3">
-                  <InputField
-                    icon={Receipt}
-                    label="Invoice prefix"
-                    value={settings.invoicePrefix}
-                    onChange={(value) => updateSetting('invoicePrefix', value)}
-                  />
-
-                  <InputField
-                    icon={Receipt}
-                    label="Receipt prefix"
-                    value={settings.receiptPrefix}
-                    onChange={(value) => updateSetting('receiptPrefix', value)}
-                  />
-
-                  <InputField
-                    icon={CreditCard}
-                    label="Subscription prefix"
-                    value={settings.subscriptionPrefix}
-                    onChange={(value) =>
-                      updateSetting('subscriptionPrefix', value)
-                    }
-                  />
-
-                  <InputField
-                    icon={Receipt}
-                    label="Tax name"
-                    value={settings.taxName}
-                    onChange={(value) => updateSetting('taxName', value)}
-                  />
-
-                  <InputField
-                    icon={Receipt}
-                    label="Tax rate %"
-                    type="number"
-                    value={settings.taxRate}
-                    onChange={(value) => updateSetting('taxRate', value)}
-                  />
-
-                  <InputField
-                    icon={Clock3}
-                    label="Payment due after / days"
-                    type="number"
-                    value={settings.paymentDueDays}
-                    onChange={(value) => updateSetting('paymentDueDays', value)}
-                  />
-
-                  <InputField
-                    icon={Bell}
-                    label="Late payment reminder / days"
-                    type="number"
-                    value={settings.latePaymentReminderDays}
-                    onChange={(value) =>
-                      updateSetting('latePaymentReminderDays', value)
-                    }
-                  />
-                </div>
-
-                <SettingsGrid>
-                  <ToggleRow
-                    icon={Receipt}
-                    title="Enable tax"
-                    description="Apply VAT/tax configuration to invoices."
-                    checked={settings.taxEnabled}
-                    onChange={(value) => updateSetting('taxEnabled', value)}
-                  />
-
-                  <ToggleRow
-                    icon={WalletCards}
-                    title="Allow partial payments"
-                    description="Parents can pay invoices in more than one transaction."
-                    checked={settings.allowPartialPayments}
-                    onChange={(value) =>
-                      updateSetting('allowPartialPayments', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={Receipt}
-                    title="Auto-generate invoices"
-                    description="Automatically create invoices when subscriptions are created."
-                    checked={settings.autoGenerateInvoices}
-                    onChange={(value) =>
-                      updateSetting('autoGenerateInvoices', value)
-                    }
-                  />
-                </SettingsGrid>
-              </div>
-            ) : null}
-
-            {activeSection === 'notifications' ? (
-              <div className="space-y-6">
-                <InputField
-                  icon={Bell}
-                  label="Notification sender name"
-                  value={settings.notificationSenderName}
-                  onChange={(value) =>
-                    updateSetting('notificationSenderName', value)
-                  }
-                />
-
-                <SettingsGrid>
-                  <ToggleRow
-                    icon={Mail}
-                    title="Email notifications"
-                    description="Send automated email messages for important system events."
-                    checked={settings.emailNotifications}
-                    onChange={(value) =>
-                      updateSetting('emailNotifications', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={Smartphone}
-                    title="SMS notifications"
-                    description="Enable SMS messages when provider integration is ready."
-                    checked={settings.smsNotifications}
-                    onChange={(value) => updateSetting('smsNotifications', value)}
-                  />
-
-                  <ToggleRow
-                    icon={MessageSquare}
-                    title="WhatsApp notifications"
-                    description="Send WhatsApp reminders and payment updates."
-                    checked={settings.whatsappNotifications}
-                    onChange={(value) =>
-                      updateSetting('whatsappNotifications', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={Bell}
-                    title="In-app notifications"
-                    description="Show notifications inside parent, coach, and admin portals."
-                    checked={settings.inAppNotifications}
-                    onChange={(value) =>
-                      updateSetting('inAppNotifications', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={UserCheck}
-                    title="Notify parents on attendance"
-                    description="Send attendance updates after session marking."
-                    checked={settings.notifyParentsOnAttendance}
-                    onChange={(value) =>
-                      updateSetting('notifyParentsOnAttendance', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={Receipt}
-                    title="Notify parents on invoices"
-                    description="Notify parents when invoices are issued or overdue."
-                    checked={settings.notifyParentsOnInvoice}
-                    onChange={(value) =>
-                      updateSetting('notifyParentsOnInvoice', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={CalendarDays}
-                    title="Notify coaches on schedule changes"
-                    description="Alert coaches when sessions are created, updated, or canceled."
-                    checked={settings.notifyCoachesOnScheduleChange}
-                    onChange={(value) =>
-                      updateSetting('notifyCoachesOnScheduleChange', value)
-                    }
-                  />
-                </SettingsGrid>
-              </div>
-            ) : null}
-
-            {activeSection === 'security' ? (
-              <div className="space-y-6">
-                <div className="grid gap-5 lg:grid-cols-3">
-                  <InputField
-                    icon={Lock}
-                    label="Minimum password length"
-                    type="number"
-                    value={settings.passwordMinLength}
-                    onChange={(value) =>
-                      updateSetting('passwordMinLength', value)
-                    }
-                  />
-
-                  <InputField
-                    icon={Clock3}
-                    label="Session timeout / minutes"
-                    type="number"
-                    value={settings.sessionTimeoutMinutes}
-                    onChange={(value) =>
-                      updateSetting('sessionTimeoutMinutes', value)
-                    }
-                  />
-
-                  <InputField
-                    icon={ShieldCheck}
-                    label="Max login attempts"
-                    type="number"
-                    value={settings.maxLoginAttempts}
-                    onChange={(value) =>
-                      updateSetting('maxLoginAttempts', value)
-                    }
-                  />
-
-                  <InputField
-                    icon={Clock3}
-                    label="Lockout duration / minutes"
-                    type="number"
-                    value={settings.lockoutMinutes}
-                    onChange={(value) => updateSetting('lockoutMinutes', value)}
-                  />
-                </div>
-
-                <SettingsGrid>
-                  <ToggleRow
-                    icon={Lock}
-                    title="Require strong password"
-                    description="Passwords must include uppercase, lowercase, number, and special character."
-                    checked={settings.requireStrongPassword}
-                    onChange={(value) =>
-                      updateSetting('requireStrongPassword', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={ShieldCheck}
-                    title="Require 2FA for admins"
-                    description="Add an extra security step for admin accounts."
-                    checked={settings.requireTwoFactorForAdmins}
-                    onChange={(value) =>
-                      updateSetting('requireTwoFactorForAdmins', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={Users}
-                    title="Allow multiple sessions"
-                    description="Users can remain logged in from more than one device."
-                    checked={settings.allowMultipleSessions}
-                    onChange={(value) =>
-                      updateSetting('allowMultipleSessions', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={FileText}
-                    title="Enable audit logs"
-                    description="Record important admin actions for accountability and compliance."
-                    checked={settings.auditLogsEnabled}
-                    onChange={(value) =>
-                      updateSetting('auditLogsEnabled', value)
-                    }
-                  />
-                </SettingsGrid>
-              </div>
-            ) : null}
-
-            {activeSection === 'integrations' ? (
-              <div className="grid gap-5 lg:grid-cols-2">
-                <InputField
-                  icon={Link2}
-                  label="Google Analytics ID"
-                  value={settings.googleAnalyticsId}
-                  onChange={(value) =>
-                    updateSetting('googleAnalyticsId', value)
-                  }
-                  placeholder="G-XXXXXXXXXX"
-                />
-
-                <InputField
-                  icon={Link2}
-                  label="Meta Pixel ID"
-                  value={settings.metaPixelId}
-                  onChange={(value) => updateSetting('metaPixelId', value)}
-                  placeholder="000000000000000"
-                />
-
-                <SelectField
-                  icon={MessageSquare}
-                  label="WhatsApp provider"
-                  value={settings.whatsappApiProvider}
-                  onChange={(value) =>
-                    updateSetting('whatsappApiProvider', value)
-                  }
-                  options={[
-                    { label: 'Manual links', value: 'manual' },
-                    { label: 'WhatsApp Cloud API', value: 'cloud' },
-                    { label: 'Twilio WhatsApp', value: 'twilio' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={Mail}
-                  label="Email provider"
-                  value={settings.emailProvider}
-                  onChange={(value) => updateSetting('emailProvider', value)}
-                  options={[
-                    { label: 'SMTP', value: 'smtp' },
-                    { label: 'SendGrid', value: 'sendgrid' },
-                    { label: 'Amazon SES', value: 'ses' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={Smartphone}
-                  label="SMS provider"
-                  value={settings.smsProvider}
-                  onChange={(value) => updateSetting('smsProvider', value)}
-                  options={[
-                    { label: 'Disabled', value: 'disabled' },
-                    { label: 'Twilio', value: 'twilio' },
-                    { label: 'Local gateway', value: 'local' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={CreditCard}
-                  label="Payment gateway"
-                  value={settings.paymentGateway}
-                  onChange={(value) => updateSetting('paymentGateway', value)}
-                  options={[
-                    { label: 'Manual payments', value: 'manual' },
-                    { label: 'Stripe', value: 'stripe' },
-                    { label: 'Telr', value: 'telr' },
-                    { label: 'PayTabs', value: 'paytabs' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={MapPin}
-                  label="Map provider"
-                  value={settings.mapProvider}
-                  onChange={(value) => updateSetting('mapProvider', value)}
-                  options={[
-                    { label: 'Google Maps', value: 'google' },
-                    { label: 'Mapbox', value: 'mapbox' },
-                  ]}
-                />
-
-                <SelectField
-                  icon={Database}
-                  label="Storage provider"
-                  value={settings.storageProvider}
-                  onChange={(value) => updateSetting('storageProvider', value)}
-                  options={[
-                    { label: 'Local storage', value: 'local' },
-                    { label: 'Amazon S3', value: 's3' },
-                    { label: 'Cloudinary', value: 'cloudinary' },
-                  ]}
-                />
-              </div>
-            ) : null}
-
-            {activeSection === 'data' ? (
-              <div className="space-y-6">
-                <div className="grid gap-5 lg:grid-cols-3">
-                  <SelectField
-                    icon={RefreshCcw}
-                    label="Backup frequency"
-                    value={settings.backupFrequency}
-                    onChange={(value) =>
-                      updateSetting('backupFrequency', value)
-                    }
-                    options={[
-                      { label: 'Daily', value: 'daily' },
-                      { label: 'Weekly', value: 'weekly' },
-                      { label: 'Monthly', value: 'monthly' },
-                    ]}
-                  />
-
-                  <InputField
-                    icon={Database}
-                    label="Retention period / days"
-                    type="number"
-                    value={settings.retentionDays}
-                    onChange={(value) => updateSetting('retentionDays', value)}
-                  />
-
-                  <SelectField
-                    icon={FileText}
-                    label="Default export format"
-                    value={settings.exportFormat}
-                    onChange={(value) => updateSetting('exportFormat', value)}
-                    options={[
-                      { label: 'Excel XLSX', value: 'xlsx' },
-                      { label: 'CSV', value: 'csv' },
-                      { label: 'PDF', value: 'pdf' },
-                    ]}
-                  />
-                </div>
-
-                <SettingsGrid>
-                  <ToggleRow
-                    icon={Database}
-                    title="Enable backups"
-                    description="Allow scheduled backups when the backend storage module is ready."
-                    checked={settings.backupEnabled}
-                    onChange={(value) => updateSetting('backupEnabled', value)}
-                  />
-
-                  <ToggleRow
-                    icon={UserCheck}
-                    title="Anonymize deleted users"
-                    description="Remove personally identifiable data from deleted accounts."
-                    checked={settings.anonymizeDeletedUsers}
-                    onChange={(value) =>
-                      updateSetting('anonymizeDeletedUsers', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={FileText}
-                    title="Allow data export"
-                    description="Admins can export operational data for reporting."
-                    checked={settings.allowDataExport}
-                    onChange={(value) =>
-                      updateSetting('allowDataExport', value)
-                    }
-                  />
-
-                  <ToggleRow
-                    icon={AlertTriangle}
-                    title="Allow hard delete"
-                    description="Permanently delete records instead of soft delete. Use carefully."
-                    checked={settings.allowHardDelete}
-                    onChange={(value) => updateSetting('allowHardDelete', value)}
-                    danger
-                  />
-
-                  <ToggleRow
-                    icon={Server}
-                    title="System health checks"
-                    description="Display system health and integration status indicators."
-                    checked={settings.systemHealthChecks}
-                    onChange={(value) =>
-                      updateSetting('systemHealthChecks', value)
-                    }
-                  />
-                </SettingsGrid>
-              </div>
-            ) : null}
-          </SettingsPanel>
-
-          <div className="grid gap-4 lg:grid-cols-3">
-            <StatusCard
-              icon={Info}
-              title="Frontend Ready"
-              description="This page is ready for UI testing in mock mode."
-              tone="info"
+          </section>
+
+          {activeGroup === 'branding' ? (
+            <BrandingSection
+              settings={settings}
+              errors={activeErrors}
+              updateField={updateField}
             />
-            <StatusCard
-              icon={Database}
-              title="Backend Pending"
-              description="Settings persistence will be connected later."
-              tone="warning"
+          ) : null}
+
+          {activeGroup === 'contact' ? (
+            <ContactSection
+              settings={settings}
+              errors={activeErrors}
+              updateField={updateField}
             />
-            <StatusCard
-              icon={ShieldCheck}
-              title="Admin Scope"
-              description="This page should remain admin-only."
-              tone="success"
+          ) : null}
+
+          {activeGroup === 'social' ? (
+            <SocialSection
+              settings={settings}
+              errors={activeErrors}
+              updateField={updateField}
             />
-          </div>
+          ) : null}
+
+          {activeGroup === 'publicWebsite' ? (
+            <PublicWebsiteSection
+              settings={settings}
+              errors={activeErrors}
+              updateField={updateField}
+            />
+          ) : null}
+
+          {activeGroup === 'system' ? (
+            <SystemSection
+              settings={settings}
+              errors={activeErrors}
+              updateField={updateField}
+            />
+          ) : null}
         </main>
       </section>
     </div>
   );
 }
 
-function HeroMetric({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: LucideIcon;
-  label: string;
-  value: string;
-}) {
+function BrandingSection({
+  settings,
+  errors,
+  updateField,
+}: SectionProps) {
   return (
-    <div className="rounded-3xl bg-white/10 p-4 shadow-xl ring-1 ring-white/10 backdrop-blur-xl">
-      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-yellow text-brand-blue">
-        <Icon className="h-5 w-5" />
-      </div>
-      <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/55">
-        {label}
-      </p>
-      <p className="mt-1 text-sm font-black text-white">{value}</p>
+    <div className="grid gap-6 2xl:grid-cols-[1fr_380px]">
+      <SettingsCard
+        title="Brand identity"
+        description="These values appear across the public website header, footer, and brand areas."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          <TextField
+            label="Academy Name"
+            value={settings.branding.academyName}
+            error={errors.academyName}
+            required
+            onChange={(value) =>
+              updateField('branding', 'academyName', value)
+            }
+          />
+
+          <TextField
+            label="Short Name"
+            value={settings.branding.shortName}
+            error={errors.shortName}
+            required
+            onChange={(value) => updateField('branding', 'shortName', value)}
+          />
+
+          <UrlField
+            label="Logo URL"
+            value={settings.branding.logoUrl}
+            error={errors.logoUrl}
+            onChange={(value) => updateField('branding', 'logoUrl', value)}
+          />
+
+          <UrlField
+            label="Dark Logo URL"
+            value={settings.branding.darkLogoUrl}
+            error={errors.darkLogoUrl}
+            onChange={(value) => updateField('branding', 'darkLogoUrl', value)}
+          />
+
+          <UrlField
+            label="Favicon URL"
+            value={settings.branding.faviconUrl}
+            error={errors.faviconUrl}
+            onChange={(value) => updateField('branding', 'faviconUrl', value)}
+          />
+
+          <ColorField
+            label="Primary Color"
+            value={settings.branding.primaryColor}
+            error={errors.primaryColor}
+            onChange={(value) => updateField('branding', 'primaryColor', value)}
+          />
+
+          <ColorField
+            label="Secondary Color"
+            value={settings.branding.secondaryColor}
+            error={errors.secondaryColor}
+            onChange={(value) =>
+              updateField('branding', 'secondaryColor', value)
+            }
+          />
+        </div>
+      </SettingsCard>
+
+      <PreviewCard title="Brand preview">
+        <div className="rounded-3xl border border-border bg-background p-5">
+          <div className="flex items-center gap-4">
+            {settings.branding.logoUrl ? (
+              <img
+                src={settings.branding.logoUrl}
+                alt={settings.branding.academyName}
+                className="h-14 w-14 rounded-2xl object-contain ring-1 ring-border"
+              />
+            ) : (
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-2xl text-lg font-black text-white"
+                style={{
+                  backgroundColor: isValidHexColor(
+                    settings.branding.primaryColor,
+                  )
+                    ? settings.branding.primaryColor
+                    : '#00129B',
+                }}
+              >
+                {settings.branding.shortName.slice(0, 2).toUpperCase()}
+              </div>
+            )}
+
+            <div>
+              <p className="text-lg font-black">
+                {settings.branding.shortName || 'Short name'}
+              </p>
+              <p className="text-sm font-semibold text-muted-foreground">
+                {settings.branding.academyName || 'Academy name'}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 grid grid-cols-2 gap-3">
+            <ColorSwatch
+              label="Primary"
+              value={settings.branding.primaryColor}
+            />
+            <ColorSwatch
+              label="Secondary"
+              value={settings.branding.secondaryColor}
+            />
+          </div>
+        </div>
+      </PreviewCard>
     </div>
   );
 }
 
-function SettingsPanel({
-  icon: Icon,
-  title,
-  description,
-  actions,
-  children,
-}: {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  actions: ReactNode;
-  children: ReactNode;
-}) {
+function ContactSection({
+  settings,
+  errors,
+  updateField,
+}: SectionProps) {
   return (
-    <section className="overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm">
-      <div className="flex flex-col gap-5 border-b border-border bg-gradient-to-r from-brand-blue/[0.06] via-card to-brand-yellow/10 p-5 dark:from-white/[0.04] dark:via-card dark:to-brand-yellow/10 sm:p-6 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-start gap-4">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-blue text-white dark:bg-brand-yellow dark:text-brand-blue">
-            <Icon className="h-7 w-7" />
-          </div>
+    <div className="grid gap-6 2xl:grid-cols-[1fr_380px]">
+      <SettingsCard
+        title="Contact information"
+        description="These details appear on the Contact page, footer, and public contact cards."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          <TextField
+            label="Phone"
+            value={settings.contact.phone}
+            error={errors.phone}
+            required
+            onChange={(value) => updateField('contact', 'phone', value)}
+          />
 
-          <div>
-            <h2 className="text-2xl font-black tracking-tight">{title}</h2>
-            <p className="mt-1 max-w-2xl text-sm leading-6 text-muted-foreground">
-              {description}
-            </p>
+          <TextField
+            label="WhatsApp"
+            value={settings.contact.whatsapp}
+            onChange={(value) => updateField('contact', 'whatsapp', value)}
+          />
+
+          <TextField
+            label="Email"
+            value={settings.contact.email}
+            error={errors.email}
+            required
+            onChange={(value) => updateField('contact', 'email', value)}
+          />
+
+          <TextField
+            label="City"
+            value={settings.contact.city}
+            onChange={(value) => updateField('contact', 'city', value)}
+          />
+
+          <TextField
+            label="Country"
+            value={settings.contact.country}
+            onChange={(value) => updateField('contact', 'country', value)}
+          />
+
+          <TextField
+            label="Working Hours"
+            value={settings.contact.workingHours}
+            onChange={(value) =>
+              updateField('contact', 'workingHours', value)
+            }
+          />
+
+          <div className="md:col-span-2">
+            <TextAreaField
+              label="Address"
+              value={settings.contact.address}
+              onChange={(value) => updateField('contact', 'address', value)}
+            />
           </div>
         </div>
+      </SettingsCard>
 
-        {actions}
+      <PreviewCard title="Contact preview">
+        <div className="space-y-3 rounded-3xl border border-border bg-background p-5">
+          <PreviewLine label="Phone" value={settings.contact.phone} />
+          <PreviewLine label="WhatsApp" value={settings.contact.whatsapp} />
+          <PreviewLine label="Email" value={settings.contact.email} />
+          <PreviewLine
+            label="Location"
+            value={`${settings.contact.address}, ${settings.contact.city}, ${settings.contact.country}`}
+          />
+          <PreviewLine
+            label="Hours"
+            value={settings.contact.workingHours}
+          />
+        </div>
+      </PreviewCard>
+    </div>
+  );
+}
+
+function SocialSection({
+  settings,
+  errors,
+  updateField,
+}: SectionProps) {
+  const links = [
+    ['Instagram', 'instagramUrl', settings.social.instagramUrl],
+    ['Facebook', 'facebookUrl', settings.social.facebookUrl],
+    ['TikTok', 'tiktokUrl', settings.social.tiktokUrl],
+    ['YouTube', 'youtubeUrl', settings.social.youtubeUrl],
+    ['LinkedIn', 'linkedinUrl', settings.social.linkedinUrl],
+    ['Website', 'websiteUrl', settings.social.websiteUrl],
+  ] as const;
+
+  const configuredLinks = links.filter(([, , value]) => value.trim());
+
+  return (
+    <div className="grid gap-6 2xl:grid-cols-[1fr_380px]">
+      <SettingsCard
+        title="Social media links"
+        description="Leave any field empty if that social channel is not used."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {links.map(([label, key, value]) => (
+            <UrlField
+              key={key}
+              label={`${label} URL`}
+              value={value}
+              error={errors[key]}
+              onChange={(nextValue) =>
+                updateField('social', key, nextValue)
+              }
+            />
+          ))}
+        </div>
+      </SettingsCard>
+
+      <PreviewCard title="Social preview">
+        <div className="rounded-3xl border border-border bg-background p-5">
+          {configuredLinks.length > 0 ? (
+            <div className="space-y-3">
+              {configuredLinks.map(([label, , value]) => (
+                <div
+                  key={label}
+                  className="rounded-2xl border border-border bg-card p-3"
+                >
+                  <p className="text-sm font-black">{label}</p>
+                  <p className="mt-1 truncate text-xs font-semibold text-muted-foreground">
+                    {value}
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyPreviewText>
+              No social links configured yet. Public social icons will stay
+              hidden until links are added.
+            </EmptyPreviewText>
+          )}
+        </div>
+      </PreviewCard>
+    </div>
+  );
+}
+
+function PublicWebsiteSection({
+  settings,
+  errors,
+  updateField,
+}: SectionProps) {
+  const navItems = [
+    ['Offers', settings.publicWebsite.enableOffers],
+    ['Gallery', settings.publicWebsite.enableGallery],
+    ['Events', settings.publicWebsite.enableEvents],
+    ['Blog', settings.publicWebsite.enableBlog],
+    ['Contact', true],
+  ] as const;
+
+  return (
+    <div className="grid gap-6 2xl:grid-cols-[1fr_380px]">
+      <SettingsCard
+        title="Public website"
+        description="Control homepage copy, SEO defaults, and optional public sections."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          <TextField
+            label="Hero Title"
+            value={settings.publicWebsite.heroTitle}
+            error={errors.heroTitle}
+            required
+            onChange={(value) =>
+              updateField('publicWebsite', 'heroTitle', value)
+            }
+          />
+
+          <TextField
+            label="Hero Subtitle"
+            value={settings.publicWebsite.heroSubtitle}
+            error={errors.heroSubtitle}
+            required
+            onChange={(value) =>
+              updateField('publicWebsite', 'heroSubtitle', value)
+            }
+          />
+
+          <TextField
+            label="Default Meta Title"
+            value={settings.publicWebsite.defaultMetaTitle}
+            error={errors.defaultMetaTitle}
+            required
+            onChange={(value) =>
+              updateField('publicWebsite', 'defaultMetaTitle', value)
+            }
+          />
+
+          <TextField
+            label="Default Meta Description"
+            value={settings.publicWebsite.defaultMetaDescription}
+            error={errors.defaultMetaDescription}
+            required
+            onChange={(value) =>
+              updateField('publicWebsite', 'defaultMetaDescription', value)
+            }
+          />
+
+          <ToggleField
+            label="Enable Offers"
+            checked={settings.publicWebsite.enableOffers}
+            onChange={(value) =>
+              updateField('publicWebsite', 'enableOffers', value)
+            }
+          />
+
+          <ToggleField
+            label="Enable Blog"
+            checked={settings.publicWebsite.enableBlog}
+            onChange={(value) =>
+              updateField('publicWebsite', 'enableBlog', value)
+            }
+          />
+
+          <ToggleField
+            label="Enable Gallery"
+            checked={settings.publicWebsite.enableGallery}
+            onChange={(value) =>
+              updateField('publicWebsite', 'enableGallery', value)
+            }
+          />
+
+          <ToggleField
+            label="Enable Events"
+            checked={settings.publicWebsite.enableEvents}
+            onChange={(value) =>
+              updateField('publicWebsite', 'enableEvents', value)
+            }
+          />
+        </div>
+      </SettingsCard>
+
+      <PreviewCard title="Website preview">
+        <div className="rounded-3xl border border-border bg-background p-5">
+          <p className="text-xl font-black leading-tight">
+            {settings.publicWebsite.heroTitle}
+          </p>
+          <p className="mt-2 text-sm font-semibold leading-6 text-muted-foreground">
+            {settings.publicWebsite.heroSubtitle}
+          </p>
+
+          <div className="mt-5 rounded-2xl border border-border bg-card p-3">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+              Explore dropdown
+            </p>
+
+            <div className="mt-3 flex flex-wrap gap-2">
+              {navItems.map(([label, enabled]) => (
+                <span
+                  key={label}
+                  className={[
+                    'rounded-full px-3 py-1 text-xs font-black',
+                    enabled
+                      ? 'bg-brand-blue/10 text-brand-blue dark:bg-brand-yellow/15 dark:text-brand-yellow'
+                      : 'bg-muted text-muted-foreground line-through',
+                  ].join(' ')}
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </PreviewCard>
+    </div>
+  );
+}
+
+function SystemSection({
+  settings,
+  errors,
+  updateField,
+}: SectionProps) {
+  return (
+    <div className="grid gap-6 2xl:grid-cols-[1fr_380px]">
+      <SettingsCard
+        title="System controls"
+        description="Use these controls carefully because they affect public access and user actions."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          <ToggleField
+            label="Maintenance Mode"
+            checked={settings.system.maintenanceMode}
+            danger={settings.system.maintenanceMode}
+            helper={
+              settings.system.maintenanceMode
+                ? 'Public visitors will see a maintenance notice.'
+                : 'Public website is available.'
+            }
+            onChange={(value) =>
+              updateField('system', 'maintenanceMode', value)
+            }
+          />
+
+          <ToggleField
+            label="Registration Enabled"
+            checked={settings.system.registrationEnabled}
+            helper="Controls public registration calls-to-action."
+            onChange={(value) =>
+              updateField('system', 'registrationEnabled', value)
+            }
+          />
+
+          <ToggleField
+            label="Trial Booking Enabled"
+            checked={settings.system.trialBookingEnabled}
+            helper="Controls Book Trial buttons and forms."
+            onChange={(value) =>
+              updateField('system', 'trialBookingEnabled', value)
+            }
+          />
+
+          <TextField
+            label="Default Locale"
+            value={settings.system.defaultLocale}
+            error={errors.defaultLocale}
+            onChange={(value) => updateField('system', 'defaultLocale', value)}
+          />
+        </div>
+      </SettingsCard>
+
+      <PreviewCard title="System status">
+        <div
+          className={[
+            'rounded-3xl border p-5',
+            settings.system.maintenanceMode
+              ? 'border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-200'
+              : 'border-border bg-background',
+          ].join(' ')}
+        >
+          <p className="text-lg font-black">
+            {settings.system.maintenanceMode
+              ? 'Maintenance mode is active'
+              : 'Public website is live'}
+          </p>
+
+          <div className="mt-4 space-y-3">
+            <StatusRow
+              label="Registration"
+              enabled={settings.system.registrationEnabled}
+            />
+            <StatusRow
+              label="Trial booking"
+              enabled={settings.system.trialBookingEnabled}
+            />
+            <PreviewLine
+              label="Default locale"
+              value={settings.system.defaultLocale}
+            />
+          </div>
+        </div>
+      </PreviewCard>
+    </div>
+  );
+}
+
+interface SectionProps {
+  settings: SiteSettingsDto;
+  errors: FieldErrors;
+  updateField: <
+    G extends SiteSettingsGroup,
+    K extends keyof SiteSettingsDto[G],
+  >(
+    group: G,
+    key: K,
+    value: SiteSettingsDto[G][K],
+  ) => void;
+}
+
+function SummaryTile({
+  label,
+  value,
+  helper,
+  danger = false,
+}: {
+  label: string;
+  value: string;
+  helper: string;
+  danger?: boolean;
+}) {
+  return (
+    <div
+      className={[
+        'rounded-2xl border p-4',
+        danger
+          ? 'border-amber-300 bg-amber-50 dark:border-amber-500/40 dark:bg-amber-500/10'
+          : 'border-border bg-background/80',
+      ].join(' ')}
+    >
+      <p className="text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+        {label}
+      </p>
+      <p className="mt-2 text-2xl font-black">{value}</p>
+      <p className="mt-1 text-xs font-semibold text-muted-foreground">
+        {helper}
+      </p>
+    </div>
+  );
+}
+
+function SettingsCard({
+  title,
+  description,
+  children,
+}: {
+  title: string;
+  description: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+      <div className="mb-5">
+        <h3 className="text-xl font-black">{title}</h3>
+        <p className="mt-1 text-sm font-semibold leading-6 text-muted-foreground">
+          {description}
+        </p>
       </div>
 
-      <div className="p-5 sm:p-6">{children}</div>
+      {children}
     </section>
   );
 }
 
-function SettingsGrid({ children }: { children: ReactNode }) {
-  return <div className="grid gap-4 lg:grid-cols-2">{children}</div>;
+function PreviewCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+      <h3 className="mb-5 text-xl font-black">{title}</h3>
+      {children}
+    </section>
+  );
 }
 
-function InputField({
-  icon: Icon,
+function TextField({
   label,
   value,
   onChange,
-  type = 'text',
-  placeholder,
+  error,
+  helper,
+  required = false,
 }: {
-  icon: LucideIcon;
   label: string;
   value: string;
   onChange: (value: string) => void;
-  type?: string;
-  placeholder?: string;
+  error?: string;
+  helper?: string;
+  required?: boolean;
 }) {
   return (
-    <label className="block text-sm font-bold">
-      <span className="mb-2 block">{label}</span>
+    <label className="block">
+      <span className="mb-1 flex items-center gap-1 text-xs font-bold text-muted-foreground">
+        {label}
+        {required ? <span className="text-red-500">*</span> : null}
+      </span>
 
-      <div className="relative">
-        <Icon className="pointer-events-none absolute start-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+      <input
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className={[
+          'h-11 w-full rounded-xl border bg-background px-3 text-sm font-semibold outline-none transition focus:ring-2',
+          error
+            ? 'border-red-400 focus:ring-red-200'
+            : 'border-border focus:ring-brand-blue/20',
+        ].join(' ')}
+      />
+
+      {error ? (
+        <span className="mt-1 block text-xs font-bold text-red-600">
+          {error}
+        </span>
+      ) : null}
+
+      {!error && helper ? (
+        <span className="mt-1 block text-xs font-semibold text-muted-foreground">
+          {helper}
+        </span>
+      ) : null}
+    </label>
+  );
+}
+
+function UrlField({
+  label,
+  value,
+  onChange,
+  error,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+}) {
+  return (
+    <TextField
+      label={label}
+      value={value}
+      error={error}
+      helper="Optional. Use http:// or https:// if filled."
+      onChange={onChange}
+    />
+  );
+}
+
+function TextAreaField({
+  label,
+  value,
+  onChange,
+  error,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-xs font-bold text-muted-foreground">
+        {label}
+      </span>
+
+      <textarea
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        rows={4}
+        className={[
+          'w-full resize-none rounded-xl border bg-background px-3 py-3 text-sm font-semibold outline-none transition focus:ring-2',
+          error
+            ? 'border-red-400 focus:ring-red-200'
+            : 'border-border focus:ring-brand-blue/20',
+        ].join(' ')}
+      />
+
+      {error ? (
+        <span className="mt-1 block text-xs font-bold text-red-600">
+          {error}
+        </span>
+      ) : null}
+    </label>
+  );
+}
+
+function ColorField({
+  label,
+  value,
+  onChange,
+  error,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+}) {
+  const safeColor = isValidHexColor(value) ? value : '#00129B';
+
+  return (
+    <label className="block">
+      <span className="mb-1 block text-xs font-bold text-muted-foreground">
+        {label}
+      </span>
+
+      <div
+        className={[
+          'flex h-11 items-center gap-3 rounded-xl border bg-background px-3',
+          error ? 'border-red-400' : 'border-border',
+        ].join(' ')}
+      >
+        <input
+          type="color"
+          value={safeColor}
+          onChange={(event) => onChange(event.target.value.toUpperCase())}
+          className="h-7 w-9 cursor-pointer rounded border-0 bg-transparent p-0"
+        />
 
         <input
-          type={type}
           value={value}
-          placeholder={placeholder}
           onChange={(event) => onChange(event.target.value)}
-          className="h-12 w-full rounded-2xl border border-border bg-background px-4 ps-12 text-sm font-semibold outline-none transition placeholder:text-muted-foreground/60 focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 dark:bg-white/[0.04] dark:focus:border-brand-yellow dark:focus:ring-brand-yellow/10"
+          className="min-w-0 flex-1 bg-transparent text-sm font-semibold outline-none"
         />
       </div>
+
+      {error ? (
+        <span className="mt-1 block text-xs font-bold text-red-600">
+          {error}
+        </span>
+      ) : (
+        <span className="mt-1 block text-xs font-semibold text-muted-foreground">
+          Use a HEX color such as #00129B.
+        </span>
+      )}
     </label>
   );
 }
 
-function SelectField({
-  icon: Icon,
+function ToggleField({
   label,
-  value,
-  onChange,
-  options,
-}: {
-  icon: LucideIcon;
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  options: Array<{ label: string; value: string }>;
-}) {
-  return (
-    <label className="block text-sm font-bold">
-      <span className="mb-2 block">{label}</span>
-
-      <div className="relative">
-        <Icon className="pointer-events-none absolute start-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-
-        <select
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          className="h-12 w-full appearance-none rounded-2xl border border-border bg-background px-4 ps-12 text-sm font-semibold outline-none transition focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 dark:bg-white/[0.04] dark:focus:border-brand-yellow dark:focus:ring-brand-yellow/10"
-        >
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
-    </label>
-  );
-}
-
-function ToggleRow({
-  icon: Icon,
-  title,
-  description,
   checked,
   onChange,
+  helper,
   danger = false,
 }: {
-  icon: LucideIcon;
-  title: string;
-  description: string;
+  label: string;
   checked: boolean;
   onChange: (value: boolean) => void;
+  helper?: string;
   danger?: boolean;
 }) {
   return (
-    <button
-      type="button"
-      onClick={() => onChange(!checked)}
+    <label
       className={[
-        'flex items-start gap-4 rounded-2xl border p-4 text-start transition',
-        checked
-          ? danger
-            ? 'border-red-500/30 bg-red-500/10'
-            : 'border-brand-yellow/40 bg-brand-yellow/10'
-          : 'border-border bg-background hover:bg-secondary dark:bg-white/[0.03]',
+        'flex min-h-[4.4rem] items-center justify-between gap-4 rounded-xl border px-4 py-3',
+        danger
+          ? 'border-amber-300 bg-amber-50 dark:border-amber-500/40 dark:bg-amber-500/10'
+          : 'border-border bg-background',
       ].join(' ')}
     >
-      <span
-        className={[
-          'flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl',
-          checked
-            ? danger
-              ? 'bg-red-500 text-white'
-              : 'bg-brand-yellow text-brand-blue'
-            : 'bg-secondary text-muted-foreground',
-        ].join(' ')}
-      >
-        <Icon className="h-5 w-5" />
+      <span>
+        <span className="block text-sm font-black">{label}</span>
+        {helper ? (
+          <span className="mt-1 block text-xs font-semibold text-muted-foreground">
+            {helper}
+          </span>
+        ) : null}
       </span>
 
-      <span className="min-w-0 flex-1">
-        <span className="block text-sm font-black">{title}</span>
-        <span className="mt-1 block text-xs font-semibold leading-5 text-muted-foreground">
-          {description}
-        </span>
-      </span>
-
-      <span
+      <button
+        type="button"
+        onClick={() => onChange(!checked)}
         className={[
-          'relative mt-1 h-6 w-11 shrink-0 rounded-full transition',
-          checked
-            ? danger
-              ? 'bg-red-500'
-              : 'bg-brand-blue dark:bg-brand-yellow'
-            : 'bg-muted-foreground/25',
+          'relative h-7 w-12 shrink-0 rounded-full transition',
+          checked ? 'bg-brand-blue dark:bg-brand-yellow' : 'bg-muted',
         ].join(' ')}
+        aria-pressed={checked}
       >
         <span
           className={[
-            'absolute top-1 h-4 w-4 rounded-full bg-white shadow transition',
-            checked ? 'start-6' : 'start-1',
+            'absolute top-1 h-5 w-5 rounded-full bg-white shadow transition dark:bg-brand-blue',
+            checked ? 'left-6' : 'left-1',
           ].join(' ')}
         />
-      </span>
-    </button>
+      </button>
+    </label>
   );
 }
 
-function StatusCard({
-  icon: Icon,
-  title,
-  description,
-  tone,
+function ColorSwatch({
+  label,
+  value,
 }: {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  tone: 'info' | 'warning' | 'success';
+  label: string;
+  value: string;
 }) {
-  const toneClass =
-    tone === 'success'
-      ? 'border-green-500/25 bg-green-500/10 text-green-700 dark:text-green-300'
-      : tone === 'warning'
-        ? 'border-brand-yellow/40 bg-brand-yellow/10 text-brand-blue dark:text-brand-yellow'
-        : 'border-brand-blue/20 bg-brand-blue/10 text-brand-blue dark:text-blue-300';
+  const safeColor = isValidHexColor(value) ? value : '#00129B';
 
   return (
-    <article className={`rounded-[2rem] border p-5 ${toneClass}`}>
-      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/60 text-current dark:bg-white/10">
-        <Icon className="h-5 w-5" />
-      </div>
+    <div className="rounded-2xl border border-border bg-card p-3">
+      <div
+        className="h-10 rounded-xl"
+        style={{ backgroundColor: safeColor }}
+      />
+      <p className="mt-2 text-xs font-black text-muted-foreground">{label}</p>
+      <p className="mt-1 text-sm font-black">{value}</p>
+    </div>
+  );
+}
 
-      <h3 className="text-sm font-black">{title}</h3>
-      <p className="mt-2 text-xs font-bold leading-6 text-muted-foreground">
-        {description}
+function PreviewLine({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-border bg-card p-3">
+      <p className="text-xs font-black uppercase tracking-[0.12em] text-muted-foreground">
+        {label}
       </p>
-    </article>
+      <p className="mt-1 break-words text-sm font-bold">
+        {value || 'Not configured'}
+      </p>
+    </div>
+  );
+}
+
+function StatusRow({
+  label,
+  enabled,
+}: {
+  label: string;
+  enabled: boolean;
+}) {
+  return (
+    <div className="flex items-center justify-between rounded-2xl border border-border bg-card p-3">
+      <span className="text-sm font-bold">{label}</span>
+      <span
+        className={[
+          'rounded-full px-3 py-1 text-xs font-black',
+          enabled
+            ? 'bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-300'
+            : 'bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-300',
+        ].join(' ')}
+      >
+        {enabled ? 'Enabled' : 'Disabled'}
+      </span>
+    </div>
+  );
+}
+
+function EmptyPreviewText({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="rounded-2xl border border-dashed border-border bg-muted/30 p-4 text-sm font-semibold leading-6 text-muted-foreground">
+      {children}
+    </p>
   );
 }

@@ -17,12 +17,13 @@ export default function AdminLayout() {
   const currentRole = currentUser?.role as SidebarRole | undefined;
 
   const items: SidebarItem[] = adminNavItems.map((item) => ({
-    label: item.labelKey.replace('nav.', ''),
-    path: item.path,
-    allowedRoles:
-      'allowedRoles' in item
-        ? ([...item.allowedRoles] as SidebarRole[])
-        : undefined,
+    ...item,
+    label: t(item.labelKey, {
+      defaultValue: item.label,
+    }),
+    allowedRoles: item.allowedRoles
+      ? ([...item.allowedRoles] as SidebarRole[])
+      : undefined,
   }));
 
   return (

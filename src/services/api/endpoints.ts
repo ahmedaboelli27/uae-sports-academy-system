@@ -7,7 +7,21 @@ export const ENDPOINTS = {
   public: {
     academySummary: `${API}/public/academy-summary`,
     home: `${API}/public/home`,
+    about: `${API}/public/about`,
+    programs: `${API}/public/programs`,
+    programDetails: (programId: string) => `${API}/public/programs/${programId}`,
+    coaches: `${API}/public/coaches`,
+    coachDetails: (coachId: string) => `${API}/public/coaches/${coachId}`,
+    locations: `${API}/public/locations`,
+    pricing: `${API}/public/pricing`,
+    offers: `${API}/public/offers`,
+    gallery: `${API}/public/gallery`,
+    events: `${API}/public/events`,
+    eventDetails: (eventId: string) => `${API}/public/events/${eventId}`,
+    blog: `${API}/public/blog`,
+    blogPost: (postId: string) => `${API}/public/blog/${postId}`,
     loginShowcase: `${API}/public/login-showcase`,
+    siteSettings: `${API}/public/site-settings`,
   },
   auth: {
     login: `${API}/auth/login`,
@@ -67,6 +81,11 @@ export const ENDPOINTS = {
     },
     reports: {
       summary: `${API}/admin/reports/summary`,
+    },
+    settings: {
+      list: `${API}/admin/settings`,
+      group: (group: string) => `${API}/admin/settings/${group}`,
+      update: `${API}/admin/settings`,
     },
   },
   /** @deprecated Use ENDPOINTS.admin — kept for gradual migration */

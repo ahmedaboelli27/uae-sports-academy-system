@@ -32,7 +32,7 @@ import {
   WalletCards,
   X,
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
@@ -63,6 +63,22 @@ function normalizeLabel(label: string) {
     .replace(/^[A-Z]/, (char) => char.toLowerCase());
 }
 
+function getRoleProfilePath(role?: SidebarRole) {
+  if (role === 'coach') {
+    return '/coach/profile';
+  }
+
+  if (role === 'parent') {
+    return '/parent/profile';
+  }
+
+  if (role === 'admin' || role === 'accountant') {
+    return '/admin/profile';
+  }
+
+  return '';
+}
+
 function getSidebarIcon(item: SidebarItem): LucideIcon {
   if (item.icon) {
     return item.icon;
@@ -91,7 +107,7 @@ function getSidebarIcon(item: SidebarItem): LucideIcon {
   if (path.includes('events') || label.includes('event')) return PartyPopper;
   if (path.includes('camps') || label.includes('camp')) return FolderOpen;
   if (path.includes('leads') || label.includes('lead')) return Megaphone;
-  if (path.includes('trial') || label.includes('trial')) return Sparkles;
+  if (path.includes('trial')) return Sparkles;
 
   if (path.includes('reports') || label.includes('report')) return BarChart3;
   if (path.includes('notifications') || label.includes('notification')) return Bell;
@@ -107,6 +123,7 @@ function getSidebarIcon(item: SidebarItem): LucideIcon {
   if (path.includes('messages') || label.includes('message')) return MessageSquare;
   if (path.includes('documents') || label.includes('document')) return FileText;
   if (path.includes('incident') || label.includes('incident')) return AlertTriangle;
+  if (path.includes('profile')) return UserRound;
 
   return LayoutGrid;
 }
@@ -176,7 +193,29 @@ export function Sidebar({
   currentRole,
 }: SidebarProps) {
   const { t } = useTranslation();
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
   const sidebarItems = useMemo(() => {
     const canSeeAdminBranches = currentRole === 'admin';
@@ -186,16 +225,33 @@ export function Sidebar({
     );
 
     const adminBranchesItem: SidebarItem = {
-      label: 'branches',
+      label: 'Branches',
       path: ROUTE_PATHS.admin.branches,
       icon: Building2,
       allowedRoles: ['admin'],
     };
 
-    const nextItems =
-      canSeeAdminBranches && !hasBranchesItem
-        ? [...items, adminBranchesItem]
-        : items;
+    const profilePath = getRoleProfilePath(currentRole);
+
+    const hasProfileItem = profilePath
+      ? items.some((item) => item.path === profilePath)
+      : true;
+
+    const profileItem: SidebarItem | null =
+      profilePath && !hasProfileItem
+        ? {
+          label: 'Profile',
+          path: profilePath,
+          icon: UserRound,
+          allowedRoles: currentRole ? [currentRole] : undefined,
+        }
+        : null;
+
+    const nextItems = [
+      ...items,
+      ...(canSeeAdminBranches && !hasBranchesItem ? [adminBranchesItem] : []),
+      ...(profileItem ? [profileItem] : []),
+    ];
 
     return nextItems.filter((item) => {
       if (!item.allowedRoles || item.allowedRoles.length === 0) {
@@ -210,19 +266,21 @@ export function Sidebar({
     });
   }, [items, currentRole]);
 
-  const renderSidebarContent = (options?: { onNavigate?: () => void; isMobile?: boolean }) => {
-    const onNavigate = options?.onNavigate;
-    const isMobile = options?.isMobile ?? false;
+  const closeSidebar = () => {
+    setIsOpen(false);
+  };
 
+  const renderSidebarContent = () => {
     return (
       <>
         <div className="px-4 pb-3 pt-4">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-brand-yellow/20 bg-gradient-to-br from-brand-blue via-brand-blue-dark to-brand-dark p-5 text-white shadow-brand">
-            <div className="absolute -end-10 -top-10 h-28 w-28 rounded-full bg-brand-yellow/20 blur-2xl" />
-            <div className="absolute -bottom-12 -start-10 h-28 w-28 rounded-full bg-white/10 blur-2xl" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-brand-blue via-brand-blue-dark to-brand-dark p-5 text-white shadow-[0_24px_70px_rgba(0,18,155,0.26)]">
+            <div className="absolute -end-10 -top-12 h-32 w-32 rounded-full bg-brand-yellow/25 blur-3xl" />
+            <div className="absolute -bottom-12 -start-10 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
+            <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent" />
 
             <div className="relative flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow text-brand-blue shadow-brand-yellow">
+              <div className="flex h-13 w-13 items-center justify-center rounded-[1.25rem] bg-brand-yellow text-brand-blue shadow-[0_16px_40px_rgba(255,212,0,0.32)]">
                 <LayoutGrid className="h-6 w-6" />
               </div>
 
@@ -234,17 +292,18 @@ export function Sidebar({
                 <h2 className="mt-1 truncate text-lg font-black tracking-tight">
                   {t('sidebar.navigation')}
                 </h2>
+
+                <p className="mt-1 truncate text-xs font-bold text-white/55">
+                  {currentRole
+                    ? t(`sidebar.roles.${currentRole}`)
+                    : t('sidebar.roles.unknown')}
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        <nav
-          className={cn(
-            'flex flex-1 flex-col gap-1.5 overflow-y-auto px-3 py-3',
-            isMobile ? 'pb-6' : '',
-          )}
-        >
+        <nav className="flex flex-1 flex-col gap-1.5 overflow-y-auto px-3 py-3 pb-6">
           {sidebarItems.map((item) => {
             const Icon = getSidebarIcon(item);
             const label = getItemLabel(item, t);
@@ -254,18 +313,22 @@ export function Sidebar({
                 key={item.path}
                 to={item.path}
                 end={item.path.split('/').filter(Boolean).length <= 2}
-                onClick={onNavigate}
+                onClick={closeSidebar}
                 className={({ isActive }) =>
                   cn(
-                    'group relative flex items-center gap-3 rounded-2xl border px-3 py-2.5 text-sm font-black transition-all duration-200',
+                    'group relative flex items-center gap-3 overflow-hidden rounded-2xl border px-3 py-2.5 text-sm font-black transition-all duration-200',
                     isActive
-                      ? 'border-brand-yellow/40 bg-brand-yellow text-brand-blue shadow-brand-yellow'
+                      ? 'border-brand-yellow/40 bg-brand-yellow text-brand-blue shadow-[0_16px_34px_rgba(255,212,0,0.24)]'
                       : 'border-transparent text-muted-foreground hover:border-border hover:bg-card hover:text-foreground hover:shadow-sm',
                   )
                 }
               >
                 {({ isActive }) => (
                   <>
+                    {isActive ? (
+                      <span className="absolute inset-y-2 left-0 w-1 rounded-e-full bg-brand-blue" />
+                    ) : null}
+
                     <span
                       className={cn(
                         'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-200',
@@ -277,9 +340,7 @@ export function Sidebar({
                       <Icon className="h-5 w-5" />
                     </span>
 
-                    <span className="min-w-0 flex-1 truncate">
-                      {label}
-                    </span>
+                    <span className="min-w-0 flex-1 truncate">{label}</span>
 
                     {item.badge ? (
                       <span
@@ -310,8 +371,10 @@ export function Sidebar({
         </nav>
 
         <div className="border-t border-border/70 p-4">
-          <div className="rounded-[1.5rem] border border-border bg-card px-4 py-3 shadow-sm">
-            <div className="flex items-center gap-3">
+          <div className="relative overflow-hidden rounded-[1.5rem] border border-border bg-card px-4 py-3 shadow-sm">
+            <div className="absolute end-0 top-0 h-16 w-16 rounded-full bg-brand-yellow/10 blur-2xl" />
+
+            <div className="relative flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue dark:bg-brand-yellow/10 dark:text-brand-yellow">
                 <ShieldCheck className="h-5 w-5" />
               </div>
@@ -336,67 +399,93 @@ export function Sidebar({
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setIsMobileOpen(true)}
-        className="fixed start-4 top-24 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue text-white shadow-2xl ring-1 ring-white/20 transition hover:-translate-y-0.5 hover:bg-brand-blue-dark dark:bg-brand-yellow dark:text-brand-blue lg:hidden"
-        aria-label={t('sidebar.openMenu', { defaultValue: 'Open sidebar menu' })}
-      >
-        <Menu className="h-6 w-6" />
-      </button>
+      {!isOpen ? (
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          aria-label={t('sidebar.openMenu', {
+            defaultValue: 'Open sidebar menu',
+          })}
+          aria-expanded={false}
+          className={cn(
+            'group fixed left-0 top-1/2 z-[140] flex -translate-y-1/2 items-center gap-2 rounded-e-[1.75rem] border-y border-e border-brand-yellow/35 bg-gradient-to-br from-brand-blue via-brand-blue-dark to-brand-dark px-3 py-4 text-white shadow-[0_22px_55px_rgba(0,18,155,0.34)] outline-none transition-all duration-300',
+            'hover:translate-x-1 hover:shadow-[0_30px_75px_rgba(0,18,155,0.42)] focus-visible:ring-4 focus-visible:ring-brand-yellow/35',
+            'dark:from-brand-yellow dark:via-yellow-300 dark:to-brand-yellow dark:text-brand-blue',
+          )}
+        >
+          <span className="absolute -right-1 top-3 h-2.5 w-2.5 rounded-full bg-brand-yellow shadow-[0_0_18px_rgba(255,212,0,0.95)] group-hover:animate-ping dark:bg-brand-blue" />
 
-      {isMobileOpen ? (
-        <div className="fixed inset-0 z-[120] lg:hidden">
-          <button
-            type="button"
-            aria-label={t('sidebar.closeMenu', { defaultValue: 'Close sidebar menu' })}
-            onClick={() => setIsMobileOpen(false)}
-            className="absolute inset-0 bg-brand-dark/55 backdrop-blur-sm"
-          />
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/15 transition group-hover:rotate-6 group-hover:scale-105 dark:bg-brand-blue/10 dark:ring-brand-blue/20">
+            <Menu className="h-6 w-6" />
+          </span>
 
-          <aside className="absolute inset-y-0 left-0 flex w-[86vw] max-w-[22rem] flex-col border-r border-border/70 bg-background/98 shadow-2xl backdrop-blur-2xl animate-in slide-in-from-left duration-300">
-            <div className="flex items-center justify-between border-b border-border/70 px-4 py-3">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-blue text-white dark:bg-brand-yellow dark:text-brand-blue">
-                  <LayoutGrid className="h-5 w-5" />
-                </div>
-
-                <div>
-                  <p className="text-xs font-bold text-muted-foreground">
-                    {title ?? t('sidebar.title')}
-                  </p>
-                  <p className="text-sm font-black text-brand-blue dark:text-brand-yellow">
-                    {t('sidebar.navigation')}
-                  </p>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setIsMobileOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-foreground transition hover:bg-brand-blue hover:text-white dark:hover:bg-brand-yellow dark:hover:text-brand-blue"
-                aria-label={t('sidebar.closeMenu', { defaultValue: 'Close sidebar menu' })}
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            {renderSidebarContent({
-              isMobile: true,
-              onNavigate: () => setIsMobileOpen(false),
-            })}
-          </aside>
-        </div>
+          <span className="hidden text-xs font-black uppercase tracking-[0.18em] sm:inline">
+            Menu
+          </span>
+        </button>
       ) : null}
+
+      <div
+        className={cn(
+          'fixed inset-0 z-[120] bg-brand-dark/60 backdrop-blur-sm transition-opacity duration-300',
+          isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
+        )}
+      >
+        <button
+          type="button"
+          aria-label={t('sidebar.closeMenu', {
+            defaultValue: 'Close sidebar menu',
+          })}
+          onClick={closeSidebar}
+          className="absolute inset-0 h-full w-full cursor-default"
+        />
+      </div>
 
       <aside
         className={cn(
-          'hidden h-screen w-72 shrink-0 border-r border-border/70 bg-background/95 shadow-sm backdrop-blur-xl lg:flex lg:flex-col',
+          'fixed inset-y-0 left-0 z-[130] flex w-[88vw] max-w-[22.5rem] flex-col border-r border-white/10 bg-background/95 shadow-[0_35px_100px_rgba(15,23,42,0.34)] backdrop-blur-2xl transition-transform duration-300 ease-out',
+          'dark:bg-brand-dark/95',
+          isOpen ? 'translate-x-0' : '-translate-x-full',
           className,
         )}
       >
+        <div className="relative overflow-hidden border-b border-border/70 px-4 py-4">
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/[0.08] via-transparent to-brand-yellow/10 dark:from-white/[0.04]" />
+
+          <div className="relative flex items-center justify-between gap-3">
+            <div className="flex min-w-0 items-center gap-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-blue text-white shadow-[0_14px_30px_rgba(0,18,155,0.22)] dark:bg-brand-yellow dark:text-brand-blue">
+                <LayoutGrid className="h-5 w-5" />
+              </div>
+
+              <div className="min-w-0">
+                <p className="truncate text-xs font-bold text-muted-foreground">
+                  {title ?? t('sidebar.title')}
+                </p>
+
+                <p className="truncate text-sm font-black text-brand-blue dark:text-brand-yellow">
+                  {t('sidebar.navigation')}
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={closeSidebar}
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-border bg-card text-foreground shadow-sm transition hover:-translate-y-0.5 hover:border-brand-yellow hover:bg-brand-yellow hover:text-brand-blue"
+              aria-label={t('sidebar.closeMenu', {
+                defaultValue: 'Close sidebar menu',
+              })}
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+
         {renderSidebarContent()}
       </aside>
     </>
   );
 }
+
+export default Sidebar;

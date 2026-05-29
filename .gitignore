@@ -84,3 +84,27 @@ backups
 # Test artifacts
 playwright-report
 test-results
+# Dependencies
+node_modules/
+server/node_modules/
+
+# Build outputs
+dist/
+build/
+server/dist/
+.vite/
+coverage/
+
+# Environment files
+.env
+.env.local
+.env.production
+server/.env
+server/.env.local
+server/.env.production
+
+# Logs and archives
+*.log
+*.zip
+*.rar
+*.7z

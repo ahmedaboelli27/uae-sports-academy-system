@@ -9,6 +9,10 @@ interface BrandLogoProps {
     showText?: boolean;
     variant?: BrandLogoVariant;
     className?: string;
+    logoSrc?: string;
+    darkLogoSrc?: string;
+    shortName?: string;
+    academyName?: string;
 }
 
 const logoSizeClasses: Record<BrandLogoSize, string> = {
@@ -30,14 +34,24 @@ function BrandLogo({
     showText = true,
     variant = "default",
     className,
+    logoSrc,
+    darkLogoSrc,
+    shortName,
+    academyName,
 }: BrandLogoProps) {
     const isWhite = variant === "white";
+    const resolvedLogo =
+        variant === "white" && darkLogoSrc
+            ? darkLogoSrc
+            : logoSrc || brandConfig.logo;
+    const resolvedShortName = shortName || brandConfig.shortName;
+    const resolvedAcademyName = academyName || brandConfig.academyName;
 
     return (
         <div className={cn("flex items-center gap-3", className)}>
             <img
-                src={brandConfig.logo}
-                alt={`${brandConfig.academyName} logo`}
+                src={resolvedLogo}
+                alt={`${resolvedAcademyName} logo`}
                 className={cn(
                     "shrink-0 object-contain",
                     logoSizeClasses[size],
@@ -54,7 +68,7 @@ function BrandLogo({
                             isWhite ? "text-white" : "text-brand-blue dark:text-white",
                         )}
                     >
-                        {brandConfig.shortName}
+                        {resolvedShortName}
                     </p>
 
                     <p

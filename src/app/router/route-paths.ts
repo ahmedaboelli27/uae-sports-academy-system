@@ -42,14 +42,29 @@ export const ROUTE_PATHS = {
   },
   coach: {
     dashboard: '/coach',
+
     todaySessions: '/coach/today-sessions',
+    sessions: '/coach/sessions',
+    sessionDetails: (sessionId = ':sessionId') => `/coach/sessions/${sessionId}`,
+
     students: '/coach/students',
+    players: '/coach/players',
+    playerProfile: (playerId = ':playerId') => `/coach/players/${playerId}`,
+
     attendance: '/coach/attendance',
+
     assessments: '/coach/assessments',
+    skillAssessments: '/coach/skill-assessments',
+
     progressNotes: '/coach/progress-notes',
+
     incidentReport: '/coach/incident-report',
+    incidents: '/coach/incidents',
+
     schedule: '/coach/schedule',
+    messages: '/coach/messages',
     settings: '/coach/settings',
+    profile: '/coach/profile',
   },
   admin: {
     dashboard: '/admin',

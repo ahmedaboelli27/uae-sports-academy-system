@@ -2,8 +2,8 @@ import BrandLogo from "@/components/shared/BrandLogo";
 import LanguageToggle from "@/components/shared/LanguageToggle";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { USE_MOCK_API } from "@/config/api-mode";
-import { loadPublicLoginShowcase } from "@/features/public/services/public-data.service";
 import { useAuthStore } from "@/features/auth/pages/auth.store";
+import { loadPublicLoginShowcase } from "@/features/public/services/public-data.service";
 import type { UserRole } from "@/types/role.types";
 import { ROLE_REDIRECT_PATHS } from "@/types/role.types";
 import type { LucideIcon } from "lucide-react";
@@ -71,16 +71,51 @@ export default function LoginPage() {
     event.preventDefault();
     setIsSubmitting(true);
     setError("");
+
     try {
       if (USE_MOCK_API) {
         await loginMock(selectedRole);
+
+        if (selectedRole === "parent") {
+          navigate("/");
+          return;
+        }
+
         navigate(ROLE_REDIRECT_PATHS[selectedRole]);
         return;
       }
+
       await loginWithCredentials(email, password);
-      navigate("/portal");
+
+      const loggedInRole = useAuthStore.getState().role;
+
+      if (loggedInRole === "parent") {
+        navigate("/");
+        return;
+      }
+
+      if (loggedInRole === "admin") {
+        navigate(ROLE_REDIRECT_PATHS.admin);
+        return;
+      }
+
+      if (loggedInRole === "coach") {
+        navigate(ROLE_REDIRECT_PATHS.coach);
+        return;
+      }
+
+      if (loggedInRole === "accountant") {
+        navigate(ROLE_REDIRECT_PATHS.accountant);
+        return;
+      }
+
+      navigate("/");
     } catch {
-      setError(t("auth.login.invalidCredentials", { defaultValue: "Invalid credentials." }));
+      setError(
+        t("auth.login.invalidCredentials", {
+          defaultValue: "Invalid credentials.",
+        }),
+      );
     } finally {
       setIsSubmitting(false);
     }

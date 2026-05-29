@@ -11,14 +11,27 @@ export interface AuthPayload {
 
 declare global {
   namespace Express {
+    interface User {
+      id: string;
+      email: string;
+      firstName: string;
+      lastName: string;
+      roleCode: string;
+      phone?: string | null;
+      status?: string;
+    }
+
     interface Request {
-      auth?: AuthPayload;
-      user?: {
-        id: string;
-        email: string;
-        firstName: string;
-        lastName: string;
-        roleCode: string;
+      auth?: {
+        userId?: string;
+        id?: string;
+        email?: string;
+        firstName?: string;
+        lastName?: string;
+        role?: string;
+        roleCode?: string;
+        phone?: string | null;
+        status?: string;
       };
     }
   }

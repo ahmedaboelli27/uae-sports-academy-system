@@ -7,11 +7,14 @@ import ProtectedRoute from '@/app/router/ProtectedRoute';
 import { RoleBasedRedirect } from '@/app/router/RoleBasedRedirect';
 import { ROUTE_PATHS } from '@/app/router/route-paths';
 
-import FinanceInvoiceEditPage from '@/features/admin/pages/FinanceInvoiceEditPage';
 import AdminDashboardPage from '@/features/admin/pages/AdminDashboardPage';
 import AttendanceDetailsPage from '@/features/admin/pages/AttendanceDetailsPage';
 import AttendanceManagementPage from '@/features/admin/pages/AttendanceManagementPage';
 import AuditLogsPage from '@/features/admin/pages/AuditLogsPage';
+import BranchDetailsPage from '@/features/admin/pages/BranchDetailPage';
+import BranchEditPage from '@/features/admin/pages/BranchEditPage';
+import BranchNewPage from '@/features/admin/pages/BranchNewPage';
+import BranchesManagementPage from '@/features/admin/pages/BranchesManagementPage';
 import CampsManagementPage from '@/features/admin/pages/CampsManagementPage';
 import CmsGalleryPage from '@/features/admin/pages/CmsGalleryPage';
 import CmsHomePage from '@/features/admin/pages/CmsHomePage';
@@ -24,6 +27,7 @@ import CouponsManagementPage from '@/features/admin/pages/CouponsManagementPage'
 import EventsManagementPage from '@/features/admin/pages/EventsManagementPage';
 import FinanceDashboardPage from '@/features/admin/pages/FinanceDashboardPage';
 import FinanceInvoiceDetailsPage from '@/features/admin/pages/FinanceInvoiceDetailsPage';
+import FinanceInvoiceEditPage from '@/features/admin/pages/FinanceInvoiceEditPage';
 import FinanceInvoiceNewPage from '@/features/admin/pages/FinanceInvoiceNewPage';
 import FinanceInvoicesPage from '@/features/admin/pages/FinanceInvoicesPage';
 import FinancePaymentDetailsPage from '@/features/admin/pages/FinancePaymentDetailsPage';
@@ -33,13 +37,15 @@ import FinancePaymentsPage from '@/features/admin/pages/FinancePaymentsPage';
 import FinanceSubscriptionDetailsPage from '@/features/admin/pages/FinanceSubscriptionDetailsPage';
 import FinanceSubscriptionEditPage from '@/features/admin/pages/FinanceSubscriptionEditPage';
 import FinanceSubscriptionNewPage from '@/features/admin/pages/FinanceSubscriptionNewPage';
-import FinanceSubscriptionsPage from '@/features/admin/pages/FinanceSubscriptionsPage'; //
-
+import FinanceSubscriptionsPage from '@/features/admin/pages/FinanceSubscriptionsPage';
 import LeadsPage from '@/features/admin/pages/LeadsPage';
 import MarkAttendancePage from '@/features/admin/pages/MarkAttendancePage';
-
 import NotificationsPage from '@/features/admin/pages/NotificationsPage';
 import OffersManagementPage from '@/features/admin/pages/OffersManagementPage';
+import ParentDetailsPage from '@/features/admin/pages/ParentsDetailsPage';
+import ParentEditPage from '@/features/admin/pages/ParentsEditPage';
+import ParentsPage from '@/features/admin/pages/ParentsManagementPage';
+import ParentNewPage from '@/features/admin/pages/ParentsNewPage';
 import ProgramDetailPage from '@/features/admin/pages/ProgramDetailPage';
 import ProgramEditPage from '@/features/admin/pages/ProgramEditPage';
 import ProgramNewPage from '@/features/admin/pages/ProgramNewPage';
@@ -50,26 +56,14 @@ import ScheduleDetailsPage from '@/features/admin/pages/ScheduleDetailsPage';
 import ScheduleEditPage from '@/features/admin/pages/ScheduleEditPage';
 import ScheduleManagementPage from '@/features/admin/pages/ScheduleManagementPage';
 import ScheduleNewPage from '@/features/admin/pages/ScheduleNewPage';
-
 import SportsManagementPage from '@/features/admin/pages/SportsManagementPage';
-import SystemSettingsPage from '@/features/admin/pages/SystemSettingsPage';
-import TrialRequestsPage from '@/features/admin/pages/TrialRequestsPage';
-import UsersPage from '@/features/admin/pages/UsersPage';
-
-import BranchDetailsPage from '@/features/admin/pages/BranchDetailPage';
-import BranchEditPage from '@/features/admin/pages/BranchEditPage';
-import BranchNewPage from '@/features/admin/pages/BranchNewPage';
-import BranchesManagementPage from '@/features/admin/pages/BranchesManagementPage';
-
 import StudentDetailsPage from '@/features/admin/pages/StudentDetailPage';
 import StudentEditPage from '@/features/admin/pages/StudentEditPage';
 import StudentNewPage from '@/features/admin/pages/StudentNewPage';
 import StudentsPage from '@/features/admin/pages/StudentsManagementPage';
-
-import ParentDetailsPage from '@/features/admin/pages/ParentsDetailsPage';
-import ParentEditPage from '@/features/admin/pages/ParentsEditPage';
-import ParentsPage from '@/features/admin/pages/ParentsManagementPage';
-import ParentNewPage from '@/features/admin/pages/ParentsNewPage';
+import SystemSettingsPage from '@/features/admin/pages/SystemSettingsPage';
+import TrialRequestsPage from '@/features/admin/pages/TrialRequestsPage';
+import UsersPage from '@/features/admin/pages/UsersPage';
 
 import ForgotPasswordPage from '@/features/auth/pages/ForgotPasswordPage';
 import LoginPage from '@/features/auth/pages/LoginPage';
@@ -78,10 +72,13 @@ import RegisterPage from '@/features/auth/pages/RegisterPage';
 import AssignedStudentsPage from '@/features/coach/pages/AssignedStudentsPage';
 import AttendancePage from '@/features/coach/pages/AttendancePage';
 import CoachDashboardPage from '@/features/coach/pages/CoachDashboardPage';
+import CoachMessagesPage from '@/features/coach/pages/CoachMessagesPage';
 import CoachSchedulePage from '@/features/coach/pages/CoachSchedulePage';
 import CoachSettingsPage from '@/features/coach/pages/CoachSettingsPage';
 import IncidentReportPage from '@/features/coach/pages/IncidentReportPage';
+import PlayerProfilePage from '@/features/coach/pages/PlayerProfilePage';
 import ProgressNotesPage from '@/features/coach/pages/ProgressNotesPage';
+import SessionDetailsPage from '@/features/coach/pages/SessionDetailsPage';
 import SkillAssessmentsPage from '@/features/coach/pages/SkillAssessmentsPage';
 import TodaySessionsPage from '@/features/coach/pages/TodaySessionsPage';
 
@@ -167,14 +164,27 @@ export const router = createBrowserRouter([
           { path: ROUTE_PATHS.parent.dashboard, element: <ParentDashboardPage /> },
           { path: ROUTE_PATHS.parent.children, element: <MyChildrenPage /> },
           { path: '/parent/children/:childId', element: <ChildProfilePage /> },
-          { path: '/parent/children/:childId/attendance', element: <AttendanceReportPage /> },
-          { path: '/parent/children/:childId/progress', element: <ProgressReportPage /> },
+          {
+            path: '/parent/children/:childId/attendance',
+            element: <AttendanceReportPage />,
+          },
+          {
+            path: '/parent/children/:childId/progress',
+            element: <ProgressReportPage />,
+          },
           { path: ROUTE_PATHS.parent.subscriptions, element: <SubscriptionsPage /> },
           { path: ROUTE_PATHS.parent.payments, element: <PaymentsPage /> },
           { path: ROUTE_PATHS.parent.invoices, element: <InvoicesPage /> },
           { path: ROUTE_PATHS.parent.makeUpRequest, element: <MakeUpRequestPage /> },
           { path: ROUTE_PATHS.parent.messages, element: <MessagesPage /> },
           { path: ROUTE_PATHS.parent.documents, element: <DocumentsPage /> },
+
+          /*
+           * Parent profile routes.
+           * /parent/profile is used by the Topbar profile icon for parent users.
+           * ROUTE_PATHS.parent.settings is kept for compatibility with existing links.
+           */
+          { path: '/parent/profile', element: <ProfileSettingsPage /> },
           { path: ROUTE_PATHS.parent.settings, element: <ProfileSettingsPage /> },
         ],
       },
@@ -188,14 +198,54 @@ export const router = createBrowserRouter([
         element: <CoachLayout />,
         children: [
           { path: ROUTE_PATHS.coach.dashboard, element: <CoachDashboardPage /> },
+
+          /*
+           * Coach sessions.
+           */
           { path: ROUTE_PATHS.coach.todaySessions, element: <TodaySessionsPage /> },
+          { path: ROUTE_PATHS.coach.sessions, element: <TodaySessionsPage /> },
+          {
+            path: ROUTE_PATHS.coach.sessionDetails(),
+            element: <SessionDetailsPage />,
+          },
+
+          /*
+           * Coach assigned students / players.
+           */
           { path: ROUTE_PATHS.coach.students, element: <AssignedStudentsPage /> },
+          { path: ROUTE_PATHS.coach.players, element: <AssignedStudentsPage /> },
+          {
+            path: ROUTE_PATHS.coach.playerProfile(),
+            element: <PlayerProfilePage />,
+          },
+
           { path: ROUTE_PATHS.coach.attendance, element: <AttendancePage /> },
+
+          /*
+           * Keep both routes:
+           * /coach/assessments for old links
+           * /coach/skill-assessments for new coach UI links
+           */
           { path: ROUTE_PATHS.coach.assessments, element: <SkillAssessmentsPage /> },
+          {
+            path: ROUTE_PATHS.coach.skillAssessments,
+            element: <SkillAssessmentsPage />,
+          },
+
           { path: ROUTE_PATHS.coach.progressNotes, element: <ProgressNotesPage /> },
+
+          /*
+           * Keep both routes:
+           * /coach/incident-report for old links
+           * /coach/incidents for new coach UI links
+           */
           { path: ROUTE_PATHS.coach.incidentReport, element: <IncidentReportPage /> },
+          { path: ROUTE_PATHS.coach.incidents, element: <IncidentReportPage /> },
+
           { path: ROUTE_PATHS.coach.schedule, element: <CoachSchedulePage /> },
+          { path: ROUTE_PATHS.coach.messages, element: <CoachMessagesPage /> },
           { path: ROUTE_PATHS.coach.settings, element: <CoachSettingsPage /> },
+          { path: ROUTE_PATHS.coach.profile, element: <CoachSettingsPage /> },
         ],
       },
     ],
@@ -208,6 +258,12 @@ export const router = createBrowserRouter([
         element: <AdminLayout />,
         children: [
           { path: ROUTE_PATHS.admin.dashboard, element: <AdminDashboardPage /> },
+
+          /*
+           * Admin/accountant profile route.
+           * Use this route from the Topbar while inside AdminLayout.
+           */
+          { path: '/admin/profile', element: <ProfileSettingsPage /> },
 
           { path: ROUTE_PATHS.admin.students, element: <StudentsPage /> },
           { path: ROUTE_PATHS.admin.studentNew, element: <StudentNewPage /> },
@@ -247,44 +303,59 @@ export const router = createBrowserRouter([
 
           { path: ROUTE_PATHS.admin.attendance, element: <AttendanceManagementPage /> },
           { path: ROUTE_PATHS.admin.attendanceMark, element: <MarkAttendancePage /> },
-          { path: '/admin/attendance/:attendanceId/mark', element: <MarkAttendancePage /> },
-          { path: '/admin/attendance/:attendanceId', element: <AttendanceDetailsPage /> },
+          {
+            path: '/admin/attendance/:attendanceId/mark',
+            element: <MarkAttendancePage />,
+          },
+          {
+            path: '/admin/attendance/:attendanceId',
+            element: <AttendanceDetailsPage />,
+          },
 
           { path: ROUTE_PATHS.admin.finance, element: <FinanceDashboardPage /> },
           {
-            path: '/admin/finance/subscriptions/:subscriptionId',
-            element: <FinanceSubscriptionDetailsPage />,
-          },
-          { path: ROUTE_PATHS.admin.financeSubscriptions, element: <FinanceSubscriptionsPage /> },
-          { path: ROUTE_PATHS.admin.financePayments, element: <FinancePaymentsPage /> },
-          { path: ROUTE_PATHS.admin.financeInvoices, element: <FinanceInvoicesPage /> },
-          {
-            path: '/admin/finance/invoices/:invoiceId',
-            element: <FinanceInvoiceDetailsPage />,
-          },
-          {
-            path: '/admin/finance/payments/:paymentId',
-            element: <FinancePaymentDetailsPage />,
+            path: ROUTE_PATHS.admin.financeSubscriptions,
+            element: <FinanceSubscriptionsPage />,
           },
           {
             path: '/admin/finance/subscriptions/new',
             element: <FinanceSubscriptionNewPage />,
           },
           {
-            path: '/admin/finance/invoices/new',
-            element: <FinanceInvoiceNewPage />,
+            path: '/admin/finance/subscriptions/:subscriptionId',
+            element: <FinanceSubscriptionDetailsPage />,
           },
           {
             path: '/admin/finance/subscriptions/:subscriptionId/edit',
             element: <FinanceSubscriptionEditPage />,
           },
           {
+            path: ROUTE_PATHS.admin.financeInvoices,
+            element: <FinanceInvoicesPage />,
+          },
+          {
+            path: '/admin/finance/invoices/new',
+            element: <FinanceInvoiceNewPage />,
+          },
+          {
+            path: '/admin/finance/invoices/:invoiceId',
+            element: <FinanceInvoiceDetailsPage />,
+          },
+          {
             path: '/admin/finance/invoices/:invoiceId/edit',
             element: <FinanceInvoiceEditPage />,
           },
           {
+            path: ROUTE_PATHS.admin.financePayments,
+            element: <FinancePaymentsPage />,
+          },
+          {
             path: '/admin/finance/payments/new',
             element: <FinancePaymentNewPage />,
+          },
+          {
+            path: '/admin/finance/payments/:paymentId',
+            element: <FinancePaymentDetailsPage />,
           },
           {
             path: '/admin/finance/payments/:paymentId/edit',
@@ -305,7 +376,10 @@ export const router = createBrowserRouter([
           { path: ROUTE_PATHS.admin.cmsGallery, element: <CmsGalleryPage /> },
 
           { path: ROUTE_PATHS.admin.users, element: <UsersPage /> },
-          { path: ROUTE_PATHS.admin.rolesPermissions, element: <RolesPermissionsPage /> },
+          {
+            path: ROUTE_PATHS.admin.rolesPermissions,
+            element: <RolesPermissionsPage />,
+          },
           { path: ROUTE_PATHS.admin.settings, element: <SystemSettingsPage /> },
           { path: ROUTE_PATHS.admin.auditLogs, element: <AuditLogsPage /> },
         ],

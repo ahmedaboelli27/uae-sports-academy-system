@@ -1,4 +1,5 @@
 import BrandLogo from "@/components/shared/BrandLogo";
+import { useSiteSettings } from "@/features/settings/hooks/use-site-settings";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -27,6 +28,7 @@ interface SelectOption {
 
 export default function BookTrialPage() {
   const { t } = useTranslation();
+  const { settings } = useSiteSettings();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const sportOptions: SelectOption[] = [
@@ -52,6 +54,10 @@ export default function BookTrialPage() {
   ];
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    if (!settings.system.trialBookingEnabled) {
+      event.preventDefault();
+      return;
+    }
     event.preventDefault();
     setIsSubmitted(true);
 
@@ -83,20 +89,28 @@ export default function BookTrialPage() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#trial-form"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-7 py-4 text-sm font-black text-white shadow-brand transition hover:-translate-y-1 hover:bg-brand-blue-dark"
-                >
-                  {t("trial.hero.primaryAction")}
-                  <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-                </a>
+                {settings.system.trialBookingEnabled ? (
+                  <a
+                    href="#trial-form"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-7 py-4 text-sm font-black text-white shadow-brand transition hover:-translate-y-1 hover:bg-brand-blue-dark"
+                  >
+                    {t("trial.hero.primaryAction")}
+                    <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center justify-center rounded-full bg-slate-200 px-7 py-4 text-sm font-black text-slate-600">
+                    Trial booking is currently unavailable
+                  </span>
+                )}
 
-                <Link
-                  to="/register-child"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-7 py-4 text-sm font-black text-foreground shadow-sm transition hover:-translate-y-1 hover:border-brand-yellow hover:shadow-lg"
-                >
-                  {t("trial.hero.secondaryAction")}
-                </Link>
+                {settings.system.registrationEnabled ? (
+                  <Link
+                    to="/register-child"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-7 py-4 text-sm font-black text-foreground shadow-sm transition hover:-translate-y-1 hover:border-brand-yellow hover:shadow-lg"
+                  >
+                    {t("trial.hero.secondaryAction")}
+                  </Link>
+                ) : null}
               </div>
             </div>
 
@@ -155,6 +169,11 @@ export default function BookTrialPage() {
       >
         <div className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr]">
           <form onSubmit={handleSubmit} className="space-y-8">
+            {!settings.system.trialBookingEnabled ? (
+              <div className="rounded-[2rem] border border-amber-300 bg-amber-50 p-4 text-sm font-bold text-amber-800">
+                Trial booking is currently unavailable.
+              </div>
+            ) : null}
             <FormSection
               icon={User}
               title={t("trial.sections.parent.title")}
@@ -274,13 +293,15 @@ export default function BookTrialPage() {
                   </p>
                 </div>
 
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-7 py-4 text-sm font-black text-white shadow-brand transition hover:-translate-y-1 hover:bg-brand-blue-dark"
-                >
-                  {t("trial.submit.button")}
-                  <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-                </button>
+                {settings.system.trialBookingEnabled ? (
+                  <button
+                    type="submit"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-7 py-4 text-sm font-black text-white shadow-brand transition hover:-translate-y-1 hover:bg-brand-blue-dark"
+                  >
+                    {t("trial.submit.button")}
+                    <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                  </button>
+                ) : null}
               </div>
             </div>
           </form>

@@ -34,7 +34,20 @@
     "finance": "Finance",
     "reports": "Reports",
     "settings": "Settings",
-    "branches": "Branches"
+    "branches": "Branches",
+    "home": "Home",
+    "about": "About",
+    "children": "My Children",
+    "subscriptions": "Subscriptions",
+    "payments": "Payments",
+    "invoices": "Invoices",
+    "makeUpRequest": "Make-up Request",
+    "messages": "Messages",
+    "documents": "Documents",
+    "todaySessions": "Today Sessions",
+    "assessments": "Assessments",
+    "progressNotes": "Progress Notes",
+    "incidentReport": "Incident Report"
   },
   "footer": {
     "description": "A premium digital experience for parents, coaches, students, and academy management."
@@ -2168,7 +2181,7 @@
       "cmsGallery": "Gallery Content",
       "users": "Users",
       "rolesPermissions": "Roles & Permissions",
-      "settings": "System Settings",
+      "settings": "Settings",
       "auditLogs": "Audit Logs",
       "todaySessions": "Today Sessions",
       "assignedStudents": "Assigned Students",
@@ -2186,7 +2199,8 @@
       "accountant": "Accountant",
       "coach": "Coach",
       "parent": "Parent",
-      "unknown": "Unknown Role"
+      "unknown": "Unknown Role",
+      "guest": "Guest"
     },
     "footer": {
       "label": "Current Access"
@@ -2200,7 +2214,9 @@
       "content": "Content",
       "system": "System",
       "account": "Account"
-    }
+    },
+    "openMenu": "Open sidebar menu",
+    "closeMenu": "Close sidebar menu"
   },
   "topbar": {
     "systemLabel": "Academy Portal",
@@ -2230,6 +2246,23 @@
       "parent": "Parent",
       "guest": "Guest",
       "unknown": "Unknown Role"
+    },
+    "publicHome": "Public Home",
+    "accountMenu": "Account menu",
+    "notifications": "Notifications",
+    "profileSettings": "Profile settings",
+    "access": {
+      "admin": "Admin Access",
+      "accountant": "Finance Access",
+      "coach": "Coach Access",
+      "parent": "Parent Access"
+    },
+    "portal": {
+      "parent": "Parent Portal",
+      "coach": "Coach Portal",
+      "admin": "Admin Portal",
+      "accountant": "Finance Portal",
+      "default": "My Portal"
     }
   },
   "schedulePage": {
@@ -2982,7 +3015,15 @@
       "createInvoice": "Create Invoice",
       "createPayment": "Create Payment",
       "exportPdf": "Export PDF",
-      "exporting": "Exporting..."
+      "exporting": "Exporting...",
+      "actions": {
+        "refresh": "تحديث",
+        "createSubscription": "إنشاء اشتراك",
+        "createInvoice": "إنشاء فاتورة",
+        "createPayment": "إنشاء دفعة",
+        "exportPdf": "تصدير PDF",
+        "exporting": "جاري التصدير..."
+      }
     },
     "filters": {
       "title": "Search & Filters",
@@ -3747,5 +3788,288 @@
   "financeDeleteButton": {
     "cancel": "Cancel",
     "deleting": "Deleting..."
+  },
+  "contactPage": {
+    "badge": "Contact AspireX",
+    "title": "Talk to our academy team",
+    "description": "Reach us through phone, WhatsApp, email, or social media. Direct website messages are available only after logging in so every request is linked to a real account.",
+    "actions": {
+      "bookTrial": "Book Trial",
+      "registerChild": "Register Child"
+    },
+    "verified": {
+      "title": "Verified communication",
+      "description": "Public channels are open to everyone. Direct website messages require login to protect the academy from anonymous spam."
+    },
+    "status": {
+      "phoneWhatsApp": "Phone & WhatsApp",
+      "available": "Available",
+      "directMessages": "Direct Messages",
+      "active": "Active",
+      "loginRequired": "Login required"
+    },
+    "cards": {
+      "phone": "Phone",
+      "phoneHelper": "Call our support team",
+      "whatsapp": "WhatsApp",
+      "whatsappHelper": "Fast response on WhatsApp",
+      "email": "Email",
+      "emailHelper": "Send us an email",
+      "workingHours": "Working Hours",
+      "workingHoursHelper": "Academy operating hours",
+      "location": "Location",
+      "locationHelper": "Open location on map",
+      "open": "Open",
+      "notConfigured": "Not configured"
+    },
+    "social": {
+      "title": "Follow our channels",
+      "description": "Stay close to academy news, updates, events, and offers."
+    },
+    "direct": {
+      "title": "Direct message to administration",
+      "description": "This section is prepared for direct communication with academy administration. For safety, this form becomes active only after login, so each message is connected to a verified user account.",
+      "lockedNotice": "Direct website messaging is currently locked for visitors. Please log in or create an account to send a message to administration.",
+      "activeNotice": "You are logged in. You can now send a verified message directly to the administration team.",
+      "login": "Log in",
+      "createAccount": "Create account"
+    },
+    "form": {
+      "sendTitle": "Send a message",
+      "previewTitle": "Message form preview",
+      "sendDescription": "Your message will be linked to your account.",
+      "previewDescription": "Preview only. Login required before activation.",
+      "active": "Active",
+      "locked": "Locked",
+      "subject": "Subject",
+      "subjectPlaceholder": "Example: Program inquiry",
+      "category": "Category",
+      "preferredContactMethod": "Preferred contact method",
+      "message": "Message",
+      "messagePlaceholder": "Write your message to the administration team...",
+      "previewMessage": "Log in to write and send a direct message to the administration team.",
+      "sendButton": "Send verified message",
+      "sending": "Sending...",
+      "lockedButton": "Send message after login"
+    },
+    "validation": {
+      "loginRequired": "Please log in before sending a direct message.",
+      "subjectMin": "Subject must be at least 3 characters.",
+      "messageMin": "Message must be at least 10 characters."
+    },
+    "messages": {
+      "success": "Your message has been sent successfully. The administration team will review it soon.",
+      "error": "Failed to send your message. Please make sure you are logged in and try again."
+    },
+    "system": {
+      "trialUnavailable": "Trial booking is currently unavailable.",
+      "registrationUnavailable": "New registration is currently unavailable."
+    }
+  },
+  "notificationsPage": {
+    "badge": "Communication Center",
+    "title": "Notifications",
+    "description": "Manage academy communications in one place. The Inbox is connected to real messages from the public Contact page, while Compose, Templates, History, and Automation Rules prepare the full notification center.",
+    "tabs": {
+      "inbox": {
+        "title": "Inbox",
+        "description": "Real contact messages."
+      },
+      "compose": {
+        "title": "Compose",
+        "description": "Create and preview a notification."
+      },
+      "templates": {
+        "title": "Templates",
+        "description": "Reusable message templates."
+      },
+      "history": {
+        "title": "History",
+        "description": "Review sent and scheduled messages."
+      },
+      "rules": {
+        "title": "Automation Rules",
+        "description": "Future-ready notification triggers."
+      }
+    },
+    "metrics": {
+      "inbox": "Inbox",
+      "newMessages": "New Messages",
+      "sentCampaigns": "Sent Campaigns",
+      "scheduled": "Scheduled"
+    },
+    "inbox": {
+      "title": "Inbox",
+      "description": "Real contact messages submitted from the public Contact page. New messages appear here automatically and are marked as read when opened.",
+      "refresh": "Refresh",
+      "reset": "Reset",
+      "total": "Total",
+      "new": "New",
+      "replied": "Replied",
+      "urgent": "Urgent",
+      "searchPlaceholder": "Search sender, subject, message, or code...",
+      "contactInbox": "Contact Inbox",
+      "selectHint": "Select a message to review its details.",
+      "emptyTitle": "No inbox notifications",
+      "emptyDescription": "There are no contact messages yet. New direct messages from the public Contact page will appear here.",
+      "failedLoad": "Failed to load notification inbox.",
+      "detailsEmptyTitle": "Select a notification",
+      "detailsEmptyDescription": "Choose a message from the Inbox section to view its details.",
+      "preferredContact": "Preferred contact",
+      "sender": "Sender",
+      "category": "Category",
+      "updated": "Updated",
+      "lastActivity": "Last activity",
+      "noEmail": "No email",
+      "messageCategory": "Message category",
+      "messageContent": "Message content",
+      "adminReply": "Admin reply",
+      "internalNote": "Internal note",
+      "unknownUser": "Unknown user",
+      "filters": {
+        "all": "All",
+        "allDescription": "All contact notifications",
+        "new": "New",
+        "newDescription": "Unread direct messages",
+        "read": "Read",
+        "readDescription": "Reviewed messages",
+        "replied": "Replied",
+        "repliedDescription": "Messages with replies",
+        "closed": "Closed",
+        "closedDescription": "Resolved conversations"
+      }
+    },
+    "priorities": {
+      "all": "All priorities",
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "status": {
+      "NEW": "NEW",
+      "READ": "READ",
+      "REPLIED": "REPLIED",
+      "CLOSED": "CLOSED"
+    },
+    "compose": {
+      "title": "Compose Notification",
+      "description": "Write the message, choose the audience, select channels, and send or schedule the notification.",
+      "reset": "Reset",
+      "saveDraft": "Save Draft",
+      "sendNow": "Send Now",
+      "schedule": "Schedule",
+      "notificationTitle": "Notification title",
+      "titlePlaceholder": "Example: Schedule update",
+      "priority": "Priority",
+      "audience": "Audience",
+      "deliveryChannels": "Delivery Channels",
+      "message": "Message",
+      "messagePlaceholder": "Write your notification message here...",
+      "sendMode": "Send mode",
+      "sendImmediately": "Send immediately",
+      "scheduleForLater": "Schedule for later",
+      "scheduledDateTime": "Scheduled date and time"
+    },
+    "history": {
+      "title": "Notification History",
+      "description": "Review sent, scheduled, drafted, and failed notification campaigns.",
+      "searchPlaceholder": "Search notifications...",
+      "noFoundTitle": "No notifications found",
+      "noFoundDescription": "Try another search term or reset the status filter."
+    }
+  },
+  "profile": {
+    "students": "Students / Capacity",
+    "programs": "Programs",
+    "weeklySessions": "Weekly Sessions",
+    "rating": "Rating"
+  },
+  "overview": {
+    "title": "Branch Overview",
+    "description": "General branch description and operational summary.",
+    "facilitiesCount": "Facilities",
+    "coachesCount": "Coaches",
+    "utilizationRate": "Utilization Rate"
+  },
+  "facilities": {
+    "title": "Facilities",
+    "description": "Facilities and spaces available inside this branch.",
+    "empty": "No facilities have been added yet.",
+    "capacity": "Capacity",
+    "available": "Available",
+    "unavailable": "Unavailable"
+  },
+  "operatingHours": {
+    "title": "Operating Hours",
+    "description": "Weekly opening and closing hours for this branch.",
+    "empty": "No operating hours have been added yet.",
+    "closed": "Closed"
+  },
+  "programs": {
+    "title": "Programs",
+    "description": "Programs currently available in this branch.",
+    "empty": "No programs are linked to this branch yet.",
+    "students": "students"
+  },
+  "coaches": {
+    "title": "Coaches",
+    "description": "Coaches currently assigned to this branch.",
+    "empty": "No coaches are assigned to this branch yet.",
+    "weeklySessions": "weekly session(s)"
+  },
+  "schedule": {
+    "title": "Branch Schedule",
+    "description": "Scheduled sessions taking place in this branch.",
+    "empty": "No schedule slots have been added yet.",
+    "studentsCount": "Students Count"
+  },
+  "performance": {
+    "title": "Performance Metrics",
+    "description": "Utilization, rating, and operational performance indicators.",
+    "empty": "No performance metrics are available."
+  },
+  "contact": {
+    "title": "Contact Information",
+    "description": "Branch contact details and manager information.",
+    "phone": "Branch Phone",
+    "email": "Branch Email",
+    "managerName": "Manager Name",
+    "managerPhone": "Manager Phone"
+  },
+  "location": {
+    "title": "Location Information",
+    "description": "City, area, address, and coordinates for this branch.",
+    "city": "City",
+    "area": "Area",
+    "address": "Address",
+    "coordinates": "Coordinates"
+  },
+  "notes": {
+    "title": "Internal Notes",
+    "description": "Internal administrative notes related to this branch.",
+    "notes": "Notes"
+  },
+  "facilityType": {
+    "football_pitch": "Football Pitch",
+    "swimming_pool": "Swimming Pool",
+    "indoor_court": "Indoor Court",
+    "fitness_area": "Fitness Area",
+    "multi_purpose_hall": "Multi-Purpose Hall",
+    "kids_zone": "Kids Zone",
+    "reception": "Reception",
+    "parking": "Parking",
+    "changing_rooms": "Changing Rooms",
+    "medical_room": "Medical Room",
+    "storage": "Storage"
+  },
+  "days": {
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday"
   }
 }
